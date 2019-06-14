@@ -1,6 +1,6 @@
 <table class="tbl-heading"><tr><td class="td-logo">[![](images/obe_tag.png)](README.md)
 
-Last Updated:<br>November 08, 2018
+Last Updated:<br>June 13, 2019
 </td>
 <td class="td-banner">
 # Getting Started with Autonomous Transaction Processing Dedicated
