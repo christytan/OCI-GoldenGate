@@ -29,7 +29,7 @@ Please click on the following link to create your <a class=“trial-link” href
 
 Oracle Autonomous Transaction Processing Dedicated ...  
 
-Read on to begin your Getting Started journey with Oracle Autonomous Transaction Processing.
+Read on to begin your Getting Started journey with Oracle Autonomous Transaction Processing Dedicated.
 
 **You are all set, let's begin!**
 
