@@ -99,9 +99,9 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 - 
 
-**[Click here to run Lab 9](LabGuide800BuildinganddeployingJavaapplicationstacksondedicatedautonomousinfrastructure.md)**
+**[Click here to run Lab 8](LabGuide800BuildinganddeployingJavaapplicationstacksondedicatedautonomousinfrastructure.md)**
 
-## Lab 8: Using CLI commands to work with your Autonomous databases
+## Lab 9: Using CLI commands to work with your Autonomous databases
 
 **Key Objectives**:
 
