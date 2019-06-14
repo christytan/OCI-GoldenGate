@@ -21,8 +21,6 @@ Please click on the following link to create your <a class=“trial-link” href
   ![](images/readme/code_9.png)
 
 
-Detailed instruction on using the image are provided in <a href="./LabGuide1000AppDev.md" target="_blank">LabGuide10</a>
-
 
 # Workshop Overview
 
@@ -42,7 +40,7 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 - 
 
-**[Click here to run Lab 1](LabGuide100ProvisioningExadataInfrastructureforAutonomousDBinOCI.md)**
+**[Click here to run Lab 1](LabGuide100PreparingyourprivatedatacenterintheOracleCloudInfrastructure.md)**
 
 
 ## Lab 2: Provisioning Exadata Infrastructure for Autonomous DB in OCI
@@ -101,4 +99,12 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 - 
 
-**[Click here to run Lab 8](LabGuide800BuildinganddeployingJavaapplicationstacksondedicatedautonomousinfrastructure.md)**
+**[Click here to run Lab 9](LabGuide800BuildinganddeployingJavaapplicationstacksondedicatedautonomousinfrastructure.md)**
+
+## Lab 8: Using CLI commands to work with your Autonomous databases
+
+**Key Objectives**:
+
+- 
+
+**[Click here to run Lab 9](LabGuide900UsingCLIcommandstoworkwithyourAutonomousdatabases.md)**
