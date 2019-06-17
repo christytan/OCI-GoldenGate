@@ -24,7 +24,9 @@ To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-
 
 -  The following lab requires an Oracle Public Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
 
-- This lab requires Oracle Cloud Developer Image launched in Compute instances.
+- This lab requires Oracle ATP Dedicated database. Click [here](LabGuide300ProvisioninganAutonomousContainerDatabase.md) to learn how to create Oracle ATP Dedicated database. 
+
+- This lab reuires Oracle Cloud Developer image launched in Compute instance. Click [here](LabGuide500ConnectingadeveloperclienttoanAutonomousDatabase.md) to learn how to launch Oracle Cloud Developer image in Compute instance. 
 
 ## Steps
 

@@ -87,7 +87,7 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 **Key Objectives**:
 
-- 
+ - Learn how to build a linux Node application and connect it to an Oracle ATP Dedicated database
 
 **[Click here to run Lab 6](LabGuide600Buildinganddeployingnode.jsapplicationstacksondedicatedautonomousinfrastructure.md)**
 
@@ -95,7 +95,7 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 **Key Objectives**:
 
-- 
+- Learn how to build a linux Python application and connect it to an Oracle ATP Dedicated database
 
 **[Click here to run Lab 7](LabGuide700BuildinganddeployingPythonapplicationstacksondedicatedautonomousinfrastructure.md)**
 

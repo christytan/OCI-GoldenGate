@@ -31,46 +31,68 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 
 - A user created in that account, in a group with a policy that grants the desired permissions. This account user can be you, another person, or a system that calls the API. For an example of how to set up a new user, group, compartment, and policy, see [Adding Users](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingusers.htm)
 
-- Python version 2.7.5 or later, running on Mac, Windows, or Linux.
+- Developer Image provided in the OCI Marketplace.
 
-#### Note: If you use the CLI Installer and do not have Python on your machine, the Installer offers to automatically install Python for you.
+    - To download the Developer Image. Login to Oracle Cloud Console and then click on the Hamburger Menu on top left of the screen and navigate to Marketplace. Provision the Developer image on OCI by answering few basic questions.
+
+    ![](./images/900/DevImage1.png)
+    ![](./images/900/DevImage2.png)
+    ![](./images/900/DevImage3.png)
+    ![](./images/900/DevImage4.png)
+    ![](./images/900/DevImage5.png)
+    ![](./images/900/DevImage7.png)
+    ![](./images/900/DevImage8.png)
+    ![](./images/900/DevImage9.png)
+    ![](./images/900/DevImage10.png)
+    ![](./images/900/DevImage6.png)
+
+#### Note: The developer image is configured and installed with all the necessary tools, SDK's and CLI most commonly used for Developer and DBA tasks.
 
 ## Steps
 
-### **STEP 1: Install Oracle Cloud Infrastructure Command Line Interface (OCI-CLI)**
+### **STEP 1: Verifying the installed Oracle Cloud Infrastructure Command Line Interface (OCI-CLI)**
 
-- There are two ways to install the CLI and you can use the one that is best suited for your environment. Use either of the following options:
-    - Automatically installing the CLI and dependencies with the CLI installer
-    - Manually installing the CLI and dependencies within a virtual environment
+- We are going to use the preconfigured developer image available in the Marketplace on OCI console. This developer image is already configured with most of the required tools, SDK's and CLI's like Python, Node.js, Java, OCI-CLI, etc. Now, we are just going to verify whether the installed version meets our requirement for this lab.
 
-#### Using the CLI installer
+#### Verifiying the OCI-CLI version
 
-The installer uses a script to install the CLI and programs that are required. You can use the installer to eliminate most of the manual steps to install the CLI. The installer script:
+In this lab we are going to need the OCI-CLI which supports ATP-Dedicated database. To verify the whether OCI-CLI installed is the correct version needed for ATP-Dedicated database, run the following commands:
 
-- Installs Python 
-    - During installation, you are prompted to provide a location for installing the binaries and executables. If Python is not installed on your computer, or the installed version of Python is incompatible with the CLI, you are prompted to install Python.
-    - The installer doesn't try to install Python on a MacOS computer. However, the script notifies you if the version of Python on the computer is too old or incompatible.
+- Verifying if OCI-CLI is installed: 
+    - Log in to the developer image using ssh or VNC viewer.Here we have used ssh to login. Type OCI and hit enter. You must see the various options which you can use with OCI-CLI.
+    
+    ```
+    $ ssh -i <ssh_key> opc@<ip address>
+    $ oci
+    ```
+    - You are going to see the options similar to the below example.
 
-- Installs virtualenv and creates a virtual environment
+        ![](./images/900/OCI-CLI-verify1.png)
+        ![](./images/900/OCI-CLI-verify2.png)
 
-- Installs the latest version of the CLI
+    - Verifying ATP Dedicated command options
 
-    - The installer overwrites an existing installation if you chose to do so. Respond with Y when prompted to upgrade the CLI to the newest version.
-    - During the installation, you are asked if you want to update your PATH. Updating the PATH adds the CLI executable ("oci.exe") to your PATH. Adding oci.exe to the PATH lets you invoke the CLI without providing the full path to the executable. If you want to update your PATH, respond with Y when prompted. You are notified when to close and restart the terminal session.
+        - On the same terminal, type the below commands and check for the ATP-Dedicated database options as shown below.
 
-To install the CLI on any compute with Bash
+        ```
+        $ oci db --help
+        ```
 
-- Open a terminal 
-- To run the installer script, run the following command
-- Respond to the installer's prompts
+        ![](./images/900/OCI-CLI-verify3.png)
 
-```
-bash -c "$(curl -L https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh)"
-```
+        ![](./images/900/OCI-CLI-verify4.png)
 
-![](./images/900/OCI-CLI-Install.png)
+        ![](./images/900/OCI-CLI-verify5.png)
 
-![](./images/900/OCI-CLI-Install2.png)
+        - **Execute the below command and check if you have the "--is-dedicated" option in the list. This option is needed and mandatory when you are creating the ATP-Dedicated database. This is how OCI-CLI is going to differentiate between ATP serverless and ATP dedicated database. If the --is-dedicated option is set to True, then an ATP-Dedicated database will be provisioned. If this is set to False, then a ATP-Serverless database instance will be provisioned.**
+
+        ```
+        $ oci db autonomous-database create -h
+        ```
+
+        ![](./images/900/OCI-CLI-verify6.png)
+
+
 
 ### **STEP 2: Configure OCI CLI**
 
@@ -130,7 +152,7 @@ cat oci_api_key_public.pem
 
 ![](./images/900/OCIPublicKeycleare.png)
 
-- Login to your OCI console and click on Menu and select Identity and Users. Select a User and navigate to User Detial page.
+- Login to your OCI console and click on Menu and select Identity and Users. Select a User and navigate to User Detail page.
 
 - Click on Add Public Key under API Keys section.
 
@@ -297,7 +319,7 @@ For further examples on how to work with OCI CLI with different services please 
 
 You have successfully configured Oracle Cloud Infrastructure Command Line Interface and ran examples on Autonomous Transaction Processing - Dedicated Infrastructure Database.
 
--   You are now ready to move to the next lab.
+-  You are now ready to move to the next lab.
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
