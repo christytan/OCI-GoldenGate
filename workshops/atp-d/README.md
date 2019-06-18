@@ -3,11 +3,16 @@
 Last Updated:<br>June 13, 2019
 </td>
 <td class="td-banner">
-# Getting Started with Autonomous Transaction Processing Dedicated
+# Working with Autonomous Transaction Processing - Dedicated
 </td></tr><table>
 
+These workshop labs provide step-by-step directions to setting up and using your dedicated Autonomous database platform in the Oracle Cloud Infrastructure. 
 
-This workshop walks you through how to create private data center in Oracle Cloud Infrastructure and provision Exadata Infrastructure for Autobnomious database and create your first Container and Pluggable database. This workshop also talks about how to connect your database to applications that are written in various languages like, Python, Java and Node.js. You will also learn how to use Oracle Command Line Interface to manage you database. 
+Lab 100 deals with setting up the network, users and groups and requires administrator privileges on your OCI account
+
+Labs 200 & 300 are geared towards the fleet administrator role responsible for deploying the autonomous exadata infrastructure and container databases
+
+Labs 300 - 1000 are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications
 
 ## Goals for this workshop
 - Learn how to prepare your private data center in the Oracle Cloud Infrastructure
@@ -20,12 +25,12 @@ This workshop walks you through how to create private data center in Oracle Clou
 - Learn how to build and deploying Java application stacks on dedicated autonomous infrastructure
 - Learn how to use CLI commands to work with your Autonomous databases
 
-# How to Get Your Free Cloud Trial Account
+<!-- # How to Get Your Free Cloud Trial Account
 Please click on the following link to create your <a class=“trial-link” href="https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ex:tb:::RC_NAMK181011P00041:ATPHOL&SC=:ex:tb:::RC_NAMK181011P00041:ATPHOL&pcode=NAMK181011P00041" target="_trial">Free Account</a>, and complete all the required steps to get your free Oracle Cloud Trial Account. When you complete the registration process you'll receive a $300 credit that will enable you to complete the lab for free.  Additionally, you'll have 1000s of hours left over to continue to explore the Oracle Cloud.
 
-  - Soon after requesting your trial you will receive the following email. You may begin working on Lab 100.
+  - Soon after requesting your trial you will receive the following email. You may begin working on Lab 100. -->
 
-  ![](images/readme/code_9.png)
+  <!-- ![](images/readme/code_9.png) -->
 
 
 
@@ -33,10 +38,12 @@ Please click on the following link to create your <a class=“trial-link” href
 
 ## Before You Begin
 **What is an Autonomous Transaction Processing Dedicated?**
+The dedicated infrastructure feature of Oracle Autonomous Transaction Processing enables you to create an Oracle Autonomous Database platform that is private and isolated to your use all the way down to the Oracle Exadata hardware running your database instances and storing your database data.
 
-Oracle Autonomous Transaction Processing Dedicated ...  
+You define and use Oracle Cloud Infrastructure Networking and IAM (Identity and Access Management) resources to ensure secure and authorized use of your dedicated Autonomous Transaction Processing databases and the database resources that underlie them
+<!-- Oracle Autonomous Transaction Processing Dedicated ...  
 
-Read on to begin your Getting Started journey with Oracle Autonomous Transaction Processing Dedicated.
+Read on to begin your Getting Started journey with Oracle Autonomous Transaction Processing Dedicated. -->
 
 **You are all set, let's begin!**
 
@@ -44,7 +51,9 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 ## Lab 1: Preparing your private data center in the Oracle Cloud Infrastructure
 
 **Key Objectives**:
-- 
+- Create compartments and user groups with the right set of access policies for separation of duties
+- Create fleet admin and database user accounts
+- Layout a secure network for the database and application infrastructure
 
 **[Click here to run Lab 1](LabGuide100PreparingyourprivatedatacenterintheOracleCloudInfrastructure.md)**
 
