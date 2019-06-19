@@ -18,7 +18,8 @@ To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-
 
 ## Objectives
 
-- Learn how to build a linux Python application and connect it to an Oracle ATP Dedicated database
+As an application developer,
+- Learn how to deploy a python application and connect it to your dedicated autonomous database instance
 
 ## Required Artifacts
 
@@ -169,7 +170,7 @@ echo $TNS_ADMIN
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-## Great Work - All Done!
+
 </td>
 </tr>
 <table>

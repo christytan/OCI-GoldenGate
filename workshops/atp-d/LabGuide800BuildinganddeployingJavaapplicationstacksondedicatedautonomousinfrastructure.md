@@ -17,7 +17,8 @@ To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-
 
 ## Objectives
 
-- Learn how to build a linux Java application server and connect it to an Oracle ATP Dedicated database
+As an application developer,
+- Learn how to deploy a java application and connect it to your dedicated autonomous database instance
 
 
 ## Required Artifacts
@@ -233,7 +234,7 @@ java -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/auto
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-## Great Work - All Done!
+
 </td>
 </tr>
 <table>

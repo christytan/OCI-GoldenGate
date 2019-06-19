@@ -16,7 +16,8 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 
 ## Objectives
 
-- Deploy an Autonomous Exadata Infrastructure in a pre-provisioned private network in your OCI account
+As a fleet administrator, 
+- deploy an Autonomous Exadata Infrastructure in a pre-provisioned private network in your OCI account
 - Understand AEI maintenance scheduling
 - Understand database licensing options
 
@@ -68,9 +69,9 @@ You also have two options for selecting the license type for the database contai
 
 
 <table>
-<tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
+<tr><td class="td-logo">[![](./images/obe_tag.png)](#)</td>
 <td class="td-banner">
-## Great Work - All Done!
+
 </td>
 </tr>
 <table>

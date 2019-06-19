@@ -6,13 +6,16 @@ Last Updated:<br>June 13, 2019
 # Working with Autonomous Transaction Processing - Dedicated
 </td></tr><table>
 
+Oracle's Dedicated Autonomous Transaction Processing service allows an organization to Rethink Database IT, enabling a customizable private database cloud in the public cloud. The dedicated choice makes it possible to deliver a self-service database capability that aligns with organizational structure. Different lines of business or project teams can have complete autonomy in their individual execution while the company itself gets a fleet wide simplified aggregation of overall health, availability and cost management. This separation of Fleet vs Database administration allows simple budgeting controls and resource isolation without getting in the way of the line of business execution. And a dedicated database deployment will support the entire spectrum of needs from simple apps to apps that require the highest governance, consistent performance and operational controls
+
+
 These workshop labs provide step-by-step directions to setting up and using your dedicated Autonomous database platform in the Oracle Cloud Infrastructure. 
 
-Lab 100 deals with setting up the network, users and groups and requires administrator privileges on your OCI account
+Lab 1 deals with setting up the network, users and groups and requires administrator privileges on your OCI account
 
-Labs 200 & 300 are geared towards the fleet administrator role responsible for deploying the autonomous exadata infrastructure and container databases
+Labs 2 & 3 are geared towards the fleet administrator role responsible for deploying the autonomous exadata infrastructure and container databases
 
-Labs 300 - 1000 are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications
+Labs 4 onwards are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications
 
 ## Goals for this workshop
 - Learn how to prepare your private data center in the Oracle Cloud Infrastructure
@@ -38,6 +41,7 @@ Please click on the following link to create your <a class=“trial-link” href
 
 ## Before You Begin
 **What is an Autonomous Transaction Processing Dedicated?**
+
 The dedicated infrastructure feature of Oracle Autonomous Transaction Processing enables you to create an Oracle Autonomous Database platform that is private and isolated to your use all the way down to the Oracle Exadata hardware running your database instances and storing your database data.
 
 You define and use Oracle Cloud Infrastructure Networking and IAM (Identity and Access Management) resources to ensure secure and authorized use of your dedicated Autonomous Transaction Processing databases and the database resources that underlie them
@@ -62,7 +66,10 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 **Key Objectives**:
 
-- 
+As a fleet administrator, 
+- deploy an Autonomous Exadata Infrastructure in a pre-provisioned private network in your OCI account
+- Understand AEI maintenance scheduling
+- Understand database licensing options
 
 **[Click here to run Lab 2](LabGuide200ProvisioningExadataInfrastructureforAutonomousDBinOCI.md)**
 
@@ -71,7 +78,8 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 **Key Objectives**:
 
-- 
+As a fleet administrator,
+- Deploy an Autonomous Container Database (ACD) onto an Autonomous Exadata Infrastructure (AEI)
 
 **[Click here to run Lab 3](LabGuide300ProvisioninganAutonomousContainerDatabase.md)**
 
@@ -80,15 +88,18 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 **Key Objectives**:
 
-- Learn how to sign-in to the Oracle Cloud
-- Learn how to provision a new ATP database
+As a database user, DBA or application developer,
+
+- Rapidly deploy autonomous transaction processing databases
+- Manage your database backups
 
 **[Click here to run Lab 4](LabGuide400ProvisioningdatabasesonyourdedicatedAutonomousInfrastructure.md)**
 
 ## Lab 5: Connecting a developer client to an Autonomous Database
 
 **Key Objectives**:
-- Learn how to configure a secure connection using Oracle SQL Developer, SQLCL and SQL*Plus. 
+As a database user, DBA or application developer,
+- Configure a secure connection from your application instance to your dedicated autonomous database using Oracle SQL Developer, SQLCL and SQL*Plus.
 
 **[Click here to run Lab 5](LabGuide500ConnectingadeveloperclienttoanAutonomousDatabase.md)**
 
@@ -96,7 +107,8 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 **Key Objectives**:
 
- - Learn how to build a linux Node application and connect it to an Oracle ATP Dedicated database
+As an application developer,
+- Learn how to deploy a node.js application and connect it to your dedicated autonomous database instance
 
 **[Click here to run Lab 6](LabGuide600Buildinganddeployingnode.jsapplicationstacksondedicatedautonomousinfrastructure.md)**
 
@@ -104,7 +116,8 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 **Key Objectives**:
 
-- Learn how to build a linux Python application and connect it to an Oracle ATP Dedicated database
+As an application developer,
+- Learn how to deploy a python application and connect it to your dedicated autonomous database instance
 
 **[Click here to run Lab 7](LabGuide700BuildinganddeployingPythonapplicationstacksondedicatedautonomousinfrastructure.md)**
 
@@ -112,7 +125,8 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 
 **Key Objectives**:
 
-- Learn how to build a linux Java application server and connect it to an Oracle ATP Dedicated database
+As an application developer,
+- Learn how to deploy a java application and connect it to your dedicated autonomous database instance
 
 
 **[Click here to run Lab 8](LabGuide800BuildinganddeployingJavaapplicationstacksondedicatedautonomousinfrastructure.md)**
@@ -120,7 +134,10 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 ## Lab 9: Using CLI commands to work with your Autonomous databases
 
 **Key Objectives**:
-- Configure Oracle Cloud Infrastructure Command Line Interface
-- Run examples using OCI-CLI for Autonomous Transaction Processing database
+
+As an application developer, DBA or DevOps user,
+
+- Create/Destroy your autonomous database instances using a command line interface
+- Interact with Oracle Cloud Infrastructure resource using a CLI instead of a web console
 
 **[Click here to run Lab 9](LabGuide900UsingCLIcommandstoworkwithyourAutonomousdatabases.md)**

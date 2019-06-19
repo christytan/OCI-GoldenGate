@@ -14,61 +14,63 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 
 ## Objectives
 
-- Learn how to sign-in to the Oracle Cloud
-- Learn how to provision a new ATP database
+As a database user, DBA or application developer,
+
+- Rapidly deploy autonomous transaction processing databases
+- Manage your database backups
 
 ## Required Artifacts
 
-- The following lab requires an Oracle Public Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
-- You have provisioned Oracle Autonomous Exadata Infrastructure and Autonomous Container Database.
+- To complete this lab you need access to an Oracle Cloud Infrastructure account with a pre-provisioned Exadata Infrastructure and Container Database
+
 
 # Provisioning an Autonomous Transaction Processing Database Instance
 
-In this section you will be provisioning an ATP database using the cloud console.
+In this section you will be provisioning a dedicated autonomous database using the cloud console.
 ## Steps
 
 ### **STEP 1: Sign in to Oracle Cloud Infrastructure console**
 
 - Go to cloud.oracle.com, click Sign In to sign in with your Oracle Cloud account.
 
-![](./images/100/signin.png)
+![](./images/400/signin.png)
 
 - Enter your Cloud Account Name and click My Services.
 
-![](./images/100/cloudaccname.png)
+![](./images/400/cloudaccname.png)
 
 - Enter your Oracle Cloud username and password, and click Sign In.
 
-![](./images/100/unpw.png)
+![](./images/400/unpw.png)
 
 - Once you are logged in, you are taken to the cloud services dashboard where you can see all the services available to you.
 
 - Click Autonomous Transaction Processing in the left side menu under services
 
-![](./images/100/myservices.png)
+![](./images/400/myservices.png)
 
 
 ### **STEP 2: Create an ATP Instance**
 
 -  Click on the hamburger menu icon on the top left of the screen
 
-![](./images/100/Picture100-20.jpeg)
+![](./images/400/Picture100-20.jpeg)
 
 -  Click on **Autonomous Transaction Processing** from the menu
 
-![](./images/100/Picture100-21.jpeg)
+![](./images/400/Picture100-21.jpeg)
 
 - Select **dbUserCompartment Compartment** 
 
-![](./images/100/dbUserCompartment.png)
+![](./images/400/dbUserCompartment.png)
 
 -  Click on **Create Autonomous Transaction Processing Database** button to start the instance creation process
 
-![](./images/100/createATP-D.png)
+![](./images/400/createATP-D.png)
 
 -  This will bring up Create ATP Database screen where you specify the configurations of the instance
 
-![](./images/100/provisionATP-D.png)
+![](./images/400/provisionATP-D.png)
 
 
 #### Note: Oracle Cloud Infrastructure allows logical isolation of users within a tenant through Compartments. This allows multiple users and business units to share a tenant account while being isolated from each other.
@@ -79,16 +81,16 @@ More information about Compartments and Policies is provided in the OCI Identity
 
 -  Verify dbUserCompartment compartment is selected and Specify a name for the instance
 
-![](./images/100/provisionATP-Dname.png)
+![](./images/400/provisionATP-Dname.png)
 
 -  Choose workload type to Transaction Processing and deployment type to Dedicated Infrastructure
 
-![](./images/100/provisionATP-Dworkloads.png)
+![](./images/400/provisionATP-Dworkloads.png)
 
 
 -  You can choose an instance shape, specified by the CPU count and storage size. Default CPU count is 1 and storage is 1 TB.
 
-![](./images/100/provisionATP-DCPU.png)
+![](./images/400/provisionATP-DCPU.png)
 
 -  Specify the password for the instance
 
@@ -98,37 +100,36 @@ More information about Compartments and Policies is provided in the OCI Identity
 WElcome#1234
 ```
 
-![](./images/100/Picture100-29.jpeg)
+![](./images/400/Picture100-29.jpeg)
 
 - Make sure you have already created Autonomous Container Database
 - Choose Autonomous Container Database
 
-![](./images/100/provisionATP-Dcontainer.png)
+![](./images/400/provisionATP-Dcontainer.png)
 
 
 - Make sure you have everything filled all required details
 
 -  Click on **Create Autonomous Transaction Processing Database** to start provisioning the instance
 
-![](./images/100/Picture100-31.jpeg)
+![](./images/400/Picture100-31.jpeg)
 
 - Once you create ATP Database it would take 2-3 minutes for the instance to be provisioned.
 
-![](./images/100/waitprovision.png)
+![](./images/400/waitprovision.png)
 
 -  Once it finishes provisioning, you can click on the instance name to see details of it
 
-![](./images/100/doneprovision.png)
+![](./images/400/doneprovision.png)
 
-You now have created your first Autonomous Transaction Processing Cloud instance.
+You now have created your dedicated Autonomous Transaction Processing database.
 
 
--   You are now ready to move to the next lab.
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-## Great Work - All Done!
+
 </td>
 </tr>
 <table>

@@ -6,19 +6,27 @@ June 13, 2019
 # Lab 6: Building and deploying node.js application stacks on dedicated autonomous infrastructure
 </td></tr><table>
 
-## Introduction
-
 To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-transaction-processing/issues/new) to go to the github oracle repository issue submission form.
+
+## Introduction
+The Oracle Cloud Infrastructure marketplace provides a pre-built image with necessary client tools and drivers to build applications on autonomous databases. As an application developer you can now provision a developer image within minutes and connect it to your dedicated or serverless database deployment. 
+
+ The image is pre-configured with tools and language drivers to help you build applications written in node.js, python, java and golang.
+For a complete list of features, login to your OCI account, select 'Marketplace' from the top left menu and browse details on the 'Oracle Developer Cloud Image'
+
 
 ## Objectives
 
-- Learn how to build a linux Node application and connect it to an Oracle ATP Dedicated database
+As an application developer,
+- Learn how to deploy a node.js application and connect it to your dedicated autonomous database instance
 
 ## Required Artifacts
 
--  The following lab requires an Oracle Public Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
+-  Access to an Oracle Cloud Infrastructure account
 
-- This lab requires Oracle Cloud Developer Image launched in Compute instances.
+- A pre-provisioned instance of Oracle Cloud Developer Image from the OCI marketplace
+
+- A pre-provisioned instance of dedicated autonomous database
 
 ## Steps
 
@@ -53,24 +61,19 @@ sudo ssh -i /path_to/sshkeys/id_rsa -L 3050:127.0.0.1:3050 opc@publicIP
 
 ### Cloning Node Application
 
-- Once you have successfully SSH into the linux host machine create a new directory in /home/opc/
+- Download a sample node.js application [here ](/./scripts/600/ATPDnode.zip) and scp it to your development host in folder /home/opc
 
 ```
-cd /home/opc/
-
-mkdir ATPDnode
+$ scp /path/to/your/ATPDnode.zip -i <priv-key> opc@<IPAddress>
 ```
 
 
-- Clone ATPDnode git repository into ATPDnode directory 
+- ssh back into your host and unzip ATPDnode.zip
 
 ```
-cd /home/opc/ATPDnode/
-
-git clone https://github.com/dannymartin/ATPDnode.git
+$ unzip /home/opc/ATPDnode.zip
 ```
-
-- You are now ready to move to step 2
+Now that you have a sample application setup, lets get your database's secure wallet for connectivity
 
 ### **STEP 2: Secure Copy ATP Dedicated database wallet to linux host machine**
 
@@ -104,19 +107,14 @@ scp -i /Path/to/your/private_ssh_key /Path/to/your/downloaded_wallet opc@publicI
 ```
 ![](./images/800/atpd5.png)
 
-- You are now ready to move to step 3
 
-### **STEP 3: Confuigure env variables and run node application in linux host machine**
 
-We have now succesfully secured copied wallet into our linux host machine. We will now configure env variuables and database config files and run our node applicaiton.
+### **STEP 3: Configure env. variables and run your node.js application**
 
-- Open terminal in your laptop and SSH into linux host machine
+Now that you have copied the database wallet to your development host, lets configure some env. variables and database authentication file to connect your node.js app to the database
 
-```
-ssh -i /path/to/your/private_ssh_key opc@PublicIP
-```
 
-- Create a new directory for wallet and unzip the wallet
+- On your dev host, create a new directory for wallet and unzip the wallet
 
 ```
 cd /home/opc/ATPDnode/
@@ -126,7 +124,7 @@ mkdir wallet
 unzip Wallet_ATPDedicatedDB.zip -d /home/opc/ATPDnode/wallet/
 ```
 
-- Configure sqlnet.ora in our wallet folder
+- The sqlnet.ora file in your wallet folder needs to have an entry pointing to the location of the wallet folder. Open the file in vi editor as follows,
 
 ```
 vi /home/opc/ATPDnode/wallet/sqlnet.ora
@@ -136,7 +134,7 @@ vi /home/opc/ATPDnode/wallet/sqlnet.ora
 
 ![](./images/700/walletNode.png)
 
-- Export TNS_ADMIN
+- Next, we also set up an environment variable TNS_ADMIN to point to the wallet location
 
 ```
 export TNS_ADMIN=/home/opc/ATPDnode/wallet/
@@ -149,7 +147,19 @@ echo $TNS_ADMIN
 ```
 ![](./images/700/TNSnode.png)
 
-- Run the node application
+And finally, lets edit the dbconfig.js file in /home/opc/ATPDnode folder with the right admin credentials and connect string. 
+
+- Password for user 'admin' was set at the time of database creation
+- Connectsring for your database is available on the cloud console. Check previous connectivity labs
+
+```
+module.exports= {
+dbuser:"admin",
+dbpassword:"yourAdminPassword",
+connectString :"databaseName_tp_tls"
+}
+```
+Run the node application
 
 ```
 node server.js 
@@ -161,12 +171,12 @@ node server.js
 ![](./images/700/connectionSuccessful.png)
 
 
-- You are now ready to move to the next lab.
+- Congratulations! You successfully deployed and connected a node.js app to your autonomous database.
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-## Great Work - All Done!
+
 </td>
 </tr>
 <table>

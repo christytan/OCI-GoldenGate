@@ -27,7 +27,7 @@ As a fleet administrator
 
 ### **STEP 1:
 
-Login to your OCI account as a fleet administrator
+**Login to your OCI account as a fleet administrator**
 
 Navigate to the 'Autonomous Transaction Processing' option in the top left hamburger menu from your OCI home screen
 
@@ -48,7 +48,7 @@ That's it. Simply scroll down to the bottom and hit the blue 'Create Autonomous 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-## Great Work - All Done!
+
 </td>
 </tr>
 <table>

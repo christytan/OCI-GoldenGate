@@ -21,89 +21,52 @@ The CLI is built on Python (version 2.7.5 or later), running on Mac, Windows, or
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
 
 ## Objectives
-- Configure Oracle Cloud Infrastructure Command Line Interface
-- Run examples using OCI-CLI for Autonomous Transaction Processing database
+
+As a developer, DBA or DevOps user,
+
+- Create/Destroy your autonomous database instances using a command line interface
+- Interact with Oracle Cloud Infrastructure resource using a CLI instead of a web console
 
 
 ## Required Artifacts
 
-- The following lab requires an Oracle Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
+-  - An Oracle Cloud Infrastructure account with privileges to create dedicated autonomous databases
 
-- A user created in that account, in a group with a policy that grants the desired permissions. This account user can be you, another person, or a system that calls the API. For an example of how to set up a new user, group, compartment, and policy, see [Adding Users](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/addingusers.htm)
+- A pre-provisioned instance of Oracle Cloud Developer Image from the OCI marketplace
 
-- Developer Image provided in the OCI Marketplace.
 
-    - To download the Developer Image. Login to Oracle Cloud Console and then click on the Hamburger Menu on top left of the screen and navigate to Marketplace. Provision the Developer image on OCI by answering few basic questions.
 
-    ![](./images/900/DevImage1.png)
-    ![](./images/900/DevImage2.png)
-    ![](./images/900/DevImage3.png)
-    ![](./images/900/DevImage4.png)
-    ![](./images/900/DevImage5.png)
-    ![](./images/900/DevImage7.png)
-    ![](./images/900/DevImage8.png)
-    ![](./images/900/DevImage9.png)
-    ![](./images/900/DevImage10.png)
-    ![](./images/900/DevImage6.png)
+Note: 
+- The OCI Marketplace 'Developer Cloud Image' is pre-configured with many client tools and drivers including OCI command line interface.
+- To deploy a dev client compute image, refer to [Lab 5: Configure a development system for use with your dedicated autonomous database](./LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md)
 
-#### Note: The developer image is configured and installed with all the necessary tools, SDK's and CLI most commonly used for Developer and DBA tasks.
+  
+
+#### Note: The developer image contain client drivers for popular programming languages, SQL Client tools and OCI Command Line interface.
 
 ## Steps
 
-### **STEP 1: Verifying the installed Oracle Cloud Infrastructure Command Line Interface (OCI-CLI)**
+### **STEP 1: Connect to development client instance and verify OCI CLI version**
 
-- We are going to use the preconfigured developer image available in the Marketplace on OCI console. This developer image is already configured with most of the required tools, SDK's and CLI's like Python, Node.js, Java, OCI-CLI, etc. Now, we are just going to verify whether the installed version meets our requirement for this lab.
-
-#### Verifiying the OCI-CLI version
-
-In this lab we are going to need the OCI-CLI which supports ATP-Dedicated database. To verify the whether OCI-CLI installed is the correct version needed for ATP-Dedicated database, run the following commands:
-
-- Verifying if OCI-CLI is installed: 
-    - Log in to the developer image using ssh or VNC viewer.Here we have used ssh to login. Type OCI and hit enter. You must see the various options which you can use with OCI-CLI.
+To ensure OCI-CLI installed is the correct version needed for ATP-Dedicated database, lets ssh into the dev client host and check version
     
-    ```
-    $ ssh -i <ssh_key> opc@<ip address>
-    $ oci
-    ```
-    - You are going to see the options similar to the below example.
-
-        ![](./images/900/OCI-CLI-verify1.png)
-        ![](./images/900/OCI-CLI-verify2.png)
-
-    - Verifying ATP Dedicated command options
-
-        - On the same terminal, type the below commands and check for the ATP-Dedicated database options as shown below.
-
-        ```
-        $ oci db --help
-        ```
-
-        ![](./images/900/OCI-CLI-verify3.png)
-
-        ![](./images/900/OCI-CLI-verify4.png)
-
-        ![](./images/900/OCI-CLI-verify5.png)
-
-        - **Execute the below command and check if you have the "--is-dedicated" option in the list. This option is needed and mandatory when you are creating the ATP-Dedicated database. This is how OCI-CLI is going to differentiate between ATP serverless and ATP dedicated database. If the --is-dedicated option is set to True, then an ATP-Dedicated database will be provisioned. If this is set to False, then a ATP-Serverless database instance will be provisioned.**
-
-        ```
-        $ oci db autonomous-database create -h
-        ```
-
-        ![](./images/900/OCI-CLI-verify6.png)
-
+```
+$ ssh -i <ssh_key> opc@<ip address>
+$ oci --version   
+```
+The OCI CLI version needs to be 2.6 or higher to support dedicated autonomous database commands
 
 
 ### **STEP 2: Configure OCI CLI**
 
 - This step describes the required configuration for the CLI and includes optional configurations that enable you to extend CLI functionality. 
 
-- Before using the CLI, you have to create a config file that contains the required credentials for working with Oracle Cloud Infrastructure. You can create this file using a setup dialog or manually, using a text editor.
+- Before using the CLI, you have to create a config file that contains the required credentials for working with your Oracle Cloud Infrastructure account. You can create this file using a setup dialog or manually, using a text editor.
 
 - To have the CLI walk you through the first-time setup process, step by step, use
 
 ```
-oci setup config
+$ oci setup config
 ```
 
 - The command prompts you for the information required for the config file and the API public/private keys. The setup dialog generates an API key pair and creates the config file.
@@ -324,7 +287,7 @@ You have successfully configured Oracle Cloud Infrastructure Command Line Interf
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-## Great Work - All Done!
+
 </td>
 </tr>
 <table>

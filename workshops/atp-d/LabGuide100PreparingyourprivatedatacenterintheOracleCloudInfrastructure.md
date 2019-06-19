@@ -10,11 +10,11 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 
 ## Introduction
 
-The Oracle dedicated autonomous database runs on dedicated Exadata hardware in the Oracle Cloud Infrastructure. That means you have your own personal slice of high performance hardware akin to running your own private cloud in a public cloud setting. Lets take a look at some best practices to setting up your data platform.
+The Oracle dedicated autonomous database runs on dedicated Exadata hardware in the Oracle Cloud Infrastructure. That means you have your own personal slice of high performance hardware akin to running your own private cloud in a public cloud setting. Lets take a look at some best practices to setting up your autonomous data platform.
 
 ## Objectives
 
-As an account administrator with network resource privileges,
+As an OCI account administrator with network resource privileges,
 
 1. Create compartments and user groups with the right set of access policies for separation of duties
 2. Create fleet admin and database user accounts
@@ -28,7 +28,7 @@ As an account administrator with network resource privileges,
 
 ## Steps
 
-### **STEP 1: Create compartments, groups, users and IAM policies
+### STEP 1: Create compartments, groups, users and IAM policies
 For separation of duties Oracle recommends a fleet administrator provision the exadata infrastucture and container databases while the database users simply become consumers of these resources and provision their databases on it. 
 
 ​	
@@ -39,9 +39,9 @@ A fleetCompartment to hold the Autonomous Exadata Infrastructure  (AEI) and Auto
 
 A dbUserCompartment for database and application user objects such as Autononomous Databases (ADBs) and application client machines. While for the purpose of this lab we create a single dbUser compartment, in practice, each user may have their own compartment for further isolation
 
-The fleet Admin will have IAM policies to create and manage AEI, ACDs and network resources in the fleet compartment. This can be further separated between the fleet admin and a network admin
+The fleet Admin will have IAM policies to create and manage AEI, ACDs and network resources in the fleet compartment. Alternatively, a network admin may first provision the VCN and Subnets while a fleet admin then provisions the Exadata Infrastructure and Container databases
 
-Database users in the dbUser compartment will have priviledges to **use** the AEI and ACD resources in the fleet compartment only. They cannot create, delete or modify those resources. A database user may have complete read/write privileges on their own compartments where they can create and destroy database and application instances
+Database users in the dbUser compartment will have priviledges to **USE**  AEI and ACD resources in the fleet compartment only. They cannot create, delete or modify those resources. A database user may have complete read/write privileges on their own compartments where they can create and destroy database and application instances
 
 
 
@@ -65,7 +65,15 @@ Database users in the dbUser compartment will have priviledges to **use** the AE
 
 The following policy statement on the fleetCompartment ensure group fleetAdmins and dbUsers have the right privileges as explained earlier. Note how fleet admins have 'manage' privileges while dbUsers have 'use' privileges
 
+- Allow group fleetAdmins to MANAGE autonomous-exadata-infrastructures in compartment fleetCompartment
 
+- Allow group fleetAdmins to MANAGE autonomous-container-databases in compartment fleetCompartment
+
+- Allow group fleetAdmins to USE virtual-network-family in compartment fleetCompartment
+
+- Allow group dbUsers to READ autonomous-container-databases in compartment fleetCompartment
+
+- Allow group dbUsers to READ autonomous-container-databases in compartment fleetCompartment
 
 ![create_policy2](./images/100/create_policy2.png)
 
@@ -73,11 +81,21 @@ The following policy statement on the fleetCompartment ensure group fleetAdmins 
 
 Similarly, create a dbUserPolicy on the dbUserCompartment as show. **Make sure you pick the right compartment before you hit the 'Create Policy' button**
 
+- Allow group dbUsers to MANAGE autonomous-databases in compartment dbUserCompartment
+
+- Allow group dbUsers to MANAGE autonomous-backups in compartment dbUserCompartment
+
+- Allow group dbUsers to USE virtual-network-family in compartment dbUserCompartment
+
+- Allow group dbUsers to MANAGE instance-family in compartment dbUserCompartment
+
+You may alternatively choose to grant 'MANAGE all-resources' privileges to users that need to provision databases and other cloud resources in their own private compartment as shown below
+
 ![dbUser_policy](./images/100/dbUser_policy.png)
 
 
 
-**d. And finally, lets create a fleet admin and a database user****** <u>and add them to their respective groups</u>. Any additional fleet admins or database users will simply need to be added to their groups and they will automatically assume their group privileges
+**d. And finally, lets create a fleet admin and a database user**  <u>and add them to their respective groups</u>. Any additional fleet admins or database users will simply need to be added to their groups and they will automatically assume their group privileges
 
 ![dbuser1](./images/100/dbuser1.png)
 
@@ -91,10 +109,7 @@ You now have the users, groups and compartments setup to provision an autonomous
 
 
 
-
-
-**2. Layout a secure network for the database and application infrastructure**
-
+### STEP 2: Layout a secure network for the database and application infrastructure
 
 
  Setting up the right network upfront is important since you cannot reverse most aspects of your network without completely destroying and rebuilding it. While your network administrators are  ultimately responsible for choosing the right network topology as per corporate network guidelines, here's a best practice recommendation for setting up a secure network for your database and applications
@@ -117,25 +132,26 @@ We will follow these security guidelines as we build the network,
 
 
 
-1. Create a VCN **in fleetCompartment** with CIDR block 10.0.0.0/16 which provide for 64k IP addresses for the various subnets within this network
+1. Create a VCN in <u>fleetCompartment</u> with CIDR block 10.0.0.0/16 which provide for 64k IP addresses for the various subnets within this network
 
 ![create_VCN](./images/100/create_VCN.png)
 
 
 
-2. Lets now add two subnets to this VCN, one for each of the two subnets we would deploy for the database and application networks. Each subnet has its own security list as defined in the table below.
+2. Lets add two security lists to this VCN, one for each of the two subnets we would deploy for the database and application networks. Each subnet has its own security list as defined in the table below.
 
 
-| Subnet        | CIDR range  | Security List     | Security List                                                | Security Rules                                               |
-| ------------- | ----------- | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| exadataSubnet | 10.0.0.0/24 | exaSubnet-seclist | ingress/egress: Allow All TCP, UDP, SNMP traffic within the subnet<br /><br />Allow All TCP traffic from appSubnet | ingress/egress: Allow All TCP, UDP, SNMP traffic within the subnet. <br />Allow All TCP traffic from appSubnet |
-| appSubnet     | 10.0.1.0/24 | appSubnet-seclist | appSubnet-seclist                                            | Ingress: Allow TCP traffic from public internet to port 22 ( ssh)<br /><br />Allow All TCP traffic within subnet |
+| Subnet        | CIDR range  | Security List     | Security Rules                                               |
+| ------------- | ----------- | ----------------- | ------------------------------------------------------------ |
+| exadataSubnet | 10.0.0.0/24 | exaSubnet-seclist | ingress/egress: Allow All TCP, UDP, SNMP traffic within the subnet<br /><br />Allow TCP traffic on ports 1521,  from appSubnet |
+| appSubnet     | 10.0.1.0/24 | appSubnet-seclist | Ingress: Allow TCP traffic from public internet to port 22 ( ssh)<br /><br />Allow All TCP traffic within subnet |
 
 
 
 Start deploying the above configuration in the following order,
 
-​	**a. Create seclists exaSubnet-seclist and appSubnet-seclist. **An example screenshot below shows adding the exaSubnet-seclist in the fleetCompartment with an ingress rule for TCP traffic. Similarly, add rules to this seclist for UDP and ICMP traffic and an egress rule per table above
+**a. Create seclists exaSubnet-seclist and appSubnet-seclist.**
+ An example screenshot below shows adding the exaSubnet-seclist in the fleetCompartment with an ingress rule for TCP traffic. Similarly, add rules to this seclist for UDP and ICMP traffic and an egress rule per table above
 
 ![add_seclist](./images/100/add_seclist.png)
 
@@ -168,9 +184,11 @@ Fantastic ! You have now setup your OCI network and users and are ready to deplo
 
 
 <table>
-<tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
+<tr><td class="td-logo">![create_exaSubnet](./images/obe_tag.png)</td>
 <td class="td-banner">
-## Great Work - All Done!
+
 </td>
 </tr>
+
+
 <table>
