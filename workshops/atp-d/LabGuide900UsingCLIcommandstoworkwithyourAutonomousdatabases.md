@@ -30,7 +30,7 @@ As a developer, DBA or DevOps user,
 
 ## Required Artifacts
 
--  - An Oracle Cloud Infrastructure account with privileges to create dedicated autonomous databases
+- An Oracle Cloud Infrastructure account with privileges to create dedicated autonomous databases
 
 - A pre-provisioned instance of Oracle Cloud Developer Image from the OCI marketplace
 
@@ -42,7 +42,6 @@ Note:
 
   
 
-#### Note: The developer image contain client drivers for popular programming languages, SQL Client tools and OCI Command Line interface.
 
 ## Steps
 
@@ -282,7 +281,7 @@ For further examples on how to work with OCI CLI with different services please 
 
 You have successfully configured Oracle Cloud Infrastructure Command Line Interface and ran examples on Autonomous Transaction Processing - Dedicated Infrastructure Database.
 
--  You are now ready to move to the next lab.
+
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
