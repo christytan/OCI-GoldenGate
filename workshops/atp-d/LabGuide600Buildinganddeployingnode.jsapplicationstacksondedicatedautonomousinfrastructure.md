@@ -64,7 +64,7 @@ sudo ssh -i /path_to/sshkeys/id_rsa -L 3050:127.0.0.1:3050 opc@publicIP
 - Download a sample node.js application [here ](/./scripts/600/ATPDnode.zip) and scp it to your development host in folder /home/opc
 
 ```
-$ scp /path/to/your/ATPDnode.zip -i <priv-key> opc@<IPAddress>
+$ scp /path/to/your/ATPDnode.zip -i <priv-key> opc@<IPAddress>:/home/opc/
 ```
 
 

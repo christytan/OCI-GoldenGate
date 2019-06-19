@@ -6,14 +6,15 @@ June 13, 2019
 # Lab 8: Building and deploying Java application stacks on dedicated autonomous infrastructure
 </td></tr><table>
 
+To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-transaction-processing/issues/new) to go to the github oracle repository issue submission form.
+
 ## Introduction
 
-This lab walks through how to confugure a linux host machine running on Orcle Cloud Infrastructure to run your Java applications and connect to Oracle Autononous Transaction Processin Dedicated database.
+The Oracle Cloud Infrastructure marketplace provides a pre-built image with necessary client tools and drivers to build applications on autonomous databases. As an application developer you can now provision a developer image within minutes and connect it to your dedicated or serverless database deployment. 
 
-You are provided with a sample java application for this lab.
+The image is pre-configured with tools and language drivers to help you build applications written in node.js, python, java and golang.
+For a complete list of features, login to your OCI account, select 'Marketplace' from the top left menu and browse details on the 'Oracle Developer Cloud Image'
 
-
-To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-transaction-processing/issues/new) to go to the github oracle repository issue submission form.
 
 ## Objectives
 
@@ -23,11 +24,11 @@ As an application developer,
 
 ## Required Artifacts
 
--  The following lab requires an Oracle Public Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
+-  Access to an Oracle Cloud Infrastructure account
 
-- This lab requires Oracle ATP Dedicated database. Click [here](LabGuide300ProvisioninganAutonomousContainerDatabase.md) to learn how to create Oracle ATP Dedicated database. 
+- A pre-provisioned instance of Oracle Cloud Developer Image from the OCI marketplace
 
-- This lab reuires Oracle Cloud Developer image launched in Compute instance. Click [here](LabGuide500ConnectingadeveloperclienttoanAutonomousDatabase.md) to learn how to launch Oracle Cloud Developer image in Compute instance. 
+- A pre-provisioned instance of dedicated autonomous database 
 
 ## Steps
 
@@ -61,48 +62,26 @@ sudo ssh -i /path_to/sshkeys/id_rsa opc@publicIP
 - Other common Windows SSH clients you can install locally is PuTTY. Click [here](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-windows) to follow the steps to connect to linux host machine from you windows using PuTTY.
 
 
-### Cloning Java application git repository
-
-- Once you have successfully SSH into the linux host machine create a new directory in /home/opc/
-
-```
-cd /home/opc/
-
-mkdir atpjava
-```
-
-![](./images/800/CreateDir.png)
-
-
-- Clone atpjava git repository into atpjava directory 
+### Cloning Java application
+- Download a sample java application [here ](/./scripts/800/atpjava-master.zip) and ojdbc8-full [here](/./scripts/800/ojdbc8-master.zip) and scp both zip files to your development host in folder /home/opc
 
 ```
-cd /home/opc/atpjava/
+$ scp /path/to/your/atpjava-master.zip -i <priv-key> opc@<IPAddress>:/home/opc/
 
-git clone https://github.com/tejuscs/atpjava.git
+$ scp /path/to/your/ojdbc8-master.zip -i <priv-key> opc@<IPAddress>:/home/opc/
 ```
-![](./images/800/GitClone.png)
 
-- Clone ojdbc8-full git repository into ojdbc director 
-
+- ssh back into your host and unzip atpjava-master.zip
 ```
-cd /home/opc/atpjava/
+$ unzip /home/opc/atpjava-master.zip
+$ unzip /home/opc/ojdbc8-master.zip
+```
 
-mkdir ojdbc
-
-cd ojdbc
-
-git clone https://github.com/tejuscs/ojdbc8.git
-
-cd ojdbc/
-
-cd ojdbc8/
-
+Tar ojdbc8-full.tar.gz
+```
 tar xzfv ojdbc8-full.tar.gz
 ```
-![](./images/800/ojdbc.png)
-
-- You are now ready to move to step 2
+Now that you have a sample application setup, lets get your database's secure wallet for connectivity
 
 ### **STEP 2: Secure Copy ATP Dedicated database wallet to linux host machine**
 
@@ -132,7 +111,7 @@ tar xzfv ojdbc8-full.tar.gz
 #### Note: Please change the path for both private ssh key and wallet in below command
 
 ```
-sudo scp -i /Path/to/your/private_ssh_key /Path/to/your/downloaded_wallet opc@publicIP:/tmp/
+sudo scp -i /Path/to/your/private_ssh_key /Path/to/your/downloaded_wallet opc@publicIP:/home/opc/
 ```
 ![](./images/800/atpd5.png)
 
@@ -140,69 +119,32 @@ sudo scp -i /Path/to/your/private_ssh_key /Path/to/your/downloaded_wallet opc@pu
 
 ### **STEP 3: Confuigure env variables and run java application in linux host machine**
 
-We have now succesfully secured copied wallet into our linux host machine. We will now configure env variuables and database config files and run our java applicaiton.
+Now that you have copied the database wallet to your development host, lets configure some env. variables and database authentication file to connect your Java app to the database
 
-- Open terminal in your laptop and SSH into linux host machine
-
-```
-ssh -i /path/to/your/private_ssh_key opc@PublicIP
-```
-
-- Once we are in our linux host machine copy SCP wallet into atpjava directory which we created in earlier steps
+- On your dev host, create a new directory for wallet and unzip the wallet
 
 ```
-cd /tmp/
-
-mv Wallet_ATPDedicatedDB.zip /home/opc/atpjava/
-```
-
-- Create a new directory for wallet and unzip the wallet
-
-```
-cd /home/opc/atpjava/
+cd /home/opc/ATPDJava/
 
 mkdir wallet
 
-unzip Wallet_ATPDedicatedDB.zip -d /home/opc/atpjava/wallet/
+unzip Wallet_ATPDedicatedDB.zip -d /home/opc/ATPDJava/wallet/
 ```
 
-- Configure sqlnet.ora in our wallet folder
+- The sqlnet.ora file in your wallet folder needs to have an entry pointing to the location of the wallet folder. Open the file in vi editor as follows,
 
 ```
-cd /home/opc/atpjava/wallet/
-
-vi sqlnet.ora
+vi /home/opc/ATPDJava/wallet/sqlnet.ora
 ```
 
 - Change **DIRECTORY** path to /home/opc/atpjava/wallet/ and save the file
 
 ![](./images/800/atpd6.png)
 
-- Configure database configuration file
+- Next, we also set up an environment variable TNS_ADMIN to point to the wallet location
 
 ```
-cd /home/opc/atpjava/atpjava/src
-
-vi dbconfig.properties
-```
-
-- Change **dbinstance**, **dbcredpath**, **dbuser**, **dbpassword** and save the file
-
-#### Note: dbinstance - yourdbname_low; dbcredpath - path to your wallet file; dbuser - admin; dbpassword - password you entered while creating the database
-
-![](./images/800/atpd7.png)
-
-
-- Run java application
-
-```
-cd /home/opc/atpjava/atpjava/src
-```
-
-- Export TNS_ADMIN
-
-```
-export TNS_ADMIN=/home/opc/atpjava/wallet/
+export TNS_ADMIN=/home/opc/ATPDJava/wallet/
 ```
 
 - Verify TNS_ADMIN path
@@ -212,16 +154,28 @@ echo $TNS_ADMIN
 ```
 ![](./images/800/atpd8.png)
 
+And finally, lets edit the dbconfig.js file in /home/opc/ATPDJava folder with the right admin credentials and connect string. 
 
-- Set class path
+- Password for user 'admin' was set at the time of database creation
+- Connectsring for your database is available on the cloud console. Check previous connectivity labs
+- dbcredpath needs to have an entry pointing to the location of the wallet folder
 
 ```
+cd /home/opc/atpjava/atpjava/src
+
+vi dbconfig.properties
+```
+
+![](./images/800/atpd7.png)
+
+
+- Run the java application
+
+```
+cd /home/opc/atpjava/atpjava/src
+
 javac -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection.java
-```
 
-- Run application 
-
-```
 java -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection
 ```
 
@@ -229,7 +183,7 @@ java -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/auto
 
 
 
--   You are now ready to move to the next lab.
+- Congratulations! You successfully deployed and connected a java app to your autonomous database.
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
