@@ -61,13 +61,13 @@ sudo ssh -i /path_to/sshkeys/id_rsa opc@publicIP
 
 ### Cloning Python Application
 
-- Download a sample Python application [here ](/./scripts/700/ATPDpython-master.zip) and scp it to your development host in folder /home/opc
+- Download a sample Python application in folder /home/opc
 
 ```
-$ scp /path/to/your/ATPDpython-master.zip -i <priv-key> opc@<IPAddress>:/home/opc/
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/workshops/autonomous-transaction-processing/scripts/600/ATPDPython-master.zip?raw=true
 ```
 
-- ssh back into your host and unzip ATPDpython-master.zip
+- Unzip ATPDpython-master.zip
 
 ```
 $ unzip /home/opc/ATPDpython-master.zip
