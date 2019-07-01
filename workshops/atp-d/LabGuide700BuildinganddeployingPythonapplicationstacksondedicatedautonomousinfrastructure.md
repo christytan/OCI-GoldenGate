@@ -17,7 +17,7 @@ For a complete list of features, login to your OCI account, select 'Marketplace'
 
 
 
-To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-transaction-processing/issues/new) to go to the github oracle repository issue submission form.
+To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
 
 ## Objectives
 
@@ -65,28 +65,21 @@ sudo ssh -i /path_to/sshkeys/id_rsa opc@publicIP
 
 ### Cloning sample python Application
 
-- Once you have successfully SSH into the linux host machine create a new directory in /home/opc/
-
 ```
 cd /home/opc/
-
-mkdir ATPDpython
 ```
 
 Lets download a sample python application for the purpose of this lab,
 
 ```
-wget --no-check-certificate --content-disposition https://github.com/labmaterial/atp-dedicated/blob/master/workshops/atp-d/scripts/700/ATPDpython.zip
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/700/ATPDpython.zip?raw=true
 ```
 
 - Unzip the application 
 
 ```
-cd /home/opc/ATPDpython/
-
 unzip ATPDpython.zip
 ```
-
 
 
 ### **STEP 2: Secure Copy ATP Dedicated database wallet to linux host machine**
@@ -174,8 +167,6 @@ echo $TNS_ADMIN
  python exampleConnection.py ADMIN PASSWORD dbname_tp
 ```
 ![](./images/700/pythonSuccess.png)
-
-
 
 
 <table>

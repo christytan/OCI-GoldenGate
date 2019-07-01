@@ -17,7 +17,7 @@ In this lab we will configure and deploy a java application in a developer clien
 
 
 
-To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-transaction-processing/issues/new) to go to the github oracle repository issue submission form.
+To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
 
 ## Objectives
 
@@ -75,7 +75,7 @@ sudo ssh -i /path_to/sshkeys/id_rsa opc@publicIP
 cd /home/opc/
 
 
-$ wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/workshops/autonomous-transaction-processing/scripts/800/atpjava.zip?raw=true
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/800/ATPDjava.zip?raw=true
 ```
 
 
@@ -83,20 +83,19 @@ Unzip the application in /home/opc
 
 
 ```
-unzip /home/opc/atpjava.zip
-
+unzip /home/opc/ATPDjava.zip
 ```
 
 Next,  download ojdbc8 drivers needed for connectivity,
 
 ```
-cd /home/opc/atpjava/
+cd /home/opc/ATPDjava/
 
 mkdir ojdbc
 
 cd ojdbc/
 
-wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/workshops/autonomous-transaction-processing/scripts/800/ojdbc8-full.tar.gz?raw=true
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/800/ojdbc8-full.tar.gz?raw=true
 
 
 tar xzfv ojdbc8-full.tar.gz
@@ -132,7 +131,7 @@ tar xzfv ojdbc8-full.tar.gz
 #### Note: Please change the path and file name for your ssh keyfile and the encryption wallet. Also provide the IP address of your developer client machine
 
 ```
-sudo scp -i /Path/to/your/private_ssh_key /Path/to/your/downloaded_wallet opc@publicIP:/home/opc/atpjava
+sudo scp -i /Path/to/your/private_ssh_key /Path/to/your/downloaded_wallet opc@publicIP:/home/opc/ATPDjava
 ```
 ![](./images/800/atpd5.png)
 
@@ -150,29 +149,29 @@ ssh -i /path/to/your/private_ssh_key opc@PublicIP
 Once logged in ,
 
 ```
-cd /home/opc/atpjava/
+cd /home/opc/ATPDjava/
 
 mkdir wallet
 
-unzip Wallet_ATPDedicatedDB.zip -d /home/opc/atpjava/wallet/
+unzip Wallet_ATPDedicatedDB.zip -d /home/opc/ATPDjava/wallet/
 ```
 
 - Edit sqlnet.ora to update the directory path
 
 ```
-cd /home/opc/atpjava/wallet/
+cd /home/opc/ATPDjava/wallet/
 
 vi sqlnet.ora
 ```
 
-- Change **DIRECTORY** path to /home/opc/atpjava/wallet/ and save the file
+- Change **DIRECTORY** path to /home/opc/ATPDjava/wallet/ and save the file
 
 ![](./images/800/atpd6.png)
 
 - Next, configure your java applications DB config file
 
 ```
-cd /home/opc/atpjava/atpjava/src
+cd /home/opc/ATPDjava/atpjava/src
 
 vi dbconfig.properties
 ```
@@ -191,7 +190,7 @@ vi dbconfig.properties
 Next, let's set the TNS_ADMIN environment variable to point to the wallet and set the java classpath
 
 ```
-export TNS_ADMIN=/home/opc/atpjava/wallet/
+export TNS_ADMIN=/home/opc/ATPDjava/wallet/
 ```
 
 - Verify TNS_ADMIN path
@@ -205,13 +204,13 @@ echo $TNS_ADMIN
 - Set java class path
 
 ```
-javac -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection.java
+javac -cp .:/home/opc/ATPDjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection.java
 ```
 
 - Run application 
 
 ```
-java -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection
+java -cp .:/home/opc/ATPDjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection
 ```
 
 ![](./images/800/atpd9.png)

@@ -6,7 +6,7 @@ June 13, 2019
 # Lab 6: Building and deploying node.js application stacks on dedicated autonomous infrastructure
 </td></tr><table>
 
-To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-transaction-processing/issues/new) to go to the github oracle repository issue submission form.
+To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
 
 ## Introduction
 The Oracle Cloud Infrastructure marketplace provides a pre-built image with necessary client tools and drivers to build applications on autonomous databases. As an application developer you can now provision a developer image within minutes and connect it to your dedicated or serverless database deployment. 
@@ -67,14 +67,13 @@ sudo ssh -i /path_to/sshkeys/id_rsa -L 3050:127.0.0.1:3050 opc@publicIP
 - Once you ssh into your developer client machine you can download a sample node.js application to folder /home/opc using the following command,
 
 ```
-wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/workshops/autonomous-transaction-processing/scripts/500/ATPnodeapp.zip?raw=true
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/600/ATPDnode.zip?raw=true
 ```
 
-
-
 ```
-unzip /home/opc/ATPDnode.zip
+mkdir /home/opc/ATPDnode && cd /home/opc/ATPDnode && unzip /home/opc/ATPDnode.zip
 ```
+
 Now that you have a sample application setup, lets get your database's secure wallet for connectivity
 
 ### **STEP 2: Secure Copy ATP Dedicated database wallet to linux host machine**
