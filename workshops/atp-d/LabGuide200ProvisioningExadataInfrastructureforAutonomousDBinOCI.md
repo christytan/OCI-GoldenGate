@@ -28,7 +28,7 @@ As a fleet administrator,
 
 ## Steps
 
-### **STEP 1: 
+### Step 1: 
 Login to your OCI account as a fleet administrator
 
 Navigate to the 'Autonomous Transaction Processing' option in the top left hamburger menu from your OCI home screen

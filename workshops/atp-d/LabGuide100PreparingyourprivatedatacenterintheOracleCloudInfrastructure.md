@@ -28,7 +28,7 @@ As an OCI account administrator with network resource privileges,
 
 ## Steps
 
-### STEP 1: Create compartments, groups, users and IAM policies
+### Step 1: Create compartments, groups, users and IAM policies
 For separation of duties Oracle recommends a fleet administrator provision the exadata infrastucture and container databases while the database users simply become consumers of these resources and provision their databases on it. 
 
 ​	
