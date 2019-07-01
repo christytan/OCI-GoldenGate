@@ -67,7 +67,7 @@ sudo ssh -i /path_to/sshkeys/id_rsa -L 3050:127.0.0.1:3050 opc@publicIP
 - Once you ssh into your developer client machine you can download a sample node.js application to folder /home/opc using the following command,
 
 ```
-wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/600/ATPnodeapp.zip?raw=true
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/600/ATPDnode.zip?raw=true
 ```
 
 
