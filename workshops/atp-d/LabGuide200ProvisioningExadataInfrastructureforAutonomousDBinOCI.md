@@ -71,7 +71,7 @@ You also have two options for selecting the license type for the database contai
 <table>
 <tr><td class="td-logo">[![](./images/obe_tag.png)](#)</td>
 <td class="td-banner">
-
+### All Done! You have successfully deployed your Autonomous Exadata Infrastructure and it should be available shortly.
 </td>
 </tr>
 <table>

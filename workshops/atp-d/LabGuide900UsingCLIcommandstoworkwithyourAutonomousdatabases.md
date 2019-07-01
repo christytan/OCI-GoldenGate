@@ -276,17 +276,16 @@ oci db autonomous-database stop --autonomous-database-id [OCID]
 oci db autonomous-database update --autonomous-database-id [OCID] --cpu-core-count [integer]
 ```
 
-For further examples on how to work with OCI CLI with different services please refer to Oracle documentation [here](https://docs.cloud.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/db.html).
+For further examples on how to work with OCI CLI with different services check out OCI documentation [here](https://docs.cloud.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/db.html).
 
 
-You have successfully configured Oracle Cloud Infrastructure Command Line Interface and ran examples on Autonomous Transaction Processing - Dedicated Infrastructure Database.
 
 
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-
+### Congratulations! You successfully configured Oracle Cloud Infrastructure Command Line Interface and interacted with OCI resources using CLI commands.
 </td>
 </tr>
 <table>

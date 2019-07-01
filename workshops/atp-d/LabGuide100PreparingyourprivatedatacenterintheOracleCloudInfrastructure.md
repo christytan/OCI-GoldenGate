@@ -33,7 +33,7 @@ For separation of duties Oracle recommends a fleet administrator provision the e
 
 ​	
 
-We will the following structure in line with this best practice recommendation,
+We will use the following structure in line with this best practice recommendation,
 
 A fleetCompartment to hold the Autonomous Exadata Infrastructure  (AEI) and Autonomous Container Databases (ACD) 
 
@@ -73,9 +73,8 @@ The following policy statement on the fleetCompartment ensure group fleetAdmins 
 
 - Allow group dbUsers to READ autonomous-container-databases in compartment fleetCompartment
 
-- Allow group dbUsers to READ autonomous-container-databases in compartment fleetCompartment
 
-![create_policy2](./images/100/create_policy2.png)
+![create_policy2](./images/100/create_policy3.png)
 
 
 
@@ -179,16 +178,12 @@ Now that you have all the required components to associate with your AEI and app
 
 
 
-Fantastic ! You have now setup your OCI network and users and are ready to deploy autonomous infrastructure, databases and applications
-
 
 
 <table>
-<tr><td class="td-logo">![create_exaSubnet](./images/obe_tag.png)</td>
+<tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-
+### Fantastic! You have now setup your OCI network and users and are ready to deploy autonomous infrastructure, databases and applications.
 </td>
 </tr>
-
-
 <table>

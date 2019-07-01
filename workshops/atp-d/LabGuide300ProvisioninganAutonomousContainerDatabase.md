@@ -46,9 +46,9 @@ As you scroll down the form you will see an option to modify your ACD's maintena
 That's it. Simply scroll down to the bottom and hit the blue 'Create Autonomous Container Database' button to deploy your ACD.
 
 <table>
-<tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
+<tr><td class="td-logo">[![](./images/obe_tag.png)](#)</td>
 <td class="td-banner">
-
+### All Done! You have successfully deployed your Autonomous Container Database and it should be available shortly.
 </td>
 </tr>
 <table>

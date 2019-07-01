@@ -27,6 +27,9 @@ Labs 4 onwards are intended for a regular database user, DBA or developer who si
 - Learn how to build and deploying node.js application stacks on dedicated autonomous infrastructure
 - Learn how to build and deploying Java application stacks on dedicated autonomous infrastructure
 - Learn how to use CLI commands to work with your Autonomous databases
+- Learn how to invoke and use the sqldevweb console
+- Learn how to build apex applications on dedicated autonomous database
+- Learn how to manage database performance through performance hub console
 
 <!-- # How to Get Your Free Cloud Trial Account
 Please click on the following link to create your <a class=“trial-link” href="https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ex:tb:::RC_NAMK181011P00041:ATPHOL&SC=:ex:tb:::RC_NAMK181011P00041:ATPHOL&pcode=NAMK181011P00041" target="_trial">Free Account</a>, and complete all the required steps to get your free Oracle Cloud Trial Account. When you complete the registration process you'll receive a $300 credit that will enable you to complete the lab for free.  Additionally, you'll have 1000s of hours left over to continue to explore the Oracle Cloud.
@@ -101,7 +104,7 @@ As a database user, DBA or application developer,
 As a database user, DBA or application developer,
 - Configure a secure connection from your application instance to your dedicated autonomous database using Oracle SQL Developer, SQLCL and SQL*Plus.
 
-**[Click here to run Lab 5](LabGuide500ConnectingadeveloperclienttoanAutonomousDatabase.md)**
+**[Click here to run Lab 5](LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md)**
 
 ## Lab 6: Building and deploying node.js application stacks on dedicated autonomous infrastructure
 
@@ -140,4 +143,30 @@ As an application developer, DBA or DevOps user,
 - Create/Destroy your autonomous database instances using a command line interface
 - Interact with Oracle Cloud Infrastructure resource using a CLI instead of a web console
 
+
 **[Click here to run Lab 9](LabGuide900UsingCLIcommandstoworkwithyourAutonomousdatabases.md)**
+
+## Lab 10: Using sql*developer web console
+
+**Key Objectives**:
+
+As an application developer, DBA or DevOps user,
+
+- Access OCI autonomous database console and get URL for sql developer web cosole
+- Create a VNC connection to developer client VM and access sqldevweb console
+- Understand features of sqldevweb
+
+**[Click here to run Lab 10](LabGuide1000AccessingSQLDevWebConsoleAndPerformanceHub.md)**
+
+## Lab 11: Building Apex application on dedicated autonomous database
+
+**Key Objectives**:
+
+As an application developer, DBA or DevOps user,
+
+- Access OCI autonomous database console and get URL for apex web cosole
+- Create a VNC connection to developer client VM and access apex on your database as admin user
+- Setup additional apex developer users 
+
+**[Click here to run Lab 11](LabGuide1100BuildingApexApplicationOnDedicatedAutonomousDatabase.md)**
+

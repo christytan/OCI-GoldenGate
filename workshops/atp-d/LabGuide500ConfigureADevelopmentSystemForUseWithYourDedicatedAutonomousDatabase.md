@@ -24,7 +24,7 @@ For a complete list of features, login to your OCI account, select 'Marketplace'
 As a database user, DBA or application developer,
 - Configure a development system from a pre-built marketplace image
 - Create an ssh tunnel from your local laptop into your development system
-- Invoke SQL*Developer on your development system over a VNC connection from your local laptop 
+- Invoke SQL Developer on your development system over a VNC connection from your local laptop 
 Configure a secure connection from your development system to your dedicated autonomous database using Oracle SQL Developer, SQLCL and SQL*Plus.
 
 ## Required Artifacts
@@ -138,6 +138,19 @@ WElcome#1234
 
 ### **STEP 3: Connect to ATP Dedicated instance using Oracle SQL Developer**
 
+In this step, you will need the wallet zip file in the developer client machine.
+
+You may either, 
+
+- secure copy the file using scp, sftp or a windows ftp client
+
+    ```
+        $ scp <wallet_filename.zip> -i <path/to/keyfile> opc@<ipaddress-of-dev-client>:/home/opc
+
+    ```
+- or you may simply download it directly on the client once you connect over VNC
+
+
 Next, let's invoke the VNC server on the development system
 
 
@@ -150,7 +163,7 @@ Next, let's invoke the VNC server on the development system
 - Change the password on the VNC server
     
     ```
-    $ vncpass
+    $ vncpasswd
     ```
 - Once you update the password, start your VNC server as a background process with the following command,
     ```
@@ -169,9 +182,12 @@ On your local laptop,
 
 - You can connect to and manage linux host mahine using SSH client. Recent versions of Windows 10 provide OpenSSH client commands to create and manage SSH keys and make SSH connections from a command prompt.
 
-- Other common Windows SSH clients you can install locally is PuTTY. Click [here](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-windows) to follow the steps to connect to linux host machine from you windows using PuTTY.
+- Other common Windows SSH clients you can install locally is PuTTY. Click [here](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-windows) to follow the steps to connect to linux host machine from your windows using PuTTY.
 
 You now have a secure ssh tunnel from your local laptop to your developement system in OCI on VNC port 5901
+
+### Note: As mentioned earlier, you need a VNC client installed on your laptop. This lab uses VNC Viewer
+
 
 Start VNC Viewer on your laptop and configure a client connection using the settings as shown
 
@@ -259,12 +275,12 @@ sqlplus admin@atpd_high
 ```
 
 
--   Fantastic! You accomplised a lot in this lab. Congratulations!
+-   Provide your admin password when prompted and you should be in!
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-
+### Great Work! You successfully created a client machine and connected to your autonomous database instance using SQL Developer and command line tools.
 </td>
 </tr>
 <table>

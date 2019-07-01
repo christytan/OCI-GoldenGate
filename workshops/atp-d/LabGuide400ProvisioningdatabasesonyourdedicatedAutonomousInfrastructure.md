@@ -102,34 +102,46 @@ WElcome#1234
 
 ![](./images/400/Picture100-29.jpeg)
 
-- Make sure you have already created Autonomous Container Database
-- Choose Autonomous Container Database
+- Ensure your fleet admin as created and assigned privileges to READ a container database
+- Choose Autonomous Container Database from drop down
 
 ![](./images/400/provisionATP-Dcontainer.png)
 
 
-- Make sure you have everything filled all required details
+-  Click on **Create Autonomous Database** button to start provisioning the instance.
 
--  Click on **Create Autonomous Transaction Processing Database** to start provisioning the instance
 
-![](./images/400/Picture100-31.jpeg)
-
-- Once you create ATP Database it would take 2-3 minutes for the instance to be provisioned.
+- Your autonomous database instance should be up and running in a few minutes.
 
 ![](./images/400/waitprovision.png)
 
--  Once it finishes provisioning, you can click on the instance name to see details of it
+-  Once provisioned, you can click on the instance name to see instance details.
 
 ![](./images/400/doneprovision.png)
 
-You now have created your dedicated Autonomous Transaction Processing database.
+There is a few other things you can do as an administrator of your autonomous database
+
+1. You can take a manual on-demand backup in addition to the scheduled daily backups
+
+    - Click 'Create Manual Backup' on the database details page, provide a name and click 'Create Manual Backup' once again on the dialog box
+
+2. You can do a point in time restore on your database
+
+    - The service allows you to flash back your database to a specified time in the past using a combination of flashback logs and backups. 
+    
+    - You can restore from a previous backup
+
+![](./images/400/restore.png)
+
+![](./images/400/restore2.png)
+
 
 
 
 <table>
-<tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
+<tr><td class="td-logo">[![](./images/obe_tag.png)](#)</td>
 <td class="td-banner">
-
+### All Done! You have successfully deployed your Autonomous Database instance and it should be ready for use in a few minutes.
 </td>
 </tr>
 <table>

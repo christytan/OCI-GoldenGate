@@ -14,6 +14,7 @@ The Oracle Cloud Infrastructure marketplace provides a pre-built image with nece
  The image is pre-configured with tools and language drivers to help you build applications written in node.js, python, java and golang.
 For a complete list of features, login to your OCI account, select 'Marketplace' from the top left menu and browse details on the 'Oracle Developer Cloud Image'
 
+**In this lab we will configure and deploy a node.js application in a developer client VM and connect it to an autonomous database.**
 
 ## Objectives
 
@@ -22,17 +23,19 @@ As an application developer,
 
 ## Required Artifacts
 
--  Access to an Oracle Cloud Infrastructure account
+- An Oracle Cloud Infrastructure account.
 
-- A pre-provisioned instance of Oracle Cloud Developer Image from the OCI marketplace
+- A pre-provisioned instance of Oracle Developer Client image in an application subnet. Refer to [Lab5](LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md)
 
-- A pre-provisioned instance of dedicated autonomous database
+- A pre-provisioned dedicated autonomous database instance. Refer to [Lab 4](./LabGuide400ProvisioningdatabasesonyourdedicatedAutonomousInfrastructure.md)
+
+- A network that provides connectivity between the application and database subnets. Refer to [Lab1](./LabGuide100PreparingyourprivatedatacenterintheOracleCloudInfrastructure.md)
 
 ## Steps
 
 ### **STEP 1: SSH into Oracle Cloud Developer image and clone Node application**
 
-- Login to your Oracle Cloud Infrastructure account and click on **Menu** and select **Compute** and **Instances**
+- Login to your Oracle Cloud Infrastructure account select **Compute** —>  **Instances** from top left menu
 
 ![](./images/800/Compute1.png)
 
@@ -43,7 +46,7 @@ As an application developer,
 ![](./images/800/Compute2.png)
 
 
-### For Mac users
+### Mac / Linux users
 
 - Open Terminal and SSH into linux host machine, we will need port forwarding to see the Node application running in our local browser. If you use VNC then there is no need to configure port forwarding
 
@@ -53,7 +56,7 @@ sudo ssh -i /path_to/sshkeys/id_rsa -L 3050:127.0.0.1:3050 opc@publicIP
 
 ![](./images/800/SSH1.png)
 
-### For Windows users
+### Windows users
 
 - You can connect to and manage linux host mahine using SSH client. Recent versions of Windows 10 provide OpenSSH client commands to create and manage SSH keys and make SSH connections from a command prompt.
 
@@ -61,23 +64,22 @@ sudo ssh -i /path_to/sshkeys/id_rsa -L 3050:127.0.0.1:3050 opc@publicIP
 
 ### Cloning Node Application
 
-- Download a sample node.js application [here ](/./scripts/600/ATPDnode.zip) and scp it to your development host in folder /home/opc
+- Once you ssh into your developer client machine you can download a sample node.js application to folder /home/opc using the following command,
 
 ```
-$ scp /path/to/your/ATPDnode.zip -i <priv-key> opc@<IPAddress>:/home/opc/
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/workshops/autonomous-transaction-processing/scripts/500/ATPnodeapp.zip?raw=true
 ```
 
 
-- ssh back into your host and unzip ATPDnode.zip
 
 ```
-$ unzip /home/opc/ATPDnode.zip
+unzip /home/opc/ATPDnode.zip
 ```
 Now that you have a sample application setup, lets get your database's secure wallet for connectivity
 
 ### **STEP 2: Secure Copy ATP Dedicated database wallet to linux host machine**
 
-- Login to Oracle Cloud Infrastructure account and click on **Menu** and **Autonomous Transaction Processing**
+- Login to Oracle Cloud Infrastructure account and select **Autonomous Transaction Processing** from menu
 ![](./images/800/atpd1.png)
 
 - Click on Autonomous Database and select your previously created database
@@ -88,9 +90,7 @@ Now that you have a sample application setup, lets get your database's secure wa
 
 ![](./images/800/atpd3.png)
 
-- Database connections to you Autonomous Database use a secure connection. You will be asked to create a password for yopu wallet. 
-
-- Enter **Password** and **Confirm password** and click on **Download**
+- Provide a password for your wallet and  download wallet
 
 ![](./images/800/atpd4.png)
 
@@ -100,7 +100,7 @@ Now that you have a sample application setup, lets get your database's secure wa
 
 - Open Terminal in your laptop and type in the following commands
 
-#### Note: Please change the path for both private ssh key and wallet in below command
+#### Note: Please change path and name of your private ssh keyhole,   wallet and the ip address of your developer client in the command below.
 
 ```
 scp -i /Path/to/your/private_ssh_key /Path/to/your/downloaded_wallet opc@publicIP:/home/opc/
@@ -171,12 +171,11 @@ node server.js
 ![](./images/700/connectionSuccessful.png)
 
 
-- Congratulations! You successfully deployed and connected a node.js app to your autonomous database.
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-
+### Congratulations! You successfully deployed and connected a node.js app to your autonomous database.
 </td>
 </tr>
 <table>
