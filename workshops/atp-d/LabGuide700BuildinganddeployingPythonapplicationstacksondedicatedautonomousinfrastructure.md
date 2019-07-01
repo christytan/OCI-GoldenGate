@@ -76,7 +76,7 @@ mkdir ATPDpython
 Lets download a sample python application for the purpose of this lab,
 
 ```
-wget --no-check-certificate --content-disposition https://github.com/labmaterial/atp-dedicated/blob/master/workshops/atp-d/scripts/700/ATPDpython.zip
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/tree/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/700/ATPDpython.zip?raw=true
 ```
 
 - Unzip the application 

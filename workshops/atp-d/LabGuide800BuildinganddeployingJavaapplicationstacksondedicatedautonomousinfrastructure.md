@@ -75,7 +75,7 @@ sudo ssh -i /path_to/sshkeys/id_rsa opc@publicIP
 cd /home/opc/
 
 
-$ wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/workshops/autonomous-transaction-processing/scripts/800/atpjava.zip?raw=true
+$ wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/tree/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/800/atpjava.zip?raw=true
 ```
 
 
@@ -96,7 +96,7 @@ mkdir ojdbc
 
 cd ojdbc/
 
-wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/workshops/autonomous-transaction-processing/scripts/800/ojdbc8-full.tar.gz?raw=true
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/tree/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/800/ojdbc8-full.tar.gz?raw=true
 
 
 tar xzfv ojdbc8-full.tar.gz
