@@ -28,8 +28,9 @@ As a fleet administrator,
 
 ## Steps
 
-### Step 1: 
-Login to your OCI account as a fleet administrator
+### STEP 1: Create a dedicated autonomous database
+
+**Login to your OCI account as a fleet administrator**
 
 Navigate to the 'Autonomous Transaction Processing' option in the top left hamburger menu from your OCI home screen
 

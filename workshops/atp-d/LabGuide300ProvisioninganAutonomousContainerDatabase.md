@@ -25,7 +25,7 @@ As a fleet administrator
 
 ## Steps
 
-### **STEP 1:
+### **STEP 1: Create an autonomous container database
 
 **Login to your OCI account as a fleet administrator**
 
