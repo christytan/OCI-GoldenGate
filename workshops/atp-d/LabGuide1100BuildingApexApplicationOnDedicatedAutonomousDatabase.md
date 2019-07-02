@@ -32,10 +32,9 @@ To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-
 
 ## Required Artifacts
 
--   The following lab requires an Oracle Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, or a training account whose details were given to you by an Oracle instructor.
-- Access to OCI Autonomous transaction processing console
+- An Oracle Cloud Infrastructure account with access to Autonomous Transaction Processing console
 - A pre-provisioned autonomous database with admin access
-- A pre-provisioned developer client with network access to database
+- A pre-provisioned developer client machine with network access to database
 
 
 ## Steps

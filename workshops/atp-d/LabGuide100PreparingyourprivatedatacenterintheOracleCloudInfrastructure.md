@@ -23,7 +23,7 @@ As an OCI account administrator with network resource privileges,
 
 
 ## Required Artifacts
-- To complete this lab you need  access to an Oracle Cloud Infrastructure account with privileges to create users, IAM policies and networks.
+- An Oracle Cloud Infrastructure account with privileges to create users, IAM policies and networks.
 - Since this is the starting point to building your dedicated autonomous database platform, an admin account is recommended.
 
 ## Steps

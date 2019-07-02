@@ -22,13 +22,13 @@ As a fleet administrator,
 - Understand database licensing options
 
 ## Required Artifacts
-- To complete this lab you need access to an Oracle Cloud Infrastructure account with service limits to deploy at least one 1/4 rack of Exadata Infrastructure in any one region / AD.
+- An Oracle Cloud Infrastructure account with service limits to deploy at least one 1/4 rack of Exadata Infrastructure in any one region or Availability Domain.
 - You also need privileges to create Autonomous Exadata Infrastructure and a container database in a pre-provisioned compartment and network.
 
 
 ## Steps
 
-### STEP 1: Create a dedicated autonomous database
+### STEP 1: Deploy your Autonomous Exadata Infrastructure (AEI)
 
 **Login to your OCI account as a fleet administrator**
 

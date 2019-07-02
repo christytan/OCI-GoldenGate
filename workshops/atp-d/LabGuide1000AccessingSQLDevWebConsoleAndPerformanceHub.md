@@ -27,7 +27,7 @@ As an developer or DBA,
 
 
 ## Required Artifacts
-- Access to OCI Autonomous transaction processing console
+- An Oracle Cloud Infrastructure account with access to Autonomous Transaction Processing console
 - A pre-provisioned autonomous database with admin access
 - A pre-provisioned developer client machine with network access to database
 

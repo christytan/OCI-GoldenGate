@@ -26,6 +26,8 @@ As an application developer,
 
 ## Required Artifacts
 
+- An Oracle Cloud Infrastructure account
+
 - A pre-provisioned instance of Oracle Developer Client image in an application subnet. Refer to [Lab5](LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md)
 
 - A pre-provisioned dedicated autonomous database instance. Refer to [Lab 4](./LabGuide400ProvisioningdatabasesonyourdedicatedAutonomousInfrastructure.md)

@@ -21,7 +21,7 @@ As a database user, DBA or application developer,
 
 ## Required Artifacts
 
-- To complete this lab you need access to an Oracle Cloud Infrastructure account with a pre-provisioned Exadata Infrastructure and Container Database
+- An Oracle Cloud Infrastructure account with a pre-provisioned Exadata Infrastructure and Container Database
 
 
 # Provisioning an Autonomous Transaction Processing Database Instance
@@ -29,28 +29,9 @@ As a database user, DBA or application developer,
 In this section you will be provisioning a dedicated autonomous database using the cloud console.
 ## Steps
 
-### **STEP 1: Sign in to Oracle Cloud Infrastructure console**
+### **STEP 1: Create an Autonomous Transaction Processing Database
 
-- Go to cloud.oracle.com, click Sign In to sign in with your Oracle Cloud account.
-
-![](./images/400/signin.png)
-
-- Enter your Cloud Account Name and click My Services.
-
-![](./images/400/cloudaccname.png)
-
-- Enter your Oracle Cloud username and password, and click Sign In.
-
-![](./images/400/unpw.png)
-
-- Once you are logged in, you are taken to the cloud services dashboard where you can see all the services available to you.
-
-- Click Autonomous Transaction Processing in the left side menu under services
-
-![](./images/400/myservices.png)
-
-
-### **STEP 2: Create an ATP Instance**
+**Login to your OCI account as a database user**
 
 -  Click on the hamburger menu icon on the top left of the screen
 
