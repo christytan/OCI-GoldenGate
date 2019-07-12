@@ -71,7 +71,7 @@ The following policy statement on the fleetCompartment ensure group fleetAdmins 
 
 - Allow group fleetAdmins to USE virtual-network-family in compartment fleetCompartment
 
-- Allow group fleetAdmins to inspect tag-namespaces in compartment fleetCompartment
+- Allow group fleetAdmins to INSPECT tag-namespaces in compartment fleetCompartment
 - Allow group dbUsers to READ autonomous-container-databases in compartment fleetCompartment
 
 
