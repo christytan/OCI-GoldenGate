@@ -3,7 +3,7 @@
 June 13, 2019
 </td>
 <td class="td-banner">
-# Lab 1: Preparing your private data center in the Oracle Cloud Infrastructure 
+# Lab 1: Preparing your private network in the Oracle Cloud Infrastructure 
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.

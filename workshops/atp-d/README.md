@@ -18,7 +18,7 @@ Labs 2 & 3 are geared towards the fleet administrator role responsible for deplo
 Labs 4 onwards are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications
 
 ## Goals for this workshop
-- Learn how to prepare your private data center in the Oracle Cloud Infrastructure
+- Learn how to prepare your private network in the Oracle Cloud Infrastructure
 - Learn how to provision Exadata Infrastructure for Autonomous DB in OCI
 - Learn how to provision an Autonomous Container Database
 - Learn how to provision databases on your dedicated Autonomous Infrastructure
@@ -55,7 +55,7 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 **You are all set, let's begin!**
 
 
-## Lab 1: Preparing your private data center in the Oracle Cloud Infrastructure
+## Lab 1: Preparing your private network in the Oracle Cloud Infrastructure
 
 **Key Objectives**:
 - Create compartments and user groups with the right set of access policies for separation of duties
