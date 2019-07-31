@@ -19,7 +19,7 @@ Labs 4 onwards are intended for a regular database user, DBA or developer who si
 
 ## Goals for this workshop
 - Prepare your private network in the Oracle Cloud Infrastructure
-- Provision Exadata Infrastructure for Autonomous DB in OCI
+- Provision Exadata Infrastructure in a private OCI network
 - Provision an Autonomous Container Database
 - Provision databases on your dedicated Autonomous Infrastructure
 - Setup VPN Connectivity to your Autonomous Exadata Infrastructure

@@ -138,7 +138,7 @@ Note that in the **Routing** section, ensure that the option **Should client Int
 Note: Once you have applied your changes, click **Save Settings**. You are prompted to **Update Running Server** to push your new configuration to the OpenVPN server.
 
 
-### **STEP 5: Install OpenVPN Client**
+### **STEP 3: Install OpenVPN Client**
 
 -   Connect to the OpenVPN Access Server Client UI **https://compute instance public IP:943**, Download the OpenVPN client for your platforms.
     
@@ -160,7 +160,7 @@ Note: Once you have applied your changes, click **Save Settings**. You are promp
 You may also setup your VPN server with multiple users. Follow the OpenVPN configuration guide to setup additional users.
 
 
-### STEP 3: Configure and connect SQL Developer to your dedicated ATP database
+### **STEP 4: Configure and connect SQL Developer to your dedicated ATP database**
 
 Before you launch and connect SQL Developer, you have to ensure that the SCAN host name in tnsnames.ora can resolve to an IP address for your exadata infrastructure. Since your exadata infrastructure is in a private network, it has a private ip from the 10.0.0.0/24 CIDR pool and is therefore not resolvable by public DNS servers. 
 
@@ -187,7 +187,7 @@ Once you do you this, you can them simply launch SQL Developer and use the datab
     
 Since your autonomous exadata infrastructure is setup as a RAC configuration, the SCAN host resolves to 3 IP addresses to load balance between the RAC nodes. You may use any one of those IP addresses for connectivity
 
- #### Lets find the private IP address of your exadata RAC nodes
+#### Lets find the private IP address of your exadata RAC nodes
     
 - ssh into your VPN server. You may use public or private IP. If you are on VPN, the private IP should work.
 
@@ -197,7 +197,7 @@ Since your autonomous exadata infrastructure is setup as a RAC configuration, th
  Query OCI DNS for private IP of Exadata SCAN Host
 
     
-    $ nslookup <SCAN_Hostname_from_tnsnames.ora>
+        $ nslookup SCAN_Hostname_from_tnsnames.ora
 
     
 ![](./images/1200/atpd_privateIP.png)
@@ -232,7 +232,7 @@ You may also connect to APEX or SQL Developer Web directly from your local brows
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-## Congratulations! - You just configured a secure VPN connection into your private autonomous exadata infrastructure.
+## Congratulations! You just configured a secure VPN connection into your private autonomous exadata infrastructure.
 </td>
 </tr>
 <table>
