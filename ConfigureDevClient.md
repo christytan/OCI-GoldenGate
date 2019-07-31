@@ -3,7 +3,7 @@
 June 13, 2019
 </td>
 <td class="td-banner">
-# Lab 5: Configure a development system for use with your dedicated autonomous database
+# Lab 5: Configuring a development system for use with your dedicated autonomous database
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.

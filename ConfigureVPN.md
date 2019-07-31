@@ -3,7 +3,7 @@
 November 08, 2018
 </td>
 <td class="td-banner">
-# Lab 1200: Configuring VPN connectivity into your private ATP network
+# Lab 5: Configuring VPN connectivity into your private ATP network
 </td></tr><table>
 
 

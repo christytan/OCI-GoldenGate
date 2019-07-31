@@ -18,19 +18,19 @@ Labs 2 & 3 are geared towards the fleet administrator role responsible for deplo
 Labs 4 onwards are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications
 
 ## Goals for this workshop
-- Learn how to prepare your private network in the Oracle Cloud Infrastructure
-- Learn how to provision Exadata Infrastructure for Autonomous DB in OCI
-- Learn how to provision an Autonomous Container Database
-- Learn how to provision databases on your dedicated Autonomous Infrastructure
-- Learn how to setup VPN Connectivity to your Autonomous Exadata Infrastructure
-- Learn how to connect a developer client to an Autonomous Database
-- Learn how to build and deploying Python application stacks on dedicated autonomous infrastructure
-- Learn how to build and deploying node.js application stacks on dedicated autonomous infrastructure
-- Learn how to build and deploying Java application stacks on dedicated autonomous infrastructure
-- Learn how to use CLI commands to work with your Autonomous databases
-- Learn how to invoke and use the sqldevweb console
-- Learn how to build apex applications on dedicated autonomous database
-- Learn how to manage database performance through performance hub console
+- Prepare your private network in the Oracle Cloud Infrastructure
+- Provision Exadata Infrastructure for Autonomous DB in OCI
+- Provision an Autonomous Container Database
+- Provision databases on your dedicated Autonomous Infrastructure
+- Setup VPN Connectivity to your Autonomous Exadata Infrastructure
+- Connect a developer client to an Autonomous Database
+- Build and deploy Python application stacks on dedicated autonomous infrastructure
+- Build and deploy node.js application stacks on dedicated autonomous infrastructure
+- Build and deploy Java application stacks on dedicated autonomous infrastructure
+- Use OCI CLI commands to work with your Autonomous databases
+- Invoke and use the sqldevweb console
+- Build apex applications on dedicated autonomous database
+- Manage database performance through performance hub console
 
 <!-- # How to Get Your Free Cloud Trial Account
 Please click on the following link to create your <a class=“trial-link” href="https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ex:tb:::RC_NAMK181011P00041:ATPHOL&SC=:ex:tb:::RC_NAMK181011P00041:ATPHOL&pcode=NAMK181011P00041" target="_trial">Free Account</a>, and complete all the required steps to get your free Oracle Cloud Trial Account. When you complete the registration process you'll receive a $300 credit that will enable you to complete the lab for free.  Additionally, you'll have 1000s of hours left over to continue to explore the Oracle Cloud.

@@ -3,7 +3,7 @@
 June 13, 2019
 </td>
 <td class="td-banner">
-# Lab 2: Deploying an Autonomous Exadata Infrastructure in a private OCI network
+# Lab 2: Provisioning Autonomous Exadata Infrastructure in a private OCI network
 </td></tr><table>
 
 ## Introduction
