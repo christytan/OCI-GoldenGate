@@ -22,6 +22,7 @@ Labs 4 onwards are intended for a regular database user, DBA or developer who si
 - Learn how to provision Exadata Infrastructure for Autonomous DB in OCI
 - Learn how to provision an Autonomous Container Database
 - Learn how to provision databases on your dedicated Autonomous Infrastructure
+- Learn how to setup VPN Connectivity to your Autonomous Exadata Infrastructure
 - Learn how to connect a developer client to an Autonomous Database
 - Learn how to build and deploying Python application stacks on dedicated autonomous infrastructure
 - Learn how to build and deploying node.js application stacks on dedicated autonomous infrastructure
@@ -62,7 +63,7 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 - Create fleet admin and database user accounts
 - Layout a secure network for the database and application infrastructure
 
-**[Click here to run Lab 1](LabGuide100PreparingyourprivatedatacenterintheOracleCloudInfrastructure.md)**
+**[Click here to run Lab 1](ATPD-Networking.md)**
 
 
 ## Lab 2: Provisioning Exadata Infrastructure for Autonomous DB in OCI
@@ -74,7 +75,7 @@ As a fleet administrator,
 - Understand AEI maintenance scheduling
 - Understand database licensing options
 
-**[Click here to run Lab 2](LabGuide200ProvisioningExadataInfrastructureforAutonomousDBinOCI.md)**
+**[Click here to run Lab 2](ProvisionAEI.md)**
 
 
 ## Lab 3: Provisioning an Autonomous Container Database
@@ -84,7 +85,7 @@ As a fleet administrator,
 As a fleet administrator,
 - Deploy an Autonomous Container Database (ACD) onto an Autonomous Exadata Infrastructure (AEI)
 
-**[Click here to run Lab 3](LabGuide300ProvisioninganAutonomousContainerDatabase.md)**
+**[Click here to run Lab 3](ProvisionACD.md)**
 
 
 ## Lab 4: Provisioning databases on your dedicated Autonomous Infrastructure
@@ -96,35 +97,51 @@ As a database user, DBA or application developer,
 - Rapidly deploy autonomous transaction processing databases
 - Manage your database backups
 
-**[Click here to run Lab 4](LabGuide400ProvisioningdatabasesonyourdedicatedAutonomousInfrastructure.md)**
+**[Click here to run Lab 4](ProvisionADB.md)**
 
-## Lab 5: Connecting a developer client to an Autonomous Database
+## Lab 5: Configuring VPN connectivity into your private ATP network
+
+**Key Objectives**:
+
+As a fleet / network admin,
+
+- Configure a VPN server in OCI based on OpenVPN software
+- Configure your VPN client and connect to VPN Server
+
+As a database admin / user,
+- Configure your VPN client and connect to VPN Server
+- Launch SQL Developer on client and connect to a dedicated ATP instance
+
+**[Click here to run Lab 5](ConfigureVPN.md)**
+
+
+## Lab 6: Connecting a developer client to an Autonomous Database
 
 **Key Objectives**:
 As a database user, DBA or application developer,
 - Configure a secure connection from your application instance to your dedicated autonomous database using Oracle SQL Developer, SQLCL and SQL*Plus.
 
-**[Click here to run Lab 5](LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md)**
+**[Click here to run Lab 6](ConfigureDevClient.md)**
 
-## Lab 6: Building and deploying node.js application stacks on dedicated autonomous infrastructure
+## Lab 7: Building and deploying node.js application stacks on dedicated autonomous infrastructure
 
 **Key Objectives**:
 
 As an application developer,
 - Learn how to deploy a node.js application and connect it to your dedicated autonomous database instance
 
-**[Click here to run Lab 6](LabGuide600Buildinganddeployingnode.jsapplicationstacksondedicatedautonomousinfrastructure.md)**
+**[Click here to run Lab 7](BuildNodeApps.md)**
 
-## Lab 7: Building and deploying Python application stacks on dedicated autonomous infrastructure
+## Lab 8: Building and deploying Python application stacks on dedicated autonomous infrastructure
 
 **Key Objectives**:
 
 As an application developer,
 - Learn how to deploy a python application and connect it to your dedicated autonomous database instance
 
-**[Click here to run Lab 7](LabGuide700BuildinganddeployingPythonapplicationstacksondedicatedautonomousinfrastructure.md)**
+**[Click here to run Lab 8](BuildPythonApps.md)**
 
-## Lab 8: Building and deploying Java application stacks on dedicated autonomous infrastructure
+## Lab 9: Building and deploying Java application stacks on dedicated autonomous infrastructure
 
 **Key Objectives**:
 
@@ -132,9 +149,9 @@ As an application developer,
 - Learn how to deploy a java application and connect it to your dedicated autonomous database instance
 
 
-**[Click here to run Lab 8](LabGuide800BuildinganddeployingJavaapplicationstacksondedicatedautonomousinfrastructure.md)**
+**[Click here to run Lab 9](BuildJavaApps.md)**
 
-## Lab 9: Using CLI commands to work with your Autonomous databases
+## Lab 10: Using CLI commands to work with your Autonomous databases
 
 **Key Objectives**:
 
@@ -144,9 +161,9 @@ As an application developer, DBA or DevOps user,
 - Interact with Oracle Cloud Infrastructure resource using a CLI instead of a web console
 
 
-**[Click here to run Lab 9](LabGuide900UsingCLIcommandstoworkwithyourAutonomousdatabases.md)**
+**[Click here to run Lab 10](OCI-CLI.md)**
 
-## Lab 10: Using sql*developer web console
+## Lab 11: Using sql*developer web console
 
 **Key Objectives**:
 
@@ -156,9 +173,9 @@ As an application developer, DBA or DevOps user,
 - Create a VNC connection to developer client VM and access sqldevweb console
 - Understand features of sqldevweb
 
-**[Click here to run Lab 10](LabGuide1000AccessingSQLDevWebConsoleAndPerformanceHub.md)**
+**[Click here to run Lab 11](SQlDevWeb.md)**
 
-## Lab 11: Building Apex application on dedicated autonomous database
+## Lab 12: Building Apex application on dedicated autonomous database
 
 **Key Objectives**:
 
@@ -168,5 +185,5 @@ As an application developer, DBA or DevOps user,
 - Create a VNC connection to developer client VM and access apex on your database as admin user
 - Setup additional apex developer users 
 
-**[Click here to run Lab 11](LabGuide1100BuildingApexApplicationOnDedicatedAutonomousDatabase.md)**
+**[Click here to run Lab 12](Apexe.md)**
 
