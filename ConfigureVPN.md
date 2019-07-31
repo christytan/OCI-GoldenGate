@@ -1,6 +1,5 @@
 <table class="tbl-heading"><tr><td class="td-logo">![](./images/obe_tag.png)
 
-November 08, 2018
 </td>
 <td class="td-banner">
 # Lab 5: Configuring VPN connectivity into your private ATP network
