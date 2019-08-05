@@ -23,7 +23,7 @@ Labs 4 onwards are intended for a regular database user, DBA or developer who si
 - Provision an Autonomous Container Database
 - Provision databases on your dedicated Autonomous Infrastructure
 - Setup VPN Connectivity to your Autonomous Exadata Infrastructure
-- Connect a developer client to an Autonomous Database
+- Configure a development system for use with your dedicated autonomous database
 - Build and deploy Python application stacks on dedicated autonomous infrastructure
 - Build and deploy node.js application stacks on dedicated autonomous infrastructure
 - Build and deploy Java application stacks on dedicated autonomous infrastructure
@@ -117,7 +117,7 @@ As a database admin / user,
 **[Click here to run Lab 5](ConfigureVPN.md)**
 
 
-## Lab 6: Connecting a developer client to an Autonomous Database
+## Lab 6: Configuring a development system for use with your dedicated autonomous database
 
 **Key Objectives**:
 As a database user, DBA or application developer,
