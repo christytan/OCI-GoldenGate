@@ -3,7 +3,7 @@
 June 13, 2019
 </td>
 <td class="td-banner">
-# Lab 9: Using CLI commands to work with your Autonomous databases
+# Lab 10: Using CLI commands to work with your Autonomous databases
 </td></tr><table>
  
 
@@ -53,7 +53,8 @@ To ensure OCI-CLI installed is the correct version needed for ATP-Dedicated data
 $ ssh -i <ssh_key> opc@<ip address>
 $ oci --version   
 ```
-The OCI CLI version needs to be 2.6 or higher to support dedicated autonomous database commands
+**The OCI CLI version needs to be 2.5.14 or higher to support dedicated autonomous database commands. Refer to the [OCI CLI Github Change Log](https://github.com/oracle/oci-cli/blob/master/CHANGELOG.rst#2514---2019-06-11) for version details**
+
 
 
 ### **STEP 2: Configure OCI CLI**

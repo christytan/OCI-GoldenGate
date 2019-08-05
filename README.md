@@ -30,7 +30,7 @@ Labs 4 onwards are intended for a regular database user, DBA or developer who si
 - Use OCI CLI commands to work with your Autonomous databases
 - Invoke and use the sqldevweb console
 - Build apex applications on dedicated autonomous database
-- Manage database performance through performance hub console
+- Manage database & performance using SQL Developer Web and Performance Hub
 - Migrate an on-prem application schema using Data Pump
 - Setup live migration of business critical databases using Oracle Goldengate replication
 
@@ -175,7 +175,7 @@ As an application developer, DBA or DevOps user,
 - Create a VNC connection to developer client VM and access sqldevweb console
 - Understand features of sqldevweb
 
-**[Click here to run Lab 11](SQlDevWeb.md)**
+**[Click here to run Lab 11](SQLDevWeb.md)**
 
 ## Lab 12: Building Apex application on dedicated autonomous database
 

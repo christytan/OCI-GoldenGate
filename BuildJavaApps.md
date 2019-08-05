@@ -3,7 +3,7 @@
 June 13, 2019
 </td>
 <td class="td-banner">
-# Lab 8: Building and deploying Java application stacks on dedicated autonomous infrastructure
+# Lab 9: Building and deploying Java application stacks on dedicated autonomous infrastructure
 </td></tr><table>
 
 ## Introduction

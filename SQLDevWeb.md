@@ -3,7 +3,7 @@
 June 13, 2019
 </td>
 <td class="td-banner">
-# Lab 10: Accessing SQL Developer Web and Performance hub consoles on your dedicated autonomous database instance
+# Lab 11: Accessing SQL Developer Web and Performance hub consoles on your dedicated autonomous database instance
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.

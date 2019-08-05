@@ -3,7 +3,7 @@
 June 24, 2019
 </td>
 <td class="td-banner">
-# Lab 11: Building Apex application on dedicated autonomous database
+# Lab 12: Building Apex application on dedicated autonomous database
 </td></tr><table>
 
 ## Introduction
@@ -58,9 +58,12 @@ To get the APEX URL for your ATP Dedicated instance,
 
 Since ATP Dedicated instances are typically deployed in a private network, one way to get to your APEX console is via a developer client machine setup in the same network
 
-Refer to [Lab 5: Connecting a developer client to an Autonomous Database](./LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md) for instructions on setting up and connecting to a developer client machine.
+Refer to [Lab 6: Connecting a developer client to an Autonomous Database](./ConfigureDevClient.md) for instructions on setting up and connecting to a developer client machine.
 
 For the purpose of this lab we assume that your have already deployed and have ssh access to a developer client virtual machine in a public application subnet
+
+**Alternatively, you may also access the Apex console of your dedicated ATP instance from your local web browser If you are in the same OCI Network / VCN as your database. For detailed instruction on setting up a VPN connection into your private database cloud infrastructure, refer to [Lab 5](ConfigureVPN.md)**
+
 
 **Steps**
 

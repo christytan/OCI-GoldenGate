@@ -3,7 +3,7 @@
 July 30, 2019
 </td>
 <td class="td-banner">
-# Lab 14: SettingUpGoldenGatetoReplicateDataFromOn-PremiseDatabaseToATP-Dedicated
+# Lab 14: Live migration to ATP-Dedicated using Oracle Goldengate replication
 </td></tr><table>
 
 ## Introduction
@@ -30,9 +30,11 @@ To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-
 
 ## Objectives
 
+As a database admin,
+
 - Install Golden Gate on both source and target database
-- Configure extract,pump and replicat processes on source and target golden gate instances respectively.
-- Replicate real time data from on-premise to cloud.
+- Configure extract,pump and replicat processes on source and target golden gate instances respectively
+- Replicate real time data from a simulated on-premise database to ATP-Dedicated
 
 ## Required Artifacts
 
