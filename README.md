@@ -6,16 +6,16 @@ Last Updated:<br>June 13, 2019
 # Working with Autonomous Transaction Processing - Dedicated
 </td></tr><table>
 
-Oracle's Dedicated Autonomous Transaction Processing service allows an organization to Rethink Database IT, enabling a customizable private database cloud in the public cloud. The dedicated choice makes it possible to deliver a self-service database capability that aligns with organizational structure. Different lines of business or project teams can have complete autonomy in their individual execution while the company itself gets a fleet wide simplified aggregation of overall health, availability and cost management. This separation of Fleet vs Database administration allows simple budgeting controls and resource isolation without getting in the way of the line of business execution. And a dedicated database deployment will support the entire spectrum of needs from simple apps to apps that require the highest governance, consistent performance and operational controls
+Oracle's Dedicated Autonomous Transaction Processing service allows an organization to Rethink Database IT, enabling a customizable private database cloud in the public cloud. The dedicated choice makes it possible to deliver a self-service database capability that aligns with organizational structure. Different lines of business or project teams can have complete autonomy in their individual execution while the company itself gets a fleet wide simplified aggregation of overall health, availability and cost management. This separation of Fleet vs Database administration allows simple budgeting controls and resource isolation without getting in the way of the line of business execution. And a dedicated database deployment will support the entire spectrum of needs from simple apps to apps that require the highest governance, consistent performance and operational controls.
 
 
-These workshop labs provide step-by-step directions to setting up and using your dedicated Autonomous database platform in the Oracle Cloud Infrastructure. 
+These hands-on lab guides provide step-by-step directions to setting up and using your dedicated Autonomous database platform in the Oracle Cloud Infrastructure. 
 
-Lab 1 deals with setting up the network, users and groups and requires administrator privileges on your OCI account
+Lab 1 deals with setting up the network, users and groups and requires administrator privileges on your OCI account.
 
-Labs 2 & 3 are geared towards the fleet administrator role responsible for deploying the autonomous exadata infrastructure and container databases
+Labs 2 & 3 are geared towards the fleet administrator role responsible for deploying the autonomous exadata infrastructure and container databases.
 
-Labs 4 onwards are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications
+Labs 4 onwards are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications.
 
 ## Goals for this workshop
 - Prepare your private network in the Oracle Cloud Infrastructure
@@ -31,6 +31,8 @@ Labs 4 onwards are intended for a regular database user, DBA or developer who si
 - Invoke and use the sqldevweb console
 - Build apex applications on dedicated autonomous database
 - Manage database performance through performance hub console
+- Migrate an on-prem application schema using Data Pump
+- Setup live migration of business critical databases using Oracle Goldengate replication
 
 <!-- # How to Get Your Free Cloud Trial Account
 Please click on the following link to create your <a class=“trial-link” href="https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ex:tb:::RC_NAMK181011P00041:ATPHOL&SC=:ex:tb:::RC_NAMK181011P00041:ATPHOL&pcode=NAMK181011P00041" target="_trial">Free Account</a>, and complete all the required steps to get your free Oracle Cloud Trial Account. When you complete the registration process you'll receive a $300 credit that will enable you to complete the lab for free.  Additionally, you'll have 1000s of hours left over to continue to explore the Oracle Cloud.
@@ -185,5 +187,29 @@ As an application developer, DBA or DevOps user,
 - Create a VNC connection to developer client VM and access apex on your database as admin user
 - Setup additional apex developer users 
 
-**[Click here to run Lab 12](Apexe.md)**
+**[Click here to run Lab 12](Apex.md)**
 
+## Lab 13: Migrating to Dedicated ATP using Data Pump
+
+**Key Objectives**:
+
+As a database admin or user,
+
+1. Download a sample datapump export dump file from Oracle Learning Library github reposiory.
+2. Upload .dmp file to OCI Object storage bucket.
+3. Setup cloud credentials and use data pump import to move data to your ATP database.
+
+**[Click here to run Lab 12](DataPump.md)**
+
+## Lab 14: Live migration to ATP-Dedicated using Oracle Goldengate replication
+
+
+**Key Objectives**:
+
+As a database admin,
+
+- Install Golden Gate on both source and target database
+- Configure extract,pump and replicat processes on source and target golden gate instances respectively
+- Replicate real time data from a simulated on-premise database to ATP-Dedicated
+
+**[Click here to run Lab 12](Goldengate.md)**

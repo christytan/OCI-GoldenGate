@@ -3,7 +3,7 @@
 June 13, 2019
 </td>
 <td class="td-banner">
-# Lab 6: Building and deploying node.js application stacks on dedicated autonomous infrastructure
+# Lab 7: Building and deploying node.js application stacks on dedicated autonomous infrastructure
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
@@ -25,11 +25,11 @@ As an application developer,
 
 - An Oracle Cloud Infrastructure account
 
-- A pre-provisioned instance of Oracle Developer Client image in an application subnet. Refer to [Lab5](LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md)
+- A pre-provisioned instance of Oracle Developer Client image in an application subnet. Refer to [Lab6](ConfigureDevClient.md)
 
-- A pre-provisioned dedicated autonomous database instance. Refer to [Lab 4](./LabGuide400ProvisioningdatabasesonyourdedicatedAutonomousInfrastructure.md)
+- A pre-provisioned dedicated autonomous database instance. Refer to [Lab 4](./ProvisionADB.md)
 
-- A network that provides connectivity between the application and database subnets. Refer to [Lab1](./LabGuide100PreparingyourprivatedatacenterintheOracleCloudInfrastructure.md)
+- A network that provides connectivity between the application and database subnets. Refer to [Lab1](./ATPD-Networking.md)
 
 ## Steps
 

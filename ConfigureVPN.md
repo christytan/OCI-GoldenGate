@@ -25,7 +25,7 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 
 - An Oracle Cloud Infrastructure account with privileges to create compute instance and network resources
 - A pre-provisioned dedicated autonomous database instance in a private network
-- A pre-provisioned Virtual Cloud Network with public and private subnets setup with appropriate security lists. Refer Lab 1
+- A pre-provisioned Virtual Cloud Network with public and private subnets setup with appropriate security lists. Refer [Lab 1](./ATPD-Networking.md)
 
 
 The following illustration shows a network topology that can be used to provide secure access to your dedicated autonomous infrastructure.

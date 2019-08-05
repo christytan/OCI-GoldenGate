@@ -3,7 +3,7 @@
 June 13, 2019
 </td>
 <td class="td-banner">
-# Lab 1: Migrating to Dedicated ATP using Data Pump
+# Lab 13: Migrating to Dedicated ATP using Data Pump
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
@@ -29,7 +29,8 @@ As a database admin or user,
 
 ## Required Artifacts
 - An Oracle Cloud Infrastructure account with privileges to create object storage buckets and dedicated autonomous databases.
-- Access to a pre-provisioned dedicated ATP instance.
+- Access to a pre-provisioned dedicated ATP instance. Refer to [Lab 4](./ProvisionADB.md)
+- A pre-provisioned instance of Oracle Developer Client image in an application subnet. Refer to [Lab 6](./ConfigureDevClient.md)
 
 ## Steps
 
