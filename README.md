@@ -1,6 +1,6 @@
 <table class="tbl-heading"><tr><td class="td-logo">[![](images/obe_tag.png)](README.md)
 
-Last Updated:<br>June 13, 2019
+Last Updated:<br>August 4, 2019
 </td>
 <td class="td-banner">
 # Working with Autonomous Transaction Processing - Dedicated
@@ -50,7 +50,7 @@ Please click on the following link to create your <a class=“trial-link” href
 
 The dedicated infrastructure feature of Oracle Autonomous Transaction Processing enables you to create an Oracle Autonomous Database platform that is private and isolated to your use all the way down to the Oracle Exadata hardware running your database instances and storing your database data.
 
-You define and use Oracle Cloud Infrastructure Networking and IAM (Identity and Access Management) resources to ensure secure and authorized use of your dedicated Autonomous Transaction Processing databases and the database resources that underlie them
+You define and use Oracle Cloud Infrastructure Networking and IAM (Identity and Access Management) resources to ensure secure and authorized use of your dedicated Autonomous Transaction Processing databases and the database resources that underlie them.
 <!-- Oracle Autonomous Transaction Processing Dedicated ...  
 
 Read on to begin your Getting Started journey with Oracle Autonomous Transaction Processing Dedicated. -->
@@ -199,7 +199,7 @@ As a database admin or user,
 2. Upload .dmp file to OCI Object storage bucket.
 3. Setup cloud credentials and use data pump import to move data to your ATP database.
 
-**[Click here to run Lab 12](DataPump.md)**
+**[Click here to run Lab 13](DataPump.md)**
 
 ## Lab 14: Live migration to ATP-Dedicated using Oracle Goldengate replication
 
@@ -212,4 +212,4 @@ As a database admin,
 - Configure extract,pump and replicat processes on source and target golden gate instances respectively
 - Replicate real time data from a simulated on-premise database to ATP-Dedicated
 
-**[Click here to run Lab 12](Goldengate.md)**
+**[Click here to run Lab 14](Goldengate.md)**

@@ -1,6 +1,6 @@
 <table class="tbl-heading"><tr><td class="td-logo">![](images/obe_tag.png)
 
-June 13, 2019
+August 4, 2019
 </td>
 <td class="td-banner">
 # Lab 13: Migrating to Dedicated ATP using Data Pump
@@ -70,16 +70,16 @@ Use the following command from your mac / PC to download a sample schema dump fr
 
 ### STEP 3: General an authentication token for your user account
 
-Assuming you are logged into your OCI account, navigate to the user details page from the top right menu item as shown below
+- Assuming you are logged into your OCI account, navigate to the user details page from the top right menu item as shown below
 
 ![get-token1](./images/HOL-DataPump/get-token1.png)
 
-Next on the user details page, scroll down to see  **Resources** on the left and generate an **Auth Token** as shown below.
+- Next on the user details page, scroll down to see  **Resources** on the left and generate an **Auth Token** as shown below.
 
 ![get-token2](./images/HOL-DataPump/get-token2.png)
 
 
-Provide any desired name and copy the generated token string some place in a text editor. You will need this token while configuring cloud credentials on your  target database.
+- Provide any desired name and copy the generated token string some place in a text editor. You will need this token while configuring cloud credentials on your  target database.
 
 ![get-token3](./images/HOL-DataPump/get-token3.png)
 
@@ -88,7 +88,7 @@ Provide any desired name and copy the generated token string some place in a tex
 
 Now that we have the credentials token, lets setup the target database to read from object store and import data.
 
-- Log into your dedicated autonomous database as admin using either SQL*Developer or SQL*Plus client
+- Log into your dedicated autonomous database as admin using either SQL Developer or SQLCL client.
 
 Note: There are two ways to do this - 
 
@@ -118,7 +118,7 @@ Ensure the pl/sql procedure executed successfully from the log message
 
 ### STEP 5: Import data from object store using impdp utility
 
-Finally, if all went well so far, proceed to ssh into your developer client machine and run the data pump import command.
+- If all went well so far, proceed to ssh into your developer client machine and run the data pump import command.
 
 **Windows users may connect to the dev client using Putty**       
 
@@ -147,12 +147,12 @@ Besides, ensure TNS_ADMIN environment variable points to the location where you 
 
 In the above command, replace - 
 
-password - Admin password for your autonomous DB
-connect_string - connect string obtained from database console, it would be something like myDatabase_high
-directory - leave as shown above
-dumpfile - Use swift URL. If your .dmp file is in Ashburn, simply replace tenancy and bucket name
+**password** - Admin password for your autonomous DB
+**connect_string** - connect string obtained from database console, it would be something like myDatabase_high
+**directory** - leave as shown above
+**dumpfile** - Use swift URL. If your .dmp file is in Ashburn, simply replace tenancy and bucket name
 
-Ensure nologfile=yes, else the command fails
+**Ensure nologfile=yes, else the command fails**
 ![import1](./images/HOL-DataPump/import1.png)
 
 If all goes well, your import will complete in a minute as shown below. Ignore the statement,
