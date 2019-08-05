@@ -10,11 +10,11 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 
 ## Introduction
 
-Oracle SQL Developer Web provides an integrated development environment and a database administration interface for Oracle Database in Oracle Cloud. A web interface for Oracle SQL Developer, SQL Developer Web provides a subset of the features available for the desktop product and is bundled with various database services available in Oracle Cloud, including the dedicated autonomous database
+Oracle SQL Developer Web provides an integrated development environment and a database administration interface for Oracle databases in OCI. A web interface for Oracle SQL Developer, SQL Developer Web provides a subset of the features available for the desktop product and is bundled with various database services available in Oracle Cloud, including the dedicated autonomous database.
 
 On the Performance Hub page of the SQL Developer Web console, you can monitor the performance of your Autonomous Database entities and ensure that these entities perform optimally.
 
-This page allows you to view all the performance data available for a specific time period. Once a time period is selected, the database performance is displayed
+This page allows you to view all the performance data available for a specific time period. Once a time period is selected, the database performance is displayed.
 
 ## Objectives
 
@@ -86,6 +86,10 @@ Note: Mac users should user CRTL + V to paste into VNC and not Command + V
 - Click Sign In and should should now be looking at your SQL Developer Web Console
 
 - Explore the SQL Developer Web interface and refer to its documentation for usage details
+
+**Alternatively, you may also access the SQLDevWeb console of your dedicated ATP instance from your local web browser If you are in the same OCI Network / VCN as your database. For detailed instruction on setting up a VPN connection into your private database cloud infrastructure, refer to [Lab 5](ConfigureVPN.md)**
+
+
 
 ### STEP 3: Access the Performance Hub through SQL Developer Web Console
 
