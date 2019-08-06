@@ -184,7 +184,7 @@ Note the destination CIDR block 0.0.0.0/0 indicate ALL IP addresses globally i.e
 
 
 
-Now that you have all the required components to associate with your AEI and application subnets, you may now process to deploy those subnets. An example screen shot is provided below for the exadataSubnet. Similarly create the appSubnet as per the table
+Now that you have all the required components to associate with your AEI and application subnets, you may now process to deploy those subnets. An example screen shot is provided below for the exadataSubnet. **Similarly create the appSubnet as per table above**
 
 ![create_exaSubnet](./images/100/create_exaSubnet.png)
 
