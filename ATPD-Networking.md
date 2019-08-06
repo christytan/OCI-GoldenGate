@@ -10,7 +10,14 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 
 ## Introduction
 
-The Oracle dedicated autonomous database runs on dedicated Exadata hardware in the Oracle Cloud Infrastructure. That means you have your own personal slice of high performance hardware akin to running your own private cloud in a public cloud setting. Lets take a look at some best practices to setting up your autonomous data platform.
+The Oracle dedicated autonomous database runs on dedicated Exadata hardware in the Oracle Cloud Infrastructure. That means you have your own personal slice of high performance hardware akin to running your own private cloud in a public cloud setting. In this hands-on lab we take a look at some best practices to setting up a secure autonomous data platform. Note that while every organization should implement their own corporate security policies, this guide aims to provide a framework for working with the autonomous data platform in the Oracle Cloud Infrastructure. The two key concepts dealth with here are,
+ a) Separation of duties and b) Network setup 
+
+When configuring the dedicated infrastructure feature of Oracle Autonomous Transaction Processing, you need to ensure that your cloud users have access to use and create only the appropriate kinds of cloud resources to perform their job duties. Additionally, you need to ensure that only authorized personnel and applications have network access to the autonomous databases created on dedicated infrastructure.
+
+To institute access controls for cloud users, you define policies that grant specific groups of users specific access rights to specific kinds of resources in specific compartments.
+
+To institute network access controls, you create VCNs and subnets and then, using the same policy mechanism, permit only the appropriate VCN and subnet to be used when a dedicated infrastructure resource is created. Thus, you can ensure the proper network isolation of resources.
 
 ## Objectives
 
@@ -37,11 +44,11 @@ We will use the following structure in line with this best practice recommendati
 
 A fleetCompartment to hold the Autonomous Exadata Infrastructure  (AEI) and Autonomous Container Databases (ACD) 
 
-A dbUserCompartment for database and application user objects such as Autononomous Databases (ADBs) and application client machines. While for the purpose of this lab we create a single dbUser compartment, in practice, each user may have their own compartment for further isolation
+A dbUserCompartment for database and application user objects such as Autononomous Databases (ADBs) and application client machines. While for the purpose of this lab we create a single dbUser compartment, in practice, each user may have their own compartment for further isolation.
 
-The fleet Admin will have IAM policies to create and manage AEI, ACDs and network resources in the fleet compartment. Alternatively, a network admin may first provision the VCN and Subnets while a fleet admin then provisions the Exadata Infrastructure and Container databases
+The fleet Admin will have IAM policies to create and manage AEI, ACDs and network resources in the fleet compartment. Alternatively, a network admin may first provision the VCN and Subnets while a fleet admin then provisions the Exadata Infrastructure and Container databases.
 
-Database users in the dbUser compartment will have priviledges to **USE**  AEI and ACD resources in the fleet compartment only. They cannot create, delete or modify those resources. A database user may have complete read/write privileges on their own compartments where they can create and destroy database and application instances
+Database users in the dbUser compartment will have priviledges to **USE**  AEI and ACD resources in the fleet compartment only. They cannot create, delete or modify those resources. A database user may have complete read/write privileges on their own compartments where they can create and destroy database and application instances.
 
 
 
@@ -116,9 +123,10 @@ You now have the users, groups and compartments setup to provision an autonomous
 
 Here its assumed that the reader has some basic understanding of networking components and SDNs. If you are absolutely new to this subject, I suggest you refer to the OCI network documentation to get an understanding of VCNs, Subnets, Security lists, routers, gateways etc.
 
-Your OCI network can be treated as your own private datacenter. Therefore we choose a network topology with a single Virtual Cloud Network (VCN) and multiple subnets for hosting database and application infrastructure.
+Your OCI network can be treated as your own private datacenter. While various network topologies are possible, we pick a topology here where the database infrastructure is in a private subnet while the application and VPN infrastructure is in a public subnet. For more practical scenarios, the VPN and application servers can be further separated into their own subnets and additional firewalls setup.
+![network-topology](./images/100/network-topology.png)
 
-We will follow these security guidelines as we build the network,
+We will also follow these security guidelines as we build the network,
 
 1. Each subnet we build will have its own security list and route table. We will not use the default seclist or route table or share them among subnets
 2. Database infrastructure will be in a private subnet with no access from outside the VCN
