@@ -76,13 +76,15 @@ The following policy statement on the fleetCompartment ensure group fleetAdmins 
 
 - Allow group fleetAdmins to MANAGE autonomous-container-databases in compartment fleetCompartment
 
-- Allow group fleetAdmins to USE virtual-network-family in compartment fleetCompartment
+- Allow group fleetAdmins to MANAGE virtual-network-family in compartment fleetCompartment
 
 - Allow group fleetAdmins to INSPECT tag-namespaces in compartment fleetCompartment
+
 - Allow group dbUsers to READ autonomous-container-databases in compartment fleetCompartment
 
+- Allow group dbUsers to USE virtual-network-family in compartment fleetCompartment
 
-![create_policy2](./images/100/create_policy3.png)
+![create_policy3](./images/100/create_policy3.png)
 
 
 
@@ -95,6 +97,12 @@ Similarly, create a dbUserPolicy on the dbUserCompartment as show. **Make sure y
 - Allow group dbUsers to USE virtual-network-family in compartment dbUserCompartment
 
 - Allow group dbUsers to MANAGE instance-family in compartment dbUserCompartment
+
+- Allow group dbUsers to MANAGE buckets in compartment dbUserCompartment
+
+- Allow group dbUsers to MANAGE objects in compartment dbUserCompartment
+
+- Allow group dbUsers to MANAGE app-catalog-listing in compartment dbUserCompartment
 
 You may alternatively choose to grant 'MANAGE all-resources' privileges to users that need to provision databases and other cloud resources in their own private compartment as shown below
 
@@ -148,24 +156,19 @@ We will also follow these security guidelines as we build the network,
 
 2. Lets add two security lists to this VCN, one for each of the two subnets we would deploy for the database and application networks. Each subnet has its own security list as defined in the table below.
 
-
-| Subnet        | CIDR range  | Security List     | Security Rules                                               |
-| ------------- | ----------- | ----------------- | ------------------------------------------------------------ |
-| exadataSubnet | 10.0.0.0/24 | exaSubnet-seclist | ingress/egress: Allow All TCP, UDP, SNMP traffic within the subnet<br /><br />Allow TCP traffic on ports 1521,  from appSubnet |
-| appSubnet     | 10.0.1.0/24 | appSubnet-seclist | Ingress: Allow TCP traffic from public internet to port 22 ( ssh)<br /><br />Allow All TCP traffic within subnet |
-
+![secrules](./images/100/secrules.png)
 
 
 Start deploying the above configuration in the following order,
 
-**a. Create seclists exaSubnet-seclist and appSubnet-seclist.**
+**a. Create seclists 'Seclist for Exadata Subnet' and 'Seclist for App Subnet'.**
  An example screenshot below shows adding the exaSubnet-seclist in the fleetCompartment with an ingress rule for TCP traffic. Similarly, add rules to this seclist for UDP and ICMP traffic and an egress rule per table above
 
 ![add_seclist](./images/100/add_seclist.png)
 
 
 
-**b. Create an internet gateway** for hosts in the public subnets to be accessible over the internet. This is optional and depends on wether you want any hosts in the public domain. Typically bastion hosts can be setup in a public subnet for ssh access. In these tutorial, for simplicity, we will setup our developer client machines in the public subnet
+**b. Create an internet gateway** for hosts in the public subnets to be accessible over the internet. This is optional and depends on wether you want any hosts in the public domain. Typically bastion hosts can be setup in a public subnet for ssh access. In these tutorial, for simplicity, we will setup our developer client machines in the public appSubnet
 
 ![create_internet-gateway](./images/100/create_internet-gateway.png)
 
