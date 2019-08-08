@@ -268,6 +268,10 @@ WALLET_LOCATION = (SOURCE = (METHOD = file) (METHOD_DATA = (DIRECTORY="/home/opc
 SSL_SERVER_DN_MATCH=yes
 ```
 
+Set the TNS_ADMIN env variable to point to wallet folder
+
+        $export TNS_ADMIN=/home/opc/wallet
+
 - Now, run:
 
 ```

@@ -149,17 +149,17 @@ ssh -i /path/to/your/private_ssh_key opc@PublicIP
 Once logged in ,
 
 ```
-cd /home/opc/ATPDjava/
+cd /home/opc/atpjava/
 
 mkdir wallet
 
-unzip Wallet_ATPDedicatedDB.zip -d /home/opc/ATPDjava/wallet/
+unzip Wallet_ATPDedicatedDB.zip -d /home/opc/atpjava/wallet/
 ```
 
 - Edit sqlnet.ora to update the directory path
 
 ```
-cd /home/opc/ATPDjava/wallet/
+cd /home/opc/atpjava/wallet/
 
 vi sqlnet.ora
 ```
@@ -171,7 +171,7 @@ vi sqlnet.ora
 - Next, configure your java applications DB config file
 
 ```
-cd /home/opc/ATPDjava/atpjava/src
+cd /home/opc/atpjava/atpjava/src
 
 vi dbconfig.properties
 ```
@@ -190,7 +190,7 @@ vi dbconfig.properties
 Next, let's set the TNS_ADMIN environment variable to point to the wallet and set the java classpath
 
 ```
-export TNS_ADMIN=/home/opc/ATPDjava/wallet/
+export TNS_ADMIN=/home/opc/atpjava/wallet/
 ```
 
 - Verify TNS_ADMIN path
@@ -204,13 +204,13 @@ echo $TNS_ADMIN
 - Set java class path
 
 ```
-javac -cp .:/home/opc/ATPDjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection.java
+javac -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection.java
 ```
 
 - Run application 
 
 ```
-java -cp .:/home/opc/ATPDjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection
+java -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection
 ```
 
 ![](./images/800/atpd9.png)

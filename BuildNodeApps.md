@@ -146,7 +146,7 @@ echo $TNS_ADMIN
 ```
 ![](./images/700/TNSnode.png)
 
-And finally, lets edit the dbconfig.js file in /home/opc/ATPDnode folder with the right admin credentials and connect string. 
+And finally, lets edit the dbconfig.js file in /home/opc/ATPDnode/ATPDnode-master folder with the right admin credentials and connect string. 
 
 - Password for user 'admin' was set at the time of database creation
 - Connectsring for your database is available on the cloud console. Check previous connectivity labs

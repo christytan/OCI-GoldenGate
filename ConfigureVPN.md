@@ -15,6 +15,8 @@ This lab walks you through the steps to deploy a VPN server in OCI and create an
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github Oracle repository issue submission form.
 
 ## Objectives
+As a network or fleet admin,
+
 - Configure a VPN server in OCI based on OpenVPN software
 - Configure your VPN client and connect to VPN Server
 - Launch SQL Developer on client and connect to a dedicated ATP instance
@@ -37,7 +39,7 @@ The following illustration shows a network topology that can be used to provide 
 
 - Security lists have been setup such that tcp traffic into the private exadata subnet is allowed only through hosts in the public subnet. This can be further tightened by allowing traffic from specific hosts and ports. 
 
-- For detailed instructions on network setup for your dedicated autonomous DB infrastructure, refer to Lab 1
+- For detailed instructions on network setup for your dedicated autonomous DB infrastructure, refer to [Lab 1](ATPD-Networking.md)
 
 
 
@@ -100,7 +102,7 @@ The following illustration shows a network topology that can be used to provide 
 
 -   Use the RPM command to install the package
 
-        $ rpm -ivh openvpn-as-2.5.2-CentOS7.x86_64.rpm
+        $ sudo rpm -ivh openvpn-as-2.5.2-CentOS7.x86_64.rpm
 ![](./images/1200/openvpn_url.jpeg)
 
 -   Change password of OpenVPN Server
@@ -109,7 +111,7 @@ The following illustration shows a network topology that can be used to provide 
     $ sudo passwd openvpn
     ```
 
--    From your local browser, access the admin UI console of your VPN Server (**https://<public_ipAddress_of_your_centOS_VM>:943/admin**), using the password for OpenVPN user
+-    From your local browser, access the admin UI console of your VPN Server (**https://public_ipAddress_of_your_centOS_VM:943/admin**), using the password for OpenVPN user
  
 
 ![](./images/1200/openvpn_login.png)
@@ -118,28 +120,30 @@ The following illustration shows a network topology that can be used to provide 
 
 ![](./images/1200/openvpn_network.png)
 
--   Click **VPN settings** and add the private subnet address range in the routing section
+**Save your setting before advancing to the VPN settings page**
 
+-   Click **VPN settings** and add CIDR ranges for both the app Subnet and the exadata Subnet. The exadata subnet CIDR can be avoided if you DO NOT plan to connect directly to your databases using a desktop SQL Client like SQL Developer.
 Note that in the **Routing** section, ensure that the option **Should client Internet traffic be routed through the VPN?** is set to **YES**
 
 ![](./images/1200/openvpn_vpnsetting.png)
 
 
--   Under **Have Clients user these DNS servers**, manually sest the DNS resolvers that will be used by your VPN client machiens
+-   Under **Have Clients user these DNS servers**, pick a pair of public DNS resolvers. Here we choose Google's DNS resolvers 8.8.8.8 and 8.8.8.4
 
 ![](./images/1200/openvpn_DNS.png)
 
+**Save your setting before advancing to the Advanced VPN settings page**
 
 -   In the **Advanced VPN** section, ensure that the option **Should clients be able to communicate with each other on the VPN IP Network?** is set to **Yes**
 
 ![](./images/1200/openvpn_advancedVPN.png)
 
-Note: Once you have applied your changes, click **Save Settings**. You are prompted to **Update Running Server** to push your new configuration to the OpenVPN server.
+Note: Once you have applied your changes, click **Save Settings** once again. Then, **Update Running Server** to push your new configuration to the OpenVPN server.
 
 
 ### **STEP 3: Install OpenVPN Client**
 
--   Connect to the OpenVPN Access Server Client UI **https://compute instance public IP:943**, Download the OpenVPN client for your platforms.
+-   Launch your OpenVPN Access Server Client UI at **https://Your_VPN_Server_Public_IP:943** and download the OpenVPN client for your platforms.
     
     ![](./images/1200/openvpn_client.png)
     
@@ -151,7 +155,7 @@ Note: Once you have applied your changes, click **Save Settings**. You are promp
     
     ##### Note: IP should be Public IP for OpenVPN Compute Instance
 
--   Click **Connect** brings up a window asking for the OpenVPN username and password. Enter the credentials for your OpenVPN user and click **Connect** to establish a VPN tunnel
+-   Click **Connect** brings up a window asking for the OpenVPN username and password. Enter the credentials for your **openvpn** user and click **Connect** to establish a VPN tunnel
 
     ![](./images/1200/openvpn_clientwindow.png)
 
@@ -220,9 +224,10 @@ Launch SQL Developer and connect using the downloaded credentials wallet as show
 
 ![](./images/1200/atpd_conn.png)
     
+Follow detailed instructions on downloading your database credentials wallet refer to [Lab 4](ProvisionADB.md) 
 
 You may also connect to APEX or SQL Developer Web directly from your local browser. Simply get the URL from the console and launch in a browser window
-    
+   
 
 ![](./images/1200/atpd_application_apex.png)
         

@@ -9,14 +9,13 @@ June 13, 2019
 
 ## Introduction
 
-This lab walks you through some examples using the Oracle Cloud Infrastructure Command Line Interface for Autonomous Transaction Processing - Dedicated.
-
-The CLI is a small footprint tool that you can use on its own or with the Console to complete Oracle Cloud Infrastructure tasks. The CLI provides the same core functionality as the Console, plus additional commands. Some of these, such as the ability to run scripts, extend the Console's functionality.
+The Oracle Cloud Infrastructure Command Line Interface, OCI CLI, is a small footprint tool that you can use on its own or with the Console to complete Oracle Cloud Infrastructure tasks. The CLI provides the same core functionality as the Console, plus additional commands. Some of these, such as the ability to run scripts, extend the Console's functionality.
 
 This CLI and sample is dual-licensed under the Universal Permissive License 1.0 and the Apache License 2.0; third-party content is separately licensed as described in the code.
 
 The CLI is built on Python (version 2.7.5 or later), running on Mac, Windows, or Linux. The Python code makes calls to Oracle Cloud Infrastructure APIs to provide the functionality implemented for the various services. These are REST APIs that use HTTPS requests and responses. For more information, see [About the API](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/usingapi.htm)
 
+This lab walks you through some examples using the OCI CLI for Autonomous Transaction Processing - Dedicated.
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
 
@@ -79,20 +78,16 @@ $ oci setup config
     - **Enter a location for your config [/home/opc/.oci/config]**: Press Return key
     - **Enter a user OCID**: This is located on your user information page in OCI console
 
-    Login to OCI console and click on Menu, Identity and Users. Click on the User and navigate to User Details page. Copy the User OCID.
+    To access your user OCID, click on the user icon on the top right of the page and click on your username from the menu
+    ![](./images/900/usericon.png)
 
-    ![](./images/900/UserOCID1.png)
+    Copy the user OCID from the user details page
 
-    ![](./images/900/UserOCID2.png)
+   ![](./images/900/userOCID.png)
 
-
-    - **Enter a tenancy OCID**: This is located in the bottom left of your OCI console
+    - **Enter a tenancy OCID**: Similarly, for the tenancy, click on the tenancy name in the top right menu as shown above and copy the tenancy OCID
     
-    Login to OCI console click on User icon on top right corner on the page and click on Tenancy and copy Tenancy OCID
-
-    ![](./images/900/TenancyOCID1.png)
-
-    ![](./images/900/TenancyOCID2.png)
+   
 
     - **Enter a region (e.g. eu-frankfurt-1, uk-london-1, us-ashburn-1, us-phoenix-1)**: Select a region
 
@@ -145,7 +140,7 @@ Now that you have setup OCI CLI, let us now look at examples of using Autonomous
 Open your command line interface and run the following command to create an Autonomous Transaction Processing Database
 
 ```
-oci db autonomous-database create --admin-password [password] --compartment-id [OCID] --cpu-core-count [integer] --data-storage-size-in-tbs [integer] --db-name [Database Name] --is-dedicated True --autonomous-container-database-id [OCID]
+oci db autonomous-database create --admin-password [password] --compartment-id [OCID] --cpu-core-count [integer] --data-storage-size-in-tbs [integer] --db-name [Database Name] --display-name [Display Name] --is-dedicated True --autonomous-container-database-id [OCID]
 ```
 
 Container Database OCID can be found by clicking on the hamburger menu on the top left corner of OCI Dashboard, then navigating to Autonomous Transaction Processing > Container Database.
@@ -157,7 +152,7 @@ Container Database OCID can be found by clicking on the hamburger menu on the to
 For example:
 
 ```
-oci db autonomous-database create --admin-password "WElcome_123#" -c ocid1.compartment.oc1..aaaaaaaaditjcqg4pp7a7izwthnk4c6apz4bapczjz7ff4vy2ttfvwwfifra --cpu-core-count 1 --data-storage-size-in-tbs 1 --db-name "AbdulATPD" --is-dedicated True --autonomous-container-database-id ocid1.autonomouscontainerdatabase.oc1.iad.abuwcljrlpmviswncdr6x7f5jo5pkjynxsnyqbtdyvshe7373qds7tetebva
+oci db autonomous-database create --admin-password "WElcome_123#" -c ocid1.compartment.oc1..aaaaaaaaditjcqg4pp7a7izwthnk4c6apz4bapczjz7ff4vy2ttfvwwfifra --cpu-core-count 1 --data-storage-size-in-tbs 1 --db-name "prodATPD1" --display-name "ProdATPD' --is-dedicated True --autonomous-container-database-id ocid1.autonomouscontainerdatabase.oc1.iad.abuwcljrlpmviswncdr6x7f5jo5pkjynxsnyqbtdyvshe7373qds7tetebva
 ```
 
 You are expected to see the following output in the command line interface
@@ -170,13 +165,13 @@ You are expected to see the following output in the command line interface
 Open your command line interface and run the following command to get details of an Autonomous Transaction Processing Database
 
 ```
-oci db autonomous-database get --autonomous-database-id [OCID]
+oci db autonomous-database get --autonomous-database-id [OCID] --compartment-id [OCID]
 ```
 
 For Example:
 
 ```
-oci db autonomous-database get --autonomous-database-id ocid1.autonomousdatabase.oc1.iad.abuwcljri2ydrtmg472fhrt67ddxm26mldj2s6gokywxfhuvuvrrhmn7mlna
+oci db autonomous-database get --autonomous-database-id ocid1.autonomousdatabase.oc1.iad.abuwcljri2ydrtmg472fhrt67ddxm26mldj2s6gokywxfhuvuvrrhmn7mlna --compartment-id ocid1.compartment.oc1..aaaaaaaahnmqede4hg2sdom74lpljjwyu6nc6o2jr77rc5wagez3cwutu57a
 ```
 
 You are expected to see the following output in the command line interface

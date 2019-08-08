@@ -43,6 +43,11 @@ As you scroll down the form you will see an option to modify your ACD's maintena
 
 ![create_acd3](./images/300/create_acd3.png)
 
+You may also choose a different backup retention period by selecting a retention policy from the Management tab under Advanced Options as shown below
+
+![retention-policy](./images/300/retention-policy.png)
+
+
 That's it. Simply scroll down to the bottom and hit the blue 'Create Autonomous Container Database' button to deploy your ACD.
 
 <table>

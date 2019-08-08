@@ -165,11 +165,6 @@ It indicates that while the user 'NODEAPP' had the DBA role assigned in the sour
 ![import2](./images/HOL-DataPump/import2.png)
 
 
-
-
-
-![create_policy1](./images/100/create_policy1.png)
-
 All Done! Your application schema was successfully imported. Note that once uploaded to object store, the dump file was in a private bucket with no visibility outside of your tenancy namespace. This is important so your data file is not accessible from anyone on the internet.
 
 You may now connect to your autonomous database using a SQL client and validate import.

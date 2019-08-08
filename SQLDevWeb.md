@@ -57,9 +57,9 @@ Save the URL some place while you work on the next step to access your developer
 
  Since your autonomous database in a private network, you cannot access it with the URL above unless you are on a machine that has a network path to your database subnet. 
 
-Lets connect to the developer client machine you setup in [Lab 5](./LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md) using a secure ssh tunnel
+Lets connect to the developer client machine you setup in [Lab 6](./ConfigureDevClient.md) using a secure ssh tunnel
 
-Open an ssh tunnel from your local laptop to your developer client. For instructions, refer to [Lab 5](./LabGuide500ConfigureADevelopmentSystemForUseWithYourDedicatedAutonomousDatabase.md)
+Open an ssh tunnel from your local laptop to your developer client. For instructions, refer to [Lab 6](./ConfigureDevClient.md)
 
 **Mac or Linux users** can open a terminal window and create an ssh tunnel using the following command,
 
