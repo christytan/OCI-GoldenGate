@@ -40,11 +40,7 @@ Use the following command from your mac / PC to download a sample schema dump fr
 
     wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/datapump/nodeapp.dmp?raw=true
 
-​Temp in dev - 
-
-    wget --no-check-certificate --content-disposition https://github.com/labmaterial/atpd-dev/blob/master/scripts/datapump/nodeapp.dmp?raw=true
-
-
+​
 ### STEP 2: Create an object storage bucket and upload dump
 
 - Login to your OCI account with your user credentials
