@@ -86,10 +86,12 @@ Unzip the application in /home/opc
 unzip /home/opc/ATPDjava.zip
 ```
 
+**Note: The package unzips to a folder /home/opc/atpjava**
+
 Next,  download ojdbc8 drivers needed for connectivity,
 
 ```
-cd /home/opc/ATPDjava/
+cd /home/opc/atpjava/
 
 mkdir ojdbc
 
