@@ -222,6 +222,8 @@ Now that you have an IP address for your autonomous exadata infrastructure, upda
 
 Launch SQL Developer and connect using the downloaded credentials wallet as shown below
 
+**Note: Your SQL Developer version needs to be 18.3 or higher to connect to a cloud database using a wallet**
+
 ![](./images/1200/atpd_conn.png)
     
 Follow detailed instructions on downloading your database credentials wallet refer to [Lab 4](ProvisionADB.md) 

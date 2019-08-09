@@ -152,7 +152,7 @@ Container Database OCID can be found by clicking on the hamburger menu on the to
 For example:
 
 ```
-oci db autonomous-database create --admin-password "WElcome_123#" -c ocid1.compartment.oc1..aaaaaaaaditjcqg4pp7a7izwthnk4c6apz4bapczjz7ff4vy2ttfvwwfifra --cpu-core-count 1 --data-storage-size-in-tbs 1 --db-name "prodATPD1" --display-name "ProdATPD' --is-dedicated True --autonomous-container-database-id ocid1.autonomouscontainerdatabase.oc1.iad.abuwcljrlpmviswncdr6x7f5jo5pkjynxsnyqbtdyvshe7373qds7tetebva
+oci db autonomous-database create --admin-password "WElcome_123#" -c ocid1.compartment.oc1..aaaaaaaaditjcqg4pp7a7izwthnk4c6apz4bapczjz7ff4vy2ttfvwwfifra --cpu-core-count 1 --data-storage-size-in-tbs 1 --db-name "prodATPD1" --display-name "ProdATPD" --is-dedicated True --autonomous-container-database-id ocid1.autonomouscontainerdatabase.oc1.iad.abuwcljrlpmviswncdr6x7f5jo5pkjynxsnyqbtdyvshe7373qds7tetebva
 ```
 
 You are expected to see the following output in the command line interface
@@ -165,13 +165,13 @@ You are expected to see the following output in the command line interface
 Open your command line interface and run the following command to get details of an Autonomous Transaction Processing Database
 
 ```
-oci db autonomous-database get --autonomous-database-id [OCID] --compartment-id [OCID]
+oci db autonomous-database get --autonomous-database-id [OCID]
 ```
 
 For Example:
 
 ```
-oci db autonomous-database get --autonomous-database-id ocid1.autonomousdatabase.oc1.iad.abuwcljri2ydrtmg472fhrt67ddxm26mldj2s6gokywxfhuvuvrrhmn7mlna --compartment-id ocid1.compartment.oc1..aaaaaaaahnmqede4hg2sdom74lpljjwyu6nc6o2jr77rc5wagez3cwutu57a
+oci db autonomous-database get --autonomous-database-id ocid1.autonomousdatabase.oc1.iad.abuwcljri2ydrtmg472fhrt67ddxm26mldj2s6gokywxfhuvuvrrhmn7mlna 
 ```
 
 You are expected to see the following output in the command line interface
@@ -200,13 +200,13 @@ You are expected to see the following output in the command line interface
 Run the following command to List all Autonomous Transaction Processing Database in a specific Container Database.
 
 ```
-oci db autonomous-database list --autonomous-container-database-id [OCID]
+oci db autonomous-database list --compartment-id [OCID]
 ```
 
 For Example:
 
 ```
-oci db autonomous-database list --autonomous-container-database-id ocid1.autonomouscontainerdatabase.oc1.iad.abuwcljrlpmviswncdr6x7f5jo5pkjynxsnyqbtdyvshe7373qds7tetebva
+oci db autonomous-database list --compartment-id ocid1.compartment.oc1..aaaaaaaaditjcqg4pp7a5izwthnk4c6apz4bapczjz7ff4vy2ttfvwwfifra
 ```
 
 You are expected to see the following output in the command line interface
