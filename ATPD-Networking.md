@@ -118,7 +118,7 @@ You may alternatively choose to grant 'MANAGE all-resources' privileges to users
 
 You now have the users, groups and compartments setup to provision an autonomous database platform
 
-> Alternatively, you may download a this python script to provision compartments, users and set policies for your environment. Use the following command to download the package and follow usage instructions in the readme file.
+> Alternatively, you may download this python script to provision compartments, users and set policies for your environment. Use the following command to download the package and follow usage instructions in the readme file.
 
 ```
 wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/networking/atpd_policy_setup.zip?raw=true
