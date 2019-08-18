@@ -108,7 +108,6 @@ You may alternatively choose to grant 'MANAGE all-resources' privileges to users
 ![dbUser_policy](./images/100/dbUser_policy.png)
 
 
-
 **d. And finally, lets create a fleet admin and a database user**  <u>and add them to their respective groups</u>. Any additional fleet admins or database users will simply need to be added to their groups and they will automatically assume their group privileges
 
 ![dbuser1](./images/100/dbuser1.png)
