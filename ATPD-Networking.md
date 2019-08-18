@@ -50,7 +50,12 @@ The fleet Admin will have IAM policies to create and manage AEI, ACDs and networ
 
 Database users in the dbUser compartment will have priviledges to **USE**  AEI and ACD resources in the fleet compartment only. They cannot create, delete or modify those resources. A database user may have complete read/write privileges on their own compartments where they can create and destroy database and application instances.
 
+> **You may download a this python script to provision compartments, users and set policies for your environment. Use the following command to download the package and follow usage instructions in the readme file**
 
+```
+wget --no-check-certificate --content-disposition https://github.com/oracle/learning-library/blob/master/data-management-library/autonomous-transaction-processing/dedicated/scripts/networking/atpd_policy_setup.zip?raw=true
+
+```
 
 **a. Lets create compartments  fleetComparment and dbUserCompartment** as shown
 
@@ -121,6 +126,7 @@ You may alternatively choose to grant 'MANAGE all-resources' privileges to users
 ![adduserTogroup1](./images/100/adduserTogroup1.png)
 
 You now have the users, groups and compartments setup to provision an autonomous database platform
+
 
 
 
