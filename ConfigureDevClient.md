@@ -145,9 +145,18 @@ You may either,
 - secure copy the file using scp, sftp or a windows ftp client
 
     ```
-        $ scp <wallet_filename.zip> -i <path/to/keyfile> opc@<ipaddress-of-dev-client>:/home/opc
+        $ scp -i <path/to/keyfile> <wallet_filename.zip>  opc@<ipaddress-of-dev-client>:/home/opc
 
     ```
+
+    example, for mac users with a private key file named id_rsa in their home directoy,
+
+    ```
+        $ scp -i ~/id_rsa My-ATPDB-wallet.zip  opc@129.162.23.12:/home/opc
+
+    ```
+
+
 - or you may simply download it directly on the client once you connect over VNC
 
 
