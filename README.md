@@ -101,7 +101,17 @@ As a database user, DBA or application developer,
 
 **[Click here to run Lab 4](ProvisionADB.md)**
 
-## Lab 5: Configuring VPN connectivity into your private ATP network
+
+
+## Lab 5: Configuring a development system for use with your dedicated autonomous database
+
+**Key Objectives**:
+As a database user, DBA or application developer,
+- Configure a secure connection from your application instance to your dedicated autonomous database using Oracle SQL Developer, SQLCL and SQL*Plus.
+
+**[Click here to run Lab 5](ConfigureDevClient.md)**
+
+## Lab 6: Configuring VPN connectivity into your private ATP network
 
 **Key Objectives**:
 
@@ -114,16 +124,8 @@ As a database admin / user,
 - Configure your VPN client and connect to VPN Server
 - Launch SQL Developer on client and connect to a dedicated ATP instance
 
-**[Click here to run Lab 5](ConfigureVPN.md)**
+**[Click here to run Lab 6](ConfigureVPN.md)**
 
-
-## Lab 6: Configuring a development system for use with your dedicated autonomous database
-
-**Key Objectives**:
-As a database user, DBA or application developer,
-- Configure a secure connection from your application instance to your dedicated autonomous database using Oracle SQL Developer, SQLCL and SQL*Plus.
-
-**[Click here to run Lab 6](ConfigureDevClient.md)**
 
 ## Lab 7: Building and deploying node.js application stacks on dedicated autonomous infrastructure
 

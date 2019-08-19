@@ -2,7 +2,7 @@
 
 </td>
 <td class="td-banner">
-# Lab 5: Configuring VPN connectivity into your private ATP network
+# Lab 6: Configuring VPN connectivity into your private ATP network
 </td></tr><table>
 
 

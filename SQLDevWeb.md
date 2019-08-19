@@ -57,9 +57,9 @@ Save the URL some place while you work on the next step to access your developer
 
  Since your autonomous database in a private network, you cannot access it with the URL above unless you are on a machine that has a network path to your database subnet. 
 
-Lets connect to the developer client machine you setup in [Lab 6](./ConfigureDevClient.md) using a secure ssh tunnel
+Lets connect to the developer client machine you setup in [Lab 5](./ConfigureDevClient.md) using a secure ssh tunnel
 
-Open an ssh tunnel from your local laptop to your developer client. For instructions, refer to [Lab 6](./ConfigureDevClient.md)
+Open an ssh tunnel from your local laptop to your developer client. For instructions, refer to [Lab 5](./ConfigureDevClient.md)
 
 **Mac or Linux users** can open a terminal window and create an ssh tunnel using the following command,
 
@@ -87,7 +87,7 @@ Note: Mac users should user CRTL + V to paste into VNC and not Command + V
 
 - Explore the SQL Developer Web interface and refer to its documentation for usage details
 
-**Alternatively, you may also access the SQLDevWeb console of your dedicated ATP instance from your local web browser If you are in the same OCI Network / VCN as your database. For detailed instruction on setting up a VPN connection into your private database cloud infrastructure, refer to [Lab 5](ConfigureVPN.md)**
+**Alternatively, you may also access the SQLDevWeb console of your dedicated ATP instance from your local web browser If you are in the same OCI Network / VCN as your database. For detailed instruction on setting up a VPN connection into your private database cloud infrastructure, refer to [Lab 6](ConfigureVPN.md)**
 
 
 
