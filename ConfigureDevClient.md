@@ -157,7 +157,7 @@ You may either,
     ```
 
 
-- or you may simply download it directly on the client once you connect over VNC
+    or you may simply download it directly on the client once you connect over VNC
 
 
 Next, let's invoke the VNC server on the development system
