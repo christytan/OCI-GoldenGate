@@ -162,9 +162,9 @@ We will also follow these security guidelines as we build the network,
 
 Start deploying the above configuration in the following order,
 
-**a. Create seclists 'Seclist for exadataSubnet' and 'Seclist for appSubnet'.**
+**a. Create seclists 'Security list for exadataSubnet' and 'Security list for appSubnet'.**
  
- An example screenshot below shows adding the exaSubnet-seclist in the fleetCompartment with an ingress rule for TCP and UDP traffic. Similarly, add an ingress to this seclist for  ICMP traffic as well.
+ An example screenshot below shows adding the 'Security List for exadataSubnet' in the fleetCompartment with an ingress rule for TCP and UDP traffic. Similarly, add an ingress to this seclist for  ICMP traffic as well.
 
 ![add_seclist](./images/100/add_seclist1.png)
 
@@ -176,7 +176,7 @@ And finally, add ingress rules for ports 2484, 443 and egress rules to this secu
 
 ![add_seclist](./images/100/add_seclist3.png)
 
-Similarly, create a security list for the app subnet called 'Seclist for appSubnet' and add ingress and egress rules per table above. An example screenshot showing ingress rules for the appSubnet is shown below.
+Similarly, create a security list for the app subnet called 'Security List for appSubnet' and add ingress and egress rules per table above. An example screenshot showing ingress rules for the appSubnet is shown below.
 
 ![add_seclist](./images/100/add_seclist4.png)
 
