@@ -138,8 +138,8 @@ Your OCI network can be treated as your own private datacenter. While various ne
 We will also follow these security guidelines as we build the network,
 
 1. Each subnet we build will have its own security list and route table. We will not use the default seclist or route table or share them among subnets
-2. Database infrastructure will be in a private subnet with no access from outside the VCN
-3. Ingress ports will be opened on an as needed basis.
+2. Database infrastructure will be in a private subnet with no access from outside the VCN except for the Oracle Management network.
+3. Ingress ports will be opened on an as-   needed basis.
 4. Only external facing public subnets will have an internet gateway
 5. External facing hosts will have port 22 open for ingress ssh traffic
 
@@ -149,22 +149,22 @@ We will also follow these security guidelines as we build the network,
 
 
 
-1. Create a VCN in <u>fleetCompartment</u> with CIDR block 10.0.0.0/16 which provide for 64k IP addresses for the various subnets within this network
+**1.** Create a VCN in <u>fleetCompartment</u> with CIDR block 10.0.0.0/16 which provide for 64k IP addresses for the various subnets within this network
 
 ![create_VCN](./images/100/create_VCN.png)
 
 
 
-2. Lets add two security lists to this VCN, one for each of the two subnets we would deploy for the database and application networks. Each subnet has its own security list as defined in the table below.
+**2.** Lets add two security lists to this VCN, one for each of the two subnets we would deploy for the database and application networks. Each subnet has its own security list as defined in the table below.
 
 ![secrules](./images/100/secrules.png)
 
 
 Start deploying the above configuration in the following order,
 
-**a. Create seclists 'Security list for exadataSubnet' and 'Security list for appSubnet'.**
+**a. Create a security list for exadata subnet**
  
- An example screenshot below shows adding the 'Security List for exadataSubnet' in the fleetCompartment with an ingress rule for TCP and UDP traffic. Similarly, add an ingress to this seclist for  ICMP traffic as well.
+ Let's also give it a descriptive name such as 'Security List for exadataSubnet' (since we can!) An example screenshot below shows adding the security list in the fleetCompartment with an ingress rule for TCP and UDP traffic. Similarly, add an ingress to this seclist for  ICMP traffic as well.
 
 ![add_seclist](./images/100/add_seclist1.png)
 
@@ -175,19 +175,24 @@ We also need to add an ingress rule to allow ssh traffic on port 22 from the man
 And finally, add ingress rules for ports 2484, 443 and egress rules to this security list as per table above.
 
 ![add_seclist](./images/100/add_seclist3.png)
+![add_seclist](./images/100/add_seclist5.png)
 
-Similarly, create a security list for the app subnet called 'Security List for appSubnet' and add ingress and egress rules per table above. An example screenshot showing ingress rules for the appSubnet is shown below.
+**b. Create a security list for the application subnet**
+
+Since we are feeling creative today, we'll call it 'Security List for appSubnet'. Add ingress and egress rules per table above. An example screenshot showing ingress rules for the appSubnet is shown below. Go ahead and add the egress rules as well.
 
 ![add_seclist](./images/100/add_seclist4.png)
 
 
-**b. Create an internet gateway** for hosts in the public subnets to be accessible over the internet. This is optional and depends on wether you want any hosts in the public domain. Typically bastion hosts can be setup in a public subnet for ssh access. In these tutorial, for simplicity, we will setup our developer client machines in the public appSubnet
+
+**3. Create an internet gateway** 
+Instances in the application subnet may need access to the internet. For that purpose we will deploy an internet gateway in the VCN and create a route to it. This is optional and depends on wether you want any hosts in the public domain. Typically bastion hosts can be setup in a public subnet for ssh access. In this guide, for simplicity, we will setup our developer client machines in the public appSubnet
 
 ![create_internet-gateway](./images/100/create_internet-gateway.png)
 
 
 
-**c. Create a route table for the appSubnet** to route traffic to the internet gateway
+**4. Create a route table for the appSubnet** to route traffic to the internet gateway
 
 Note the destination CIDR block 0.0.0.0/0 indicate ALL IP addresses globally i.e. to any host anywhere on the internet. You can limit it to specific hosts or network as desired. For eg, you can limit it to hosts in your corporate network or to a specific host such as your personal laptop as long as it has a unique public IP address.
 
@@ -196,12 +201,16 @@ Note the destination CIDR block 0.0.0.0/0 indicate ALL IP addresses globally i.e
 ![create_routeTable](./images/100/create_routeTable.png)
 
 
+**5. Provision exadataSubnet and appSubnet**
 
-Now that you have all the required components to associate with your AEI and application subnets, you may now process to deploy those subnets. An example screen shot is provided below for the exadataSubnet. **Similarly create the appSubnet as per table above**
+Now that we have build all the required network resources, we are ready to deploy the exadata and application subnets. Start by provisioning the exadataSubnet with CIDR 10.0.0.0/24 as shown below. The default route table associated with the exadataSubnet does not have any route rules.
+
 
 ![create_exaSubnet](./images/100/create_exaSubnet.png)
 
+Next, provision the application subnet with CIDR 10.0.1.0/24. Note that we associate our custom route table to this subnet for internet access.
 
+![create_exaSubnet](./images/100/create_appSubnet.png)
 
 
 
