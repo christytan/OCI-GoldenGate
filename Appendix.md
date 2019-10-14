@@ -95,13 +95,13 @@ On the next screen don't change any settings, and click **Install**
 
 - Left click on the Public key information and choose ‘Select All’ to select everything in the key field. Then left click again and copy the selected information to the clipboard.
 
-![](./images/deployimage/image39.png)
+![](./images/appendix/image39.png)
 
 
 
 - Save your public key to a text file with Notepad. Open a plain text editor and paste the key information. Name and save the file with a .pub extension.
 
-![](./images/deployimage/image40.png)
+![](./images/appendix/image40.png)
 
 
 
@@ -111,7 +111,7 @@ On the next screen don't change any settings, and click **Install**
 
 - **Open Powershell window** Either select the application from the Windows Start menu or type 'cmd' or 'powershell' from the Windows search menu.  
 
-![](./images/deployimage/image400.png)
+![](./images/appendix/image400.png)
 
 
 
@@ -121,7 +121,7 @@ On the next screen don't change any settings, and click **Install**
 
     `PS C:\Users\myhome> ssh-keygen`
 
-![](./images/deployimage/image402.png)
+![](./images/appendix/image402.png)
 
 
 
@@ -141,7 +141,7 @@ Typing *ssh-keygen* by itself creates a key named id_rsa under the default .ssh 
 
 
 
-![](./images/deployimage/image403.png)
+![](./images/appendix/image403.png)
 
 
 
@@ -170,7 +170,7 @@ $ cd .ssh
 
 $ ssh –i id_rsa opc@IP Address
 
-![](./images/deployimage/ssh.jpeg)
+![](./images/appendix/ssh.jpeg)
 
 Once connected to the cloud developer image you will see the remote prompt **[opc@devclient ~]$**
 
@@ -181,11 +181,11 @@ To access a GUI via VNC, do the following:
 
 - Install a VNC viewer on your local computer. A common VNC Viewer can be downloaded from https://www.realvnc.com/en/connect/download/viewer/
 
-![](./images/deployimage/vncviewerdownload.png)
+![](./images/appendix/vncviewerdownload.png)
 
 From the website select, select Windows and **Download VNC Viewer**. That will save a file to your downloads directory as in the previous step. Doublick on the file and it will launch the installer.
 
-![](./images/deployimage/vncviewerinstall2.png)
+![](./images/appendix/vncviewerinstall2.png)
 
 Follow the installation steps in the installer to install VNC Viewer.
 
@@ -211,20 +211,20 @@ Now to connect to the image from your local Windows computer you need to execute
 
 If the connection request times out, try again
 
-![](./images/deployimage/connection.jpeg)
+![](./images/appendix/connection.jpeg)
 
 - Start a VNC viewer on your local machine by selecting **VNC Viewer** from the **Start** menu, or typing **VNC Viewer** in the search bar.
 - Establish a VNC connection to: **localhost:1**
 
-![](./images/deployimage/vnc.jpeg)
+![](./images/appendix/vnc.jpeg)
 
 If you get a warning message about the communication not being encrypted click continue
 
-![](./images/deployimage/encrypted.jpeg)
+![](./images/appendix/encrypted.jpeg)
 
 - Enter the VNC password you set earlier, when you ran the **vncpasswd** command in the cloud developer image, in the password dialog and you will be connected!
 
-![](./images/deployimage/devimage.jpeg)
+![](./images/appendix/devimage.jpeg)
 
 
 <table>
