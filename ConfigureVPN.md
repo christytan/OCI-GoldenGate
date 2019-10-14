@@ -213,9 +213,14 @@ Now that you have an IP address for your autonomous exadata infrastructure, upda
 
     
 
-    ```
-    10.x.x.6 hosxxxxxxxan.exadatasubnet.ocivcn.oraclevcn.com
-    ```
+ ```
+10.x.x.6 hosxxxxxxxan.exadatasubnet.ocivcn.oraclevcn.com
+ ```
+
+Make sure there is an entry for your localhost in /etc/hosts as follows,
+```
+localhost 127.0.0.1
+```
 
 -   You are now ready to connect to your dedicated ATP instance using a local SQL Client such as SQL Developer
 

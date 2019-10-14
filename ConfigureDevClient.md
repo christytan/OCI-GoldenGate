@@ -185,7 +185,7 @@ On your local laptop,
 
 - Mac or Linux users can open a terminal window and create an ssh tunnel using the following command,
     ```
-    $ ssh -N -L 5901:127.0.0.1:5901 -i \<priv-key-file\> opc@\<publicIP-of-your-devClient\> &
+    $ ssh -N -L 5901:127.0.0.1:5901 -i \<priv-key-file\> opc@<publicIP-of-your-devClient> &
     ```
 ### For Windows users
 
@@ -218,7 +218,7 @@ Create an new connection in sql*developer and provide the following information,
 
 **Username**: admin
 
-**Password**: WElcome#1234
+**Password**: <password>
 
 **Connection Type**: Cloud Wallet
 

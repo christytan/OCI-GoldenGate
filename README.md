@@ -15,7 +15,9 @@ Lab 1 deals with setting up the network, users and groups and requires administr
 
 Labs 2 & 3 are geared towards the fleet administrator role responsible for deploying the autonomous exadata infrastructure and container databases.
 
-Labs 4 onwards are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications.
+Labs 4 and  6 - 12  are intended for a regular database user, DBA or developer who simply want to spin up an autonomous database in one of the pre-provisioned containers and start building applications.
+
+Lab 13 onwards demonstrate the operational aspects of the service
 
 ## Goals for this workshop
 - Prepare your private network in the Oracle Cloud Infrastructure
@@ -30,9 +32,16 @@ Labs 4 onwards are intended for a regular database user, DBA or developer who si
 - Use OCI CLI commands to work with your Autonomous databases
 - Invoke and use the sqldevweb console
 - Build apex applications on dedicated autonomous database
-- Manage database & performance using SQL Developer Web and Performance Hub
 - Migrate an on-prem application schema using Data Pump
 - Setup live migration of business critical databases using Oracle Goldengate replication
+- Install and configure a workload generator for subsequent labs
+- Manage database performance with Performance Hub
+- Test online scaling capabilities of the autonomous database service
+- Test High Availabilitiy capabilities of the autonomous database service
+- Setup Zero downtime configurations with Transparent Application Continuity
+- Protect your data with Database Vault
+- Recover from user errors using flashback recovery
+- Setup monitoring events and notifications
 
 <!-- # How to Get Your Free Cloud Trial Account
 Please click on the following link to create your <a class=“trial-link” href="https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ex:tb:::RC_NAMK181011P00041:ATPHOL&SC=:ex:tb:::RC_NAMK181011P00041:ATPHOL&pcode=NAMK181011P00041" target="_trial">Free Account</a>, and complete all the required steps to get your free Oracle Cloud Trial Account. When you complete the registration process you'll receive a $300 credit that will enable you to complete the lab for free.  Additionally, you'll have 1000s of hours left over to continue to explore the Oracle Cloud.
@@ -215,3 +224,113 @@ As a database admin,
 - Replicate real time data from a simulated on-premise database to ATP-Dedicated
 
 **[Click here to run Lab 14](Goldengate.md)**
+
+## Lab 15: Install and configure a workload generator 
+
+
+**Key Objectives**:
+
+As a database admin,
+
+- install and configure a workload generation tool called Swingbench to demonstrate online scaling, HA, Application Continuity and other cool automation features of the Oracle Autonomous database
+
+**[Click here to run Lab 15](Swingbench.md)**
+
+## Lab 16: Manage database performance with Performance Hub 
+
+
+**Key Objectives**:
+
+As a database admin or database user,
+
+- Simulate a production workload using Swingbench load generator
+- Monitor and Manage your autonomous database performance using Performance Hub.
+
+**[Click here to run Lab 16](Performancehub.md)**
+
+
+## Lab 18: Test online scaling capabilities of the autonomous database service 
+
+
+**Key Objectives**:
+
+As a database admin or database user,
+
+- Simulate a production workload using Swingbench load generator
+- Scale up and scale down a database online and observe workload
+
+**[Click here to run Lab 18](Scaling.md)**
+
+## Lab 19: Test High Availabilitiy capabilities of the autonomous database service
+
+
+**Key Objectives**:
+
+As a database admin or database user,
+
+- Simulate a production workload using Swingbench load generator
+- Restart container DB and observe workload
+
+**[Click here to run Lab 19](HA.md)**
+
+## Lab 20: Setup Zero downtime configurations with Transparent Application Continuity
+
+
+**Key Objectives**:
+
+As a developer or database user,
+
+- Configure  Transparent Application Continuity in the app tier
+- Simulate a production workload using Swingbench load generator
+- Restart container DB and observe workload
+
+**[Click here to run Lab 20](TAC.md)**
+
+## Lab 21: - Protect your data with Database Vault
+
+
+**Key Objectives**:
+
+As a database security admin,
+
+- Enable database vault in your autonomous database service
+- Implement separation of duties to protect sensitive data in your autonomous database
+
+**[Click here to run Lab 21](DBVault.md)**
+
+
+## Lab 22: - Recover from user errors using flashback recovery
+
+
+**Key Objectives**:
+
+As a developer or database admin,
+
+- Setup recovery points in your database code
+- Flashback your database to recover from erroneous updates
+
+**[Click here to run Lab 22](Flashback.md)**
+
+## Lab 23: - Setup ADB event notifications through OCI Notification Service
+
+
+**Key Objectives**:
+
+As a developer or database admin,
+
+- Setup autonomous database event topics
+- Add subscribers to recieve service event notifications via email, SMS & Slack
+
+
+**[Click here to run Lab 23](CNS.md)**
+
+
+
+## Appendix
+
+
+**Common tools for windows Users**
+
+
+
+**[Click here to access appendix](Appendix.md)**
