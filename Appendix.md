@@ -47,33 +47,33 @@ A third party SSH client needs to be installed for Windows versions prior to Win
 
 If you clicked on the link above you will be at the main putty donwload page.
 
-![](./images/deployimage/downloadputty.png)
+![](./images/appendix/downloadputty.png)
 
 From the **Package Files** section select the 32 or 64 bit version depending of which version of Windows you are running. The download windows will pop up as shown above. Save the file on your local Windows system. Most likely to your *Downloads** directory unless you select a different location.
 
 Doubleclick on the downladed file (for example **putty-64bit-0.73-installer.msi**). This will launch the Putty installer.
 
-![](./images/deployimage/puttyinstaller.png)
+![](./images/appendix/puttyinstaller.png)
 
 Click **Next** and leave the Destination Folder unchanged unless you have a good reason to select a different destination. Click **Next**
 
-![](./images/deployimage/puttyinstall1.png)
+![](./images/appendix/puttyinstall1.png)
 
 On the next screen don't change any settings, and click **Install**
 
-![](./images/deployimage/puttyinstall2.png)
+![](./images/appendix/puttyinstall2.png)
 
 - After installing Putty, from the Windows start menu, run the PuTTYgen utility
 
 
 
-![](./images/deployimage/image35.png)
+![](./images/appendix/image35.png)
 
 
 
 - Click the Generate button and follow the instructions for generating random information.
 
-![](./images/deployimage/image36.png)
+![](./images/appendix/image36.png)
 
 
 
@@ -87,7 +87,7 @@ On the next screen don't change any settings, and click **Install**
 
 - The private key should have the .ppk extension. Name it whatever you want and store it in a folder that’s easily accessible.
 
-![](./images/deployimage/image38.png)
+![](./images/appendix/image38.png)
 
 
 
