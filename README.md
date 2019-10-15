@@ -67,7 +67,7 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 **You are all set, let's begin!**
 
 
-## Lab 1: Preparing your private network in the Oracle Cloud Infrastructure
+## Lab 1: Preparing your private network in the Oracle Cloud Infrastructure (demo only)
 
 **Key Objectives**:
 - Create compartments and user groups with the right set of access policies for separation of duties
@@ -77,7 +77,7 @@ Read on to begin your Getting Started journey with Oracle Autonomous Transaction
 **[Click here to run Lab 1](ATPD-Networking.md)**
 
 
-## Lab 2: Provisioning Exadata Infrastructure for Autonomous DB in OCI
+## Lab 2: Provisioning Exadata Infrastructure for Autonomous DB in OCI (demo only)
 
 **Key Objectives**:
 
@@ -89,7 +89,7 @@ As a fleet administrator,
 **[Click here to run Lab 2](ProvisionAEI.md)**
 
 
-## Lab 3: Provisioning an Autonomous Container Database
+## Lab 3: Provisioning an Autonomous Container Database (demo only)
 
 **Key Objectives**:
 
@@ -212,8 +212,7 @@ As a database admin or user,
 
 **[Click here to run Lab 13](DataPump.md)**
 
-## Lab 14: Live migration to ATP-Dedicated using Oracle Goldengate replication
-
+## Lab 14: Live migration to ATP-Dedicated using Oracle Goldengate replication (under construction)
 
 **Key Objectives**:
 
@@ -249,7 +248,7 @@ As a database admin or database user,
 **[Click here to run Lab 16](Performancehub.md)**
 
 
-## Lab 18: Test online scaling capabilities of the autonomous database service 
+## Lab 17: Test online scaling capabilities of the autonomous database service 
 
 
 **Key Objectives**:
@@ -261,7 +260,7 @@ As a database admin or database user,
 
 **[Click here to run Lab 18](Scaling.md)**
 
-## Lab 19: Test High Availabilitiy capabilities of the autonomous database service
+## Lab 18: Test High Availabilitiy capabilities of the autonomous database service
 
 
 **Key Objectives**:
@@ -273,7 +272,7 @@ As a database admin or database user,
 
 **[Click here to run Lab 19](HA.md)**
 
-## Lab 20: Setup Zero downtime configurations with Transparent Application Continuity
+## Lab 19: Setup Zero downtime configurations with Transparent Application Continuity (under construction)
 
 
 **Key Objectives**:
@@ -286,7 +285,7 @@ As a developer or database user,
 
 **[Click here to run Lab 20](TAC.md)**
 
-## Lab 21: - Protect your data with Database Vault
+## Lab 20: - Protect your data with Database Vault (under construction)
 
 
 **Key Objectives**:
@@ -299,7 +298,7 @@ As a database security admin,
 **[Click here to run Lab 21](DBVault.md)**
 
 
-## Lab 22: - Recover from user errors using flashback recovery
+## Lab 21: - Recover from user errors using flashback recovery
 
 
 **Key Objectives**:
@@ -311,7 +310,7 @@ As a developer or database admin,
 
 **[Click here to run Lab 22](Flashback.md)**
 
-## Lab 23: - Setup ADB event notifications through OCI Notification Service
+## Lab 22: - Setup ADB event notifications through OCI Notification Service
 
 
 **Key Objectives**:
