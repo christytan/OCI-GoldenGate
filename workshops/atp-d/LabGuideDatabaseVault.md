@@ -28,7 +28,7 @@ To configure and enable Enable Oracle Database Vault in your dedicated Autonomou
 
 ## Steps
 
-### **STEP 1: Create Database Vault Owner and Account Manager**
+### **STEP 1: Create Database Vault Owner, Account Manager, and MYAPP Schema**
 
 -	Connect as the ADMIN user to your dedicated database.
 
@@ -44,6 +44,28 @@ grant create session to dbv_acctmgr;
 ```
 
 ![](./images/1200/createUsers.png)
+
+-	The MYAPP schema will act as a schema that we **DO NOT** want the ADMIN or DBA to be able to access. Create the MYAPP schema and let's create a table Test within the schema that we will use later
+
+```
+create user myapp identified by WELcome_123#;
+grant create session to myapp;
+grant create table to myapp;
+grant unlimited tablespace to myapp;
+```
+
+![](./images/1200/myapp.png)
+
+![](./images/1200/createSessionmyapp.png)
+
+-	**Connect as the MYAPP user** and let's create a table in this schema and add a couple rows for testing.
+
+```
+create table test(column1 int, column2 int);
+insert into test values(1,2);
+insert into test values(3,4);
+commit;
+```
 
 
 -	Next, let's verify that Database Vault is not turned on with the command:
@@ -68,19 +90,26 @@ exec dvsys.configure_dv('dbv_owner','dbv_acctmgr');
 ![](./images/1200/configure.png)
 
 
-### **STEP 3: Enable Database Vault**
+### **STEP 3: Create Realm and Enable Database Vault**
 
 -	Connect as the Database Vault owner (dbv_owner)
 
--	Let's create a table in this schema and add a single row for testing.
+-	Let's create a Realm that will prevent the ADMIN user or DBA's from accessing 
 
 ```
-create table Test(column1 int, column2 int);
-insert into Test values(1,2);
-commit;
+exec DBMS_MACADM.CREATE_REALM('atpd_realm','description','y',DBMS_MACUTL.G_REALM_AUDIT_OFF,0,1,FALSE); 
 ```
 
-![](./images/1200/createTable.png)
+![](./images/1200/createRealm.png)
+
+-	Now let's add the MYAPP table test to the Realm
+
+```
+exec DBMS_MACADM.ADD_OBJECT_TO_REALM('atpd_realm', 'myapp', 'test', 'TABLE'); 
+```
+
+![](./images/1200/addObjectToRealm.png)
+
 
 -	Next, let's enable the Database Vault
 
@@ -107,13 +136,19 @@ SELECT VALUE FROM V$OPTION WHERE PARAMETER = 'Oracle Database Vault';
 
 - We can see that now the value is TRUE. We have enabled Database Vault
 
-- Even though we are the ADMIN user we should NOT be able to access any other schema's or other user's permissions. We run into a REALM issue
+- Even though we are the ADMIN user we should NOT be able to access MYAPP's table test because we have added it to the realm atpd_realm
 
 
-![](./images/1200/realm.png)
+- Connect as ADMIN user and attempt to query the MYAPP test table
+
+```
+select * from myapp.test;
+```
+
+![](./images/1200/insufficientPriv.png)
+
 
 - We have successfully enabled Database Vault
-
 
 
 <table>
