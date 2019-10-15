@@ -258,9 +258,9 @@ As a database admin or database user,
 - Simulate a production workload using Swingbench load generator
 - Scale up and scale down a database online and observe workload
 
-**[Click here to run Lab 18](Scaling.md)**
+**[Click here to run Lab 17](Scaling.md)**
 
-## Lab 18: Test High Availabilitiy capabilities of the autonomous database service
+## Lab 18: Test High Availabilitiy capabilities of the autonomous database service (demo only)
 
 
 **Key Objectives**:
@@ -270,7 +270,7 @@ As a database admin or database user,
 - Simulate a production workload using Swingbench load generator
 - Restart container DB and observe workload
 
-**[Click here to run Lab 19](HA.md)**
+**[Click here to run Lab 18](HA.md)**
 
 ## Lab 19: Setup Zero downtime configurations with Transparent Application Continuity (under construction)
 
@@ -283,7 +283,7 @@ As a developer or database user,
 - Simulate a production workload using Swingbench load generator
 - Restart container DB and observe workload
 
-**[Click here to run Lab 20](TAC.md)**
+**[Click here to run Lab 19](TAC.md)**
 
 ## Lab 20: - Protect your data with Database Vault (under construction)
 
@@ -295,7 +295,7 @@ As a database security admin,
 - Enable database vault in your autonomous database service
 - Implement separation of duties to protect sensitive data in your autonomous database
 
-**[Click here to run Lab 21](DBVault.md)**
+**[Click here to run Lab 20](DBVault.md)**
 
 
 ## Lab 21: - Recover from user errors using flashback recovery
@@ -308,7 +308,7 @@ As a developer or database admin,
 - Setup recovery points in your database code
 - Flashback your database to recover from erroneous updates
 
-**[Click here to run Lab 22](Flashback.md)**
+**[Click here to run Lab 21](Flashback.md)**
 
 ## Lab 22: - Setup ADB event notifications through OCI Notification Service
 
@@ -321,7 +321,7 @@ As a developer or database admin,
 - Add subscribers to recieve service event notifications via email, SMS & Slack
 
 
-**[Click here to run Lab 23](CNS.md)**
+**[Click here to run Lab 22](CNS.md)**
 
 
 
