@@ -5,7 +5,7 @@
 Sept 1, 2019
 </td>
 <td class="td-banner">
-# Using Swingbench to demonstrate Scaling and Performance Hub in Oracle Autonomous Transaction Processing
+# Install Swingbench workload generator in a developer client virtual machine
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.

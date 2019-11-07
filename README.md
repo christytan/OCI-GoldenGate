@@ -212,7 +212,7 @@ As a database admin or user,
 
 **[Click here to run Lab 13](DataPump.md)**
 
-## Lab 14: Live migration to ATP-Dedicated using Oracle Goldengate replication (under construction)
+## Lab 14: Live migration to ATP-Dedicated using Oracle Goldengate replication
 
 **Key Objectives**:
 
@@ -224,14 +224,14 @@ As a database admin,
 
 **[Click here to run Lab 14](Goldengate.md)**
 
-## Lab 15: Install and configure a workload generator 
+## Lab 15: Install Swingbench workload generator 
 
 
 **Key Objectives**:
 
 As a database admin,
 
-- install and configure a workload generation tool called Swingbench to demonstrate online scaling, HA, Application Continuity and other cool automation features of the Oracle Autonomous database
+- install and configure a workload generation tool called Swingbench to test online scaling, HA, Application Continuity and other automation features of the Oracle Autonomous database
 
 **[Click here to run Lab 15](Swingbench.md)**
 
