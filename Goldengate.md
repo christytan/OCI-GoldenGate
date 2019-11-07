@@ -3,28 +3,18 @@
 July 30, 2019
 </td>
 <td class="td-banner">
-# Lab 14: SettingUpGoldenGatetoReplicateDataFromOn-PremiseDatabaseToATP-Dedicated-using-single-gg-instance
+# Lab 14: Real-time data migration to ATP Dedicated using Goldengate microservice
 </td></tr><table>
 
 ## Introduction
 
-Data Replication is a essential part of your efforts and tasks when you are migrating your oracle databases from one one provider to another. Oracle provides you with more than one option to acheive this based on the type of Oracle Database you want to move to. In this case, we are considering the usecase where we want to migrate to the Autonomous Transaction processing - Dedicated (ATP-D) database. Since your ATP-D is going to reside in your private network and will not be accessible from public internet. We have to achieve with a different approach to replicate data to an ATP-D instance rather than the normal methods which we use in general.
+Data Replication is a essential part of your efforts and tasks when you are migrating your Oracle databases. While data migration can be acheived in many ways, there are fewer options when downtime tolerance is low and live, trickle feed replication may be the only way. Oracle Cloud Infrastructure Marketplace provides a goldengate microservice that can easily be setup for logical data replication between a variety of databases. In this hands-on lab we will setup goldengate to replicate data from a 12.2 Oracle database comparable to an 'on-prem' source database to an ATP Dedicated database in OCI. This approach is recommended while migrating most production or business critical application to Autonomous dedicated.
 
-To achieve this usecase, we are going to use Oracle Golden Gate to perform real time data replication from your on-premise database to the ATP-D database. Oracle GoldenGate 12c offers a real-time, log-based change data capture (CDC) and replication software platform to meet the needs of today’s transaction-driven applications. The software provides capture, routing, transformation, and delivery of transactional data across heterogeneous environments in real time. Oracle GoldenGate only captures and moves committed database transactions to insure that transactional integrity is maintained at all times. The application carefully ensures the integrity of data as it is moved from the source
-database or messaging system, and is applied to any number of target databases or messaging systems.
+Why Golden Gate?
 
-Why would you use Oracle Golden Gate?
-
-Oracle GoldenGate 12c offers several key advantages:
-- » Continuous, real-time data movement with low latency
-- » Negligible impact and overhead on source and target systems
-- » No requirement for a middle-tier server
-- » Tight integration with Oracle Data Integrator Enterprise Edition for complex transformations
-- » No downtime for batch processing
-- » Complete data recoverability in case of outages or failures
-- » Read-consistent data movement while maintaining referential integrity
-- » Ability to apply transformations and mappings within the target database
-- » Ability to use the same product in different topologies for different solutions such    as continuous availability and zero-downtime upgrades and migrations
+- Oracle Golden Gate is an enterprise grade tool which can provide near real time data replication from one database to another. 
+- Oracle GoldenGate offers a real-time, log-based change data capture (CDC) and replication software platform to meet the needs of today’s transaction-driven applications. It provides capture, routing, transformation, and delivery of transactional data across heterogeneous environments in real time can be acheived using Golden Gate. 
+- Oracle GoldenGate only captures and moves committed database transactions to insure that transactional integrity is maintained at all times. The application carefully ensures the integrity of data as it is moved from the source database or messaging system, and is applied to any number of target databases or messaging systems.
 
 [Learn More](http://www.oracle.com/us/products/middleware/data-integration/oracle-goldengate-realtime-access-2031152.pdf)
 
@@ -32,526 +22,354 @@ To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-
 
 ## Objectives
 
-- Setup real time data replication from on-premise to ATP-D instance.
+- Setup real time data replication from on-premise database to ATP-D database instance.
 
 ## Required Artifacts
 
-- Access to OCI console
-- Access to on-premise source database with admin access.
-- A pre-provisioned Autonomous Transaction Processing-Dedicated as target database.
-- A pre-provisioned developer client image, with VNC Server installed and network access to both source and target database, to install Golden Gate on it.
+- Access to an Oracle Cloud Infrastructure tenancy.
+- Access to an Oracle 12c database configured as source database.
+- An Autonomous Transaction Processing-Dedicated as target database.
+- Access to ATP-D network via jump server or VPN.
 - VNC Viewer or other suitable VNC client on your laptop.
+
+## Background and Architecture
+
+- There are three components to this lab. The **source database** that you are planning to migrate to Autonomous, the **target autonomous database** in OCI and an instance of **Oracle Goldengate** server with access to both source and target databases.
+
+- The source database can be any Oracle 11g or 12c database with atleast one application schema that you wish to replicate to an autonomous database in OCI. For the purpose of this lab, you may provision a 12.2.0.1 DBCS instance in your compartment in OCI and configure it as source. 
+
+
+- The ATP Dedicated database instance you provisioned in [Lab 4](./ProvisionADB.md) can be used as a target database in this lab. Since this database is in a private network with no direct access over the internet, you need to either VPN into this network or setup a developer client / bastion host via which you can connect to your target atp-d instance using sql*plus or sql developer client. Reer [Lab 5](./ConfigureDevClient.md) or [Lab 6](./ConfigureVPN.md) to setup a jump server or setup VPN respectively. 
+
+**Note: You cannot complete this lab without setting up access to your ATPD instance. Therefore [Lab 5](./ConfigureDevClient.md) or [Lab 6](./ConfigureVPN.md) are a pre-requisite to completing this lab as instructed.**
+
+- The Golden Gate software is going to be deployed on a linux server in a public network which has access to both the source database and the target database via the Goldengate marketplace image in OCI.
 
 
 ## Steps
 
-### **STEP 1: Install Golden Gate on a compute instance (Developer Client Image from OCI Marketplace) on OCI**
 
-- Provision a Developer Client image from OCI marketplace. For steps to provision, refer the <a href="./ConfigureDevClient.md" target="_blank">Configure Dev Client</a> lab.
+### **STEP 1: Provision a Goldengate Microservice instance OCI Marketplace**
 
-- Install VNC server on the developer client
-    - ssh into the developer client as OPC user.
+1. Connect to your OCI tenancy and select 'Marketplace' from top left menu.
 
-    ```
-    ssh -i <ssh_private_key> opc@ip_address
-    ```
+Browse for 'Oracle Goldengate 19c for Oracle'. You may set a filter on Type on the left. Select 'Stack' from the dropdown and the image should be easier to find. The image is a terraform orchestration that deploys Goldengate on a compute image along with required resources.
 
-    - As opc user, create vnc server.
+2. Click on image and choose your compartment to deploy the goldengate instance. For eg. as a workshop user with assigned compartment user01-Compartment, pick user01-Compartment from the drop down.
 
-    ```
-    ]$ vncserver
-    ```
+3. Launch Stack and provide details as described below
 
-- Log in to the developer client, using the VNC server client on your desktop, using the ip address and the port number.
+Name: Any descriptive name or you could leave default
 
-    - On your local terminal window, do local port forwarding using the below command.
+Hit Next, rest of the items are filled in or optional
 
-    ```
-    ssh -i id_rsa -L 5901:127.0.0.1:5901 opc@<ip-address_dev_client> -N
-    ```
-    - using your VNC client, login into the VNC server.
-    ```
-    ipaddress_of_dev_client:5901
-    ```
+4. Enter the following network setting. This is essentially to select the network you wish to deploy your goldengate image.
 
+![](./images/goldengate/network1.png)
 
-To download and install Golden Gate, 
+5. Hit next. For instance details pick and AD with sufficient compute capacity. **Note this deployment needs a minimum 2 ocpu instance**
+Make sure you check the 'public IP' checkbox. We will use this later to ssh into the instance and also connect to the Goldengate admin console.
 
-- Log onto to Oracle's e-delivery website from your browser on Dev Client,by logging on below website.  https://edelivery.oracle.com 
+![](./images/goldengate/network2.png)
 
-  ![](./images/1400/installation-1.png)
+6. Next, under OGG deployments choose your source and target deployment names and versions. Note that you may select one or two deployments (the second deployment is optional). This simply tell Goldengate admin server the location of relevant artifacts for source and target DB connections. 
 
-- Search for Golden Gate, you will see a list of Golden Gate versions. Select the latest version of Golden Gate. For this lab, we need to select Golden Gate version 18.0.0.0.
 
-  ![](./images/1400/installation-2.png)
+Next, paste your public key and hit 'Create'
 
-  ![](./images/1400/installation-3.png)
+Your Goldengate instance should be ready in a few mins and we will come back to configure it. 
 
-  ![](./images/1400/installation-4.png)
+### **STEP 2: Configure the source database**
 
-- Select the platform for which you want to download the software. In our case it will be Linux 64 bit. Click on continue.
+It is assumed that you either have an Oracle 12c database configured as source or know how to provision a 12c DBCS instance in OCI
 
-  ![](./images/1400/installation-5.png)
+[This Medium blog provides step by step directions to deploying a DBCS instance in OCI](https://medium.com/@fathi.ria/oracle-database-on-oci-cloud-ee144b86648c)
 
-  ![](./images/1400/installation-5-1.png)
 
-- Accept the agreement and click on the package name to download the zip file.
-  
-  ![](./images/1400/installation-6.png)
+The source database requires a Common (CDB) user that has DBA privileges over all PDBs in that database. 
 
-- Create a directory for Golden Gate on your machine. Move the downloaded zip file into the created folder. 
+Lets also assume that the schema we wish to replicate with Goldengate is the 'appschema' in PDB1. So for a freshly provisioned DBCS instance as source, we create the common user and application schema as follows
 
-    ```
-    ]$ mkdir ~/gg
-    ]$ mv V100692.zip ~/gg
-    ```
+- Connect as sys to your source DB and execute the following SQL commands
 
-    ![](./images/1400/installation-6-2.png)
+````
+create user C##user01 identified by WElcome_123#;
+grant connect, resource, dba to c##user01;
+alter database add supplemental log data;
+exec dbms_goldengate_auth.grant_admin_privilege('C##user01', container=>'all');
+alter system set ENABLE_GOLDENGATE_REPLICATION=true scope=both;
+````
 
-- unzip the zip file in the new directory created.
+Check if Goldengate replication is enabled,
 
-    ```
-    ]$ cd ~/gg
-    ]$ unzip V100692.zip .
-    ```
+````
+show parameter ENABLE_GOLDENGATE_REPLICATION;
+````
 
-    ![](./images/1400/installation-6-3.png)
+This should return 'True'
 
-- Navigate to the installer and run it.
+- Next, lets create the appschema in PDB1 and add a table to it. A sample 'Comments' table is provided here. You may add one or more table of your choice to the appschema.
 
-    ```
-    ]$ cd fbo_ggs_Linux_x64_shiphome
-    ]$ cd Disk1
-    ]$ ./runInstaller
-    ```
+````
+alter session set container=pdb1;
+create user appschema identified by WElcome_123# default tablespace users;
+grant connect, resource, dba to appschema;
+CREATE TABLE appschema.COMMENTS
+   (  "COMMENT_ID" NUMBER(10,0), 
+  "ITEM_ID" NUMBER(10,0), 
+  "COMMENT_BY" NUMBER(10,0), 
+  "COMMENT_CREATE_DATE" DATE DEFAULT sysdate, 
+  "COMMENT_TEXT" VARCHAR2(500)
+   ) ;
+````
 
-    ![](./images/1400/installation-6-4.png)
+The source database is all set. Next, lets setup the target ATPD instance.
 
-- Select the Golden Gate version, for this lab it is going to be 18c.
+### **STEP 3: Configure the target ATPD database**
 
-    ![](./images/1400/installation-7-1.png)
+- Connect to the ATPD database service intance you created earlier as user 'admin'
 
-- Enter the folder path where you want to install Golden Gate on the Developer Client (Compute instance)
+**Note: You will need to be VPN'd into the network or VNC to a jump server. Refer to Lab 5 and Lab 6**
 
-  ![](./images/1400/installation-7-2.png)
+- First, lets unlock the goldengate user that comes pre-created in ATP-D
 
-- verify the configurationa and click next.
+````
+alter user ggadmin identified by WElcome_123# account unlock;
+alter user ggadmin quota unlimited on data;
+````
 
-    ![](./images/1400/installation-7-3.png)
+- Next we create an 'appschema' user similar to source and create the same set of tables as source.
 
-- Click close after the installation is complete.
+````
+create user appschema identified by WElcome_123# default tablespace data;
+grant connect, resource to appschema;
+alter user appschema1 quota unlimited on data;
+CREATE TABLE appschema1.COMMENTS
+   (  "COMMENT_ID" NUMBER(10,0), 
+  "ITEM_ID" NUMBER(10,0), 
+  "COMMENT_BY" NUMBER(10,0), 
+  "COMMENT_CREATE_DATE" DATE DEFAULT sysdate, 
+  "COMMENT_TEXT" VARCHAR2(500)
+   ) ;
+````
+That is it! Your target DB is now ready.
 
-  ![](./images/1400/installation-7-4.png)
-  ![](./images/1400/installation-8.png)
-  ![](./images/1400/installation-9.png)
+### **STEP 4: Configure Goldengate service**
 
-### **STEP 2: Configuring the Golden Gate instance**
+By now, your Goldengate service instance must be deployed. On your OCI console navigate to 'Compute' from top left menu and **choose your compartment**
 
-In the Oracle GoldenGate target instance, you need to complete the following:
+Click on your Goldengate compute instance to get to the details page that looks as follows.
 
+![](./images/goldengate/ggcompute.png)
 
-**Steps**
+Note down the public IP address of your instance. We will use this IP to ssh into the virtual machine.
 
-1. Log into the developer client you provisoned as a pre-requisite for this lab using a VNC Viewer or any suitable client from your laptop.
+Before we launch the Goldengate admin console and start configuring the service, we need to provide connection information for both source and target databases.
 
-2. Download the ATP-D instance client credentials wallet into the developer client.
+Therefore, gather your source database connection TNS entries for both the common user and the appschema user. Remember, the CDB and PDB run different services, therefore the TNS entries differ. 
 
-3. Transfer the credentials ZIP file that you downloaded from Oracle Autonomous Data Warehouse 
-   Cloud to your Oracle GoldenGate instance.
+Also get your ATPD wallet zip file ready to upload / SCP to the goldengate instance. 
 
-    In the Oracle GoldenGate instance,Open a terminal window and navigate to the folder where you downloaded the credentials zip file and unzip the client credentials zip file to a location of your choice.
+**This file needs to go into the folder /u02/deployments/Databases/etc**
 
-    ![](./images/1400/unzip_wallet.png)
+Remember the deployment name 'Databases' provided while provisioning the goldengate image? That is what it does. By proviing just one deployment, we can configure both source and target DB entries in one place for simplicity.
 
-4. Now, To configure the connection details for source database,
 
-    i. Copy the On-Premise/Source DB connection strings for both CDB and PDB into the tnsnames.ora file in oracle client location or TNS_ADMIN in the Oracle GoldenGate instance.
+````
+$ scp -i ~/id_rsa Wallet_MyATPDB.zip opc@129.xxx.234.11:/u02/deployments/Databases/etc
 
-    ```
-    **Sample Connection String**
-    pdb1=(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = ip address)(PORT = 1521))(CONNECT_DATA =(SERVER = DEDICATED)(SERVICE_NAME = pdb1.domain.oraclevcn.com)))
-    ```
+````
 
-    ![](./images/1400/source-8.png)
+Next, ssh into the instance and unzip the wallet.
 
+```
+$ ssh -i ~/id_rsa opc@129.xxx.234.11
+$ cd /u02/deployments/Databases/etc
+$ unzip Wallet_MyATPDB.zip
 
-    ii. Open the sqlnet.ora file present in the same folder(i.e in Golden Gate Instance) and set the wallet location variable to the TNS_ADMIN path, as shown below:
+````
 
-    ```
-    WALLET_LOCATION = (SOURCE=(METHOD=FILE)(METHOD_DATA=(DIRECTORY=$TNS_ADMIN)))
-    ```
+Edit the sqlnet.ora file and update the WALLET_LOCATION parameter to point to the wallet folder
 
-    ![](./images/1400/target-2.png)
+````
+WALLET_LOCATION = (SOURCE=(METHOD=FILE)(METHOD_DATA=(DIRECTORY="/u02/deployments/Databases/etc")))
+````
 
-    ```
-    cd $ORACLE_HOME/network/admin
-    ls
-    sqlnet.ora tnsnames.ora
-    ```
+Next we edit the tnsnames.ora file and add entries for the source common user and the source appschema user. This single tnsnames.ora will serve to connect to both source and target.
 
-    Note:
+-Open tnsnames.ora in vi and add TNS connection entries as shown in the example screen shot below. Note the 2 new TNS entries added at th bottom for the source DB in addition to the pre-existing entries for target.
 
-    The tnsnames.ora file provided with the credentials file contains three database service names identifiable as: ADWC_Database_Name_low ADWC_Database_Name_medium ADWC_Database_Name_high For Oracle GoldenGate replication, use ADWC_Database_Name_low. See Predefined Database Service Names for Autonomous Database Cloud
+![](./images/goldengate/tns-entries.png)
 
-5. In your Oracle GoldenGate compute instance bash profile, configure the environment variables as        shown below and source the profile so that you do not have to manually set them again.
+Also, source DB is in a public network in this example hence hostname is the public IP address. 
 
-    Now, change user to oracle and open your bash profile.
+**Note: All IP addresses in the lab guide are scrubbed for security purposes. None of the instances in the screenshots are accessible using the information provided**
 
-    ```
-    ]$ sudo su - oracle
-    ]$ vi ~/.bash_profile
-    ```
+- We are now ready to access the goldengate admin console and configure our extract and replicat processes. 
 
-    Add the below lines to your bash profile and modify the values according to your machine as shown in the screenshot.
+- The credentials to access the admin console are provided in a file called ogg-credentials.json in the home folder /home/opc
 
-    ```
-    export ORACLE_HOME="/usr/lib/oracle/18.5/client64/lib/"[Oracle Instant Client Path]
-    export PATH=$PATH:<ORACLE_HOME PATH>/bin
-    export TNS_ADMIN=$ORACLE_HOME/lib
-    export GGHOME="<oracle Golden Gate installation directory>"
-    export TNS_ADMIN="<Oracle Instant Client Path>/network/admin"
-    export LD_LIBRARY_PATH="<Oracle Instant Client Path>"
+Open the file and save the credentials on a notepad.
 
-    ```
+````
+$ cd
+$ cat ogg-credentials.json
+{"username": "oggadmin", "credential": "E-kqQH8.MPA0u0.g"}
+````
+- Next we logon to the Goldengate admin console using credentials above.
 
-    Source the bash profile.
+**Open a browser and navigate to https://<ip_address_of_goldengate_image>**
 
-    ```
-    ]$ source ~/.bash_profile
-    ```
+If you have browser issues or get Unicode warning, try using Firefox browser. Fixing browser issues is beyond scope for this lab guide.
 
-    ![](./images/1400/target-3.png)
+![](./images/goldengate/ogg1.png)
 
-6. Check the connectivity by login into the database using sql client and then exit.
+Once logged on, click on the port # for Admin server to get into configurtion mode as shown below
 
-    Source Database:
+![](./images/goldengate/ogg2.png)
 
-    ```
-    sqlplus sys/<password>@cdb_name as sysdba
-    exit
-    ```
 
-    Target Database:
+If prompted, login with the same credentials one more time.
 
-    ```
-    sqlplus admin/<password>@databasename_low
-    exit
-    ```
+From the top left hamberger menu, select 'Configuration' as shown below -
 
-7. Now connect to the source database from your terminal using sql client or sql developer and create a new on-premises/source database user, create tables and load data, if you havent done already.
+![](./images/goldengate/ogg3.png)
 
-    Note:The example shown below is just for reference, you can use any user and table. For our lab, we are going to use user abdul and table supplier.
+**Here we configure connectivity to our source and target databases. We will setup 3 connections - The Source DB common user, Source DB appschema user and Target DB ggadmin user.**
 
-    ```
-    sqlplus sys/<password>@pdb_name as sysdba
-    ```
+Use the screenshots below as a guide - 
 
-    ```
-    CREATE user abdul IDENTIFIED BY WElCome12_34#;
-    grant dba, connect, resource to abdul;
-    ```
+![](./images/goldengate/creds1.png)
 
-    ```
-    DROP TABLE abdul.supplier;
-    CREATE TABLE "ABDUL"."SUPPLIER" 
-   (	"S_SUPPKEY" NUMBER NOT NULL ENABLE, 
-	"S_NAME" CHAR(25 BYTE), 
-	"S_ADDRESS" VARCHAR2(25 BYTE), 
-	"S_CITY" CHAR(10 BYTE), 
-	"S_NATION" CHAR(15 BYTE), 
-	"S_REGION" CHAR(12 BYTE), 
-	"S_PHONE" CHAR(15 BYTE)
-   );
-    alter database add supplemental log data;
-    ```
-    
-    To verify that the tables exist in the schema abdul, we can connect sqldeveloper to the database or use sqlclient to connect and check the tables and the data exists.
+Add the first credential for C##user01 you created earlier in the lab in the source DB
 
-    ![](./images/1400/source-2.png)
-    ![](./images/1400/source-3.png)
+![](./images/goldengate/creds2.png)
 
-8. create a common user in the container database and grant golden gate previliges to the user.
+**Note the userid format is userid@connectString. The connect string is how it knows which database to connect to. It looks for this connect string in /u02/deployments/Databases/etc/tnsnames.ora**
 
-    ```
-    create user C##abdul identified by WElCome12_34#;
-    exec dbms_goldengate_auth.grant_admin_privilege('C##abdul',container=>'all');
-    grant dba to C##abdul;
-    show parameter ENABLE_GOLDENGATE_REPLICATION;
-    alter system set ENABLE_GOLDENGATE_REPLICATION=true scope=both;
-    ```
 
-9. Log into your target database as your admin user.
+Submit credentials and test connectivity as shown in screenshot below
+![](./images/goldengate/creds3.png)
 
-    ```
-    sqlplus admin/<db_admin_password>@databasename_low
-    ```
 
-10. Create a new user for replication in the target Database.
+Similarly, add credentials for source DB appschema and target ATPD ggadmin schema as shown below. Note the ggadmin user connects using the same tns enty as 'admin' user.
 
-    ```
-    drop user abdul cascade;
-    create user abdul identified by WElCome12_34#;
-    alter user abdul;
-    grant create session, resource, create view, create table to abdul;
-    ```
+![](./images/goldengate/creds4.png)
 
-    ![](./images/1400/target-4.png)
+Make sure you test connectivity for each credential.
 
-11. Create your replication tables.
+**Next, we create checkpoint tables in source and target databases.** Checkpoint tables keep track of changes in the database. We need one in the appschema in source and another in the ggadmin schema in target.
 
-    ```
-    CREATE TABLE "ABDUL"."SUPPLIER" 
-    ("S_SUPPKEY" NUMBER NOT NULL ENABLE, 
-	"S_NAME" CHAR(25 BYTE), 
-	"S_ADDRESS" VARCHAR2(25 BYTE), 
-	"S_CITY" CHAR(10 BYTE), 
-	"S_NATION" CHAR(15 BYTE), 
-	"S_REGION" CHAR(12 BYTE),
-	"S_PHONE" CHAR(15 BYTE));
-    ```
+Lets start with appschema in source. Connect and click + sign to add a checkpoint table as shown below
 
-12. Unlock GGADMIN user and grant necessary previliges.
+![](./images/goldengate/chkpt1.png)
 
-    ```
-    alter user ggadmin identified by WElCome12_34# account unlock;
-    alter table ggadmin quota unlimited on data;
-    ```
+![](./images/goldengate/chkpt2.png)
 
-    ![](./images/1400/target-5.png)
-    ![](./images/1400/target-6.png)
+We also specify the schema we want to replicate here. In the Transaction Information section below checkpoint, add the schema first by clicking the + sign and hit Submit.
 
-    Now try logging in to the target database using the "ggadmin" user.
+![](./images/goldengate/chkpt3.png)
 
-    ![](./images/1400/target-6-1.png)
+Now when you enter the schema name and search for it, it shows up as shown below with 3 tables. 2 checkpoint tables and one 'comments' table we created earlier.
+![](./images/goldengate/chkpt4.png)
 
-13. Connect to GGSCI.
 
-    ```
-    cd $GGHOME
-    ./ggsci
-    ```
+**Next, we add a checkpoint table to the target instance and also set the heartbeat**
 
-    ![](./images/1400/login_ggsci.png)
+Connect to the target DB from the goldengate admin console just like you did for the source DB. Lets also add a checkpoint table here
+![](./images/goldengate/chkpt5.png)
 
-14. Create the subdirectories needed to configure the replicat process. 
+![](./images/goldengate/chkpt6.png)
 
-    ```
-    GGSCI >  create subdirs
-    ```
+Scroll down and set the hearbeat for target. Use default configuration for the purpose of this lab
 
-    ![](./images/1400/target-7.png)
-        
+![](./images/goldengate/heartbeat.png)
 
-![](./images/1400/target-3-2.png)
+**As a final step, we now create an 'extract' and a 'replicat' process to conduct the replication from source to target.**
 
+- Navigate back to the Goldengate Admin server dashboard so you can see both the extract and replicat setup as shown below
+![](./images/goldengate/extract1.png)
 
-15. To configure, Oracle GoldenGate manager, open the mgr parameter file to edit it.
 
-    Note: Ensure that the manager parameter file has the following information. you can specify any value for PORT, DYNAMIC PORT LIST, MINKEEPHOURS, RETRIES, WAITMINUTES and RESETMINUTES. Given below is just an example.
-    ```
-    GGSCI>edit param mgr
-    ```
-    ```
-    PORT 7809
-    Dynamicportlist 7800-7808
-    ACCESSRULE, PROG *, IPADDR Source_Database_IP, ALLOW
-    PURGEOLDEXTRACTS ./dirdat/rt, USECHECKPOINTS, MINKEEPHOURS 1
-    AUTORESTART ER *, RETRIES 5, WAITMINUTES 5, RESETMINUTES 5
-    ```
+Choose **Integrated Extract** on the next screen and hit next.
 
-    ![](./images/1400/target-8.png)
+Entries on the following screen may be entered as follows,
 
-16.  Add GGSCHEMA ggadmin to your GLOBALS file. From the Oracle GoldenGate installation location, run GGSCI and enter the following command, or open a file in a text editor.
+![](./images/goldengate/extract2.png)
 
-    ```
-    GGSCI> EDIT PARAMS ./GLOBALS
-    ```
+Process Name: Provide any name of choice
 
-17. Add a checkpoint table for ggadmin schema in Golden Gate.
+Credential Domain: Pick OracleGoldenGate from drop down
 
-    ```
-    GGSCHEMA ggadmin
-    checkpointtable ggadmin.chktab
-    ```
+Credential Alias:  Pick the common user alias for source DB. In this lab we created sourceCommonUser alias
 
-    ![](./images/1400/target-9-0.png)
-    ![](./images/1400/target-9.png)
+Trail Name: Any 2 character name
 
-18. Stop and start the manager and confirm that it started.
+Scroll down and click in the text box Register to PDBs. PDB1 should popup as shown
 
-    ```
-    GGSCI>stop mgr
-    GGSCI>start mgr
-    GGSCI>info mgr
-    ```
+![](./images/goldengate/extract3.png)
 
-    ![](./images/1400/target-9-1.png)
-    
-19. Create the Oracle GoldenGate wallet and add the useridalias to the credential store.
+**If you do not see Register to PDBs text box, make sure you have picked the 'Common User' alias and provided all mandatory entries**
 
-    ```
-    GGSCI> Create Wallet
-    GGSCI> add credentialstore
-    GGSCI> Alter credentialstore ADD USER C##ABDUL PASSWORD <password> alias <cdb_user_alias>
-    GGSCI> Alter credentialstore ADD USER abdul PASSWORD <password> alias <pdb_user_alias>
-    GGSCI> ALTER CREDENTIALSTORE ADD USER ggadmin@databasename_low PASSWORD <password> alias <ggadmin_alias>
-    GGSCI> DBLOGIN USERIDALIAS <cdb_user_alias>
-    GGSCI> DBLOGIN USERIDALIAS <pdb_user_alias>
-    GGSCI> DBLOGIN USERIDALIAS <ggadmin_alias>
-    ```
+Click next. As a final step, add this entry at the end of your parameter file as shown below.
 
-    ![](./images/1400/target-11.png)
-    ![](./images/1400/target-12.png)
-    ![](./images/1400/target-13.png)
-    ![](./images/1400/target-14.png)
+````
+extract ext1
+useridalias sourceCommonUser domain OracleGoldenGate
+exttrail rt
+table pdb1.appschema.*
+````
 
-    verify the connectivity to both the databases.
+![](./images/goldengate/extract4.png)
 
-    ![](./images/1400/check_db_conn.png)
-        
-    ![](./images/1400/check_db_connect2.png)
+This tells Goldengate to capture changes on all tables in pdb1.appschema
 
+Hit 'Create and Run'. If all goes well you should now see the extract running on source
+![](./images/goldengate/extract5.png)
 
-20. Configure your Replicat file. For a complete list of Replicat parameters, see Oracle     GoldenGate Parameters in [Oracle GoldenGate Reference](https://www.oracle.com/pls/topic/lookup?ctx=en/middleware/goldengate/core/18.1/oracle-db&id=GWURF-GUID-F0B2C37F-DEDC-4990-A51F-30687D48082E).
 
-    ```
-    GGSCI> edit param rep1
-    ```
+Next, we configure a replicat on the target. On the same screen hit the **+** sign on the **Replicats** side to start configuring one.
 
-    ```
-    replicat rep1
-    setenv (ORACLE_HOME='<path to oracle instant client folder>')
-    USERIDALIAS <ggadmin_alias>
-    map <source_pdb>.<source_schema>.<source_table>, target <target_schema>.<target_table>;
-    ```
+Pick **Non-Integrated Replicat**
 
-    Now save and exit.
+![](./images/goldengate/rep1.png)
 
-    ![](./images/1400/target-10.png)
+Fill out the mandatory items in **Basic Information** on the next screen as follows. You may leave the rest at default values.
 
-21. Create the extract process.
+**Process Name:**  Rep1
 
-    Note : You can either use the username and password or a user id alias if created.
+**Credential Domain:**  Oracle Goldengate from drop down
 
-    ```
-    extract ext1
-    setenv (ORACLE_SID='<sid>')
-    setenv (ORACLE_HOME='<path to oracle home>')
-    useridalias <cdb_user_alias>
-    exttrail ./dirdat/rs
-    table pdb1.abdul.supplier;
-    ```
+**Credential Alias:** targetGGAdmin (or the alias name you provided for ggadmin user on your ATP-D instance)
 
-    ![](./images/1400/source-5.png)
+**Trail Name:** rt (or any 2 character name)
 
-22. Create the extract data pump process
+**Checkpoint Table:** The checkpoint table you configured for ggadmin user should show up in the drop down
 
-    Note : You can either use the username and password or a user id alias if created.
+Hit **Next**
 
-    ```
-    extract ext1pump
-    useridalias <cdb_user_alias>
-    RMTHOST host_IP_address, MGRPORT <mgr_port>
-    rmttrail ./dirdat/rt
-    table <source_pdb>.<source_schema>.<source_table>;
-    ```
+![](./images/goldengate/rep2.png)
+![](./images/goldengate/rep3.png)
 
-    ![](./images/1400/source-6.png)
+On the last and final screen (phew!) edit the parameter file to add a line mapping the source and target schemas as show below. 
 
-23. Add the extract processes and the trail processes.
+![](./images/goldengate/rep4.png)
 
-    ```
-    add extract ext1,integrated tranlog, begin now
-    add exttrail ./dirdat/rs,extract ext1
-    add extract ext1pump,exttrailsource ./dirdat/rs
-    add rmttrail ./dirdat/rt,extract ext1pump
-    ```
-    ![](./images/1400/source-7.png)
+Hit **Create and Run**. If all goes well, you should now see both extract and replicat processes running on the dashboard.
+![](./images/goldengate/rep5.png)
 
-24. Login into the database from Golden Gate and configure the database.
+Hurray! You have completed the replication setup. To test, simply connect to your source database, insert and commit some rows. Then check your corresponding target table and in a few secs you should see the data appear.
 
-    ```
-    dblogin userid <cdb user>@<db connection from tnsnames>, password <password>
-    add trandata <pdb_name>.<schema_name>.<table_name>
-    ```
+A sample Insert script for the Comments table is provided below.
 
-    For Example :
+````
+Insert into appschema.COMMENTS (COMMENT_ID,ITEM_ID,COMMENT_BY,COMMENT_CREATE_DATE,COMMENT_TEXT) values (7,4,4,to_date('06-JUL-15','DD-MON-RR'),'Im putting an offer. Can you meet me at the apple store this evening?');
+commit;
+````
 
-    ```
-    dblogin userid c##abdul@SOURCDB1_IAD2ZW, password WElCome12_34#
-    add trandata pdb1.abdul.supplier
-    ```
 
-    
-    ![](./images/1400/source-7-1.png)
 
-25. Add your Replicat to create a Replicat group.
 
-    ```
-    DBLOGIN USERIDALIAS ggadmin_alias
-
-    add replicat rep1, exttrail ./dirdat/rt 
-    ```
-
-    
-    ![](./images/1400/target-15.png)
-
-
-### **STEP 3: Starting the extract and replication processes**
-
-In the Oracle GoldenGate source and target instance, you need to complete the following:
-
-**Note : When you run your extracts and replicat process, If you see "No route to host error" then you have to add rule in your Golden Gate compute instance firewall or iptables to accept connections from the source db.**
-
-**Steps**
-
-1. Make sure the mgr is running and start it if it is not running on both the source and targte golden gate instance.
-
-    ```
-    GGSCI>start mgr
-    GGSCI>info mgr
-    ```
-
-    ![](./images/1400/target-16-3.png)
-    ![](./images/1400/target-16-1.png)
-    ![](./images/1400/target-16-2.png)
-    
-
-2. On the source Golden Gate instance,Start the extract and extract data pump process.
-
-    ```
-    GGSCI>start ext1
-    GGSCI>start ext1pump
-    GGSCI>info all
-    ```
-
-    ![](./images/1400/target-17.png)
-
-3. On the target Golden Gate instance,Start the replicat process.
-
-    ```
-    GGSCI>start rep1
-    GGSCI>info all
-    ```
-
-    ![](./images/1400/target-18.png)
-
-    Verify that there is no data currently on the target database.
-
-    ![](./images/1400/target-18-1.png)
-
-4. Login to the Source database and insert rows into the source table and commit the changes.
-
-    ![](./images/1400/target-19.png)
-    ![](./images/1400/target-20.png)
-    ![](./images/1400/target-21.png)
-
-5. Login to the target database and verify that the new rows have been replicated.
-
-    ![](./images/1400/target-22.png)
-
-
--   You are now ready to move to the next lab.
 
 <table>
 <tr><td class="td-logo">[![](images/obe_tag.png)](#)</td>
