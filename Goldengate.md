@@ -3,7 +3,7 @@
 July 30, 2019
 </td>
 <td class="td-banner">
-# Lab 14: Real-time data migration to ATP Dedicated using Goldengate microservice
+# Lab 14: Live migration to ATP-Dedicated using Oracle Goldengate replication
 </td></tr><table>
 
 ## Introduction
@@ -36,10 +36,10 @@ To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-
 
 - There are three components to this lab. The **source database** that you are planning to migrate to Autonomous, the **target autonomous database** in OCI and an instance of **Oracle Goldengate** server with access to both source and target databases.
 
-- The source database can be any Oracle 11g or 12c database with atleast one application schema that you wish to replicate to an autonomous database in OCI. For the purpose of this lab, you may provision a 12.2.0.1 DBCS instance in your compartment in OCI and configure it as source. 
+- The source database can be any Oracle database version 11.2.0.4 or higher with atleast one application schema that you wish to replicate to an autonomous database in OCI. For the purpose of this lab, you may provision a 12.2.0.1 DBCS instance in your compartment in OCI and configure it as source. 
 
 
-- The ATP Dedicated database instance you provisioned in [Lab 4](./ProvisionADB.md) can be used as a target database in this lab. Since this database is in a private network with no direct access over the internet, you need to either VPN into this network or setup a developer client / bastion host via which you can connect to your target atp-d instance using sql*plus or sql developer client. Reer [Lab 5](./ConfigureDevClient.md) or [Lab 6](./ConfigureVPN.md) to setup a jump server or setup VPN respectively. 
+- The ATP Dedicated database instance you provisioned in [Lab 4](./ProvisionADB.md) can be used as a target database in this lab. Since this database is in a private network with no direct access over the internet, you need to either VPN into this network or setup a developer client / bastion host via which you can connect to your target atp-d instance using sql*plus or sql developer client. Refer [Lab 5](./ConfigureDevClient.md) or [Lab 6](./ConfigureVPN.md) to setup a jump server or setup VPN respectively. 
 
 **Note: You cannot complete this lab without setting up access to your ATPD instance. Therefore [Lab 5](./ConfigureDevClient.md) or [Lab 6](./ConfigureVPN.md) are a pre-requisite to completing this lab as instructed.**
 
@@ -49,13 +49,13 @@ To **log issues**, click [here](https://github.com/cloudsolutionhubs/autonomous-
 ## Steps
 
 
-### **STEP 1: Provision a Goldengate Microservice instance OCI Marketplace**
+### **STEP 1: Provision a Goldengate Microservice from OCI Marketplace**
 
-1. Connect to your OCI tenancy and select 'Marketplace' from top left menu.
+1. Connect to your OCI tenancy and select **Marketplace** from top left menu.
 
-Browse for 'Oracle Goldengate 19c for Oracle'. You may set a filter on Type on the left. Select 'Stack' from the dropdown and the image should be easier to find. The image is a terraform orchestration that deploys Goldengate on a compute image along with required resources.
+Browse for **Oracle Goldengate 19c for Oracle**. You may set a filter on Type on the left. Select **Stack** from the dropdown and the image should be easier to find. The image is a terraform orchestration that deploys Goldengate on a compute image along with required resources.
 
-2. Click on image and choose your compartment to deploy the goldengate instance. For eg. as a workshop user with assigned compartment user01-Compartment, pick user01-Compartment from the drop down.
+2. Click on image and choose your compartment to deploy the goldengate instance. For eg. as a workshop user with assigned compartment userX-Compartment, pick userX-Compartment from the drop down.
 
 3. Launch Stack and provide details as described below
 
@@ -75,7 +75,7 @@ Make sure you check the 'public IP' checkbox. We will use this later to ssh into
 6. Next, under OGG deployments choose your source and target deployment names and versions. Note that you may select one or two deployments (the second deployment is optional). This simply tell Goldengate admin server the location of relevant artifacts for source and target DB connections. 
 
 
-Next, paste your public key and hit 'Create'
+Next, paste your public key and hit **Create**
 
 Your Goldengate instance should be ready in a few mins and we will come back to configure it. 
 
@@ -106,9 +106,9 @@ Check if Goldengate replication is enabled,
 show parameter ENABLE_GOLDENGATE_REPLICATION;
 ````
 
-This should return 'True'
+This should return **True**
 
-- Next, lets create the appschema in PDB1 and add a table to it. A sample 'Comments' table is provided here. You may add one or more table of your choice to the appschema.
+- Next, lets create a schema user to replicated called **appschema** in PDB1 and add a table to it. A sample 'Comments' table is provided here. You may add one or more table of your choice to the appschema.
 
 ````
 alter session set container=pdb1;
@@ -125,9 +125,9 @@ CREATE TABLE appschema.COMMENTS
 
 The source database is all set. Next, lets setup the target ATPD instance.
 
-### **STEP 3: Configure the target ATPD database**
+### **STEP 3: Configure the target ATP Dedicated database**
 
-- Connect to the ATPD database service intance you created earlier as user 'admin'
+- Connect to the ATPD database service intance you created earlier as user **admin**
 
 **Note: You will need to be VPN'd into the network or VNC to a jump server. Refer to Lab 5 and Lab 6**
 
@@ -156,7 +156,7 @@ That is it! Your target DB is now ready.
 
 ### **STEP 4: Configure Goldengate service**
 
-By now, your Goldengate service instance must be deployed. On your OCI console navigate to 'Compute' from top left menu and **choose your compartment**
+By now, your Goldengate service instance must be deployed. On your OCI console navigate to **Compute** from top left menu and **choose your compartment**
 
 Click on your Goldengate compute instance to get to the details page that looks as follows.
 
@@ -166,7 +166,11 @@ Note down the public IP address of your instance. We will use this IP to ssh int
 
 Before we launch the Goldengate admin console and start configuring the service, we need to provide connection information for both source and target databases.
 
-Therefore, gather your source database connection TNS entries for both the common user and the appschema user. Remember, the CDB and PDB run different services, therefore the TNS entries differ. 
+Therefore, **gather your source database connection TNS entries for both the common user and the appschema user. Remember, the CDB and PDB run different services, therefore the TNS entries differ.**
+
+A tns entry is typically found in your database's tnsnames.ora file and looks like this.
+
+mySourceDB=(DESCRIPTION=(CONNECT_TIMEOUT=120)(RETRY_COUNT=20)(RETRY_DELAY=3)(TRANSPORT_CONNECT_TIMEOUT=3)(ADDRESS_LIST=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=129.30.xxx.xxx)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=pdb1.atp.oraclecloud.com)))
 
 Also get your ATPD wallet zip file ready to upload / SCP to the goldengate instance. 
 
