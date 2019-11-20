@@ -72,8 +72,9 @@ Make sure you check the 'public IP' checkbox. We will use this later to ssh into
 
 ![](./images/goldengate/network2.png)
 
-6. Next, under OGG deployments choose your source and target deployment names and versions. Note that you may select one or two deployments (the second deployment is optional). This simply tell Goldengate admin server the location of relevant artifacts for source and target DB connections. 
+6. Next, under **Create OGG deployments** choose your source and target deployment names and versions. Note that you may select one or two deployments (the second deployment is optional). This simply tell Goldengate admin server the location of relevant artifacts for source and target DB connections. 
 
+In this lab we choose a single deployment called Databases. Therefore, under **Deployment 1 -Name**, type **Databases** and leave Deployment 2- Name blank. We keep this simple by using a single deployment folder for both source and target configurations.
 
 Next, paste your public key and hit **Create**
 
@@ -143,8 +144,8 @@ alter user ggadmin quota unlimited on data;
 ````
 create user appschema identified by WElcome_123# default tablespace data;
 grant connect, resource to appschema;
-alter user appschema1 quota unlimited on data;
-CREATE TABLE appschema1.COMMENTS
+alter user appschema quota unlimited on data;
+CREATE TABLE appschema.COMMENTS
    (  "COMMENT_ID" NUMBER(10,0), 
   "ITEM_ID" NUMBER(10,0), 
   "COMMENT_BY" NUMBER(10,0), 
@@ -321,7 +322,7 @@ Click next. As a final step, add this entry at the end of your parameter file as
 extract ext1
 useridalias sourceCommonUser domain OracleGoldenGate
 exttrail rt
-table pdb1.appschema.*
+table pdb1.appschema.*;
 ````
 
 ![](./images/goldengate/extract4.png)

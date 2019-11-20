@@ -108,14 +108,15 @@ flashback table items to restore point BEFORE_DML;
 ````
 ![](./images/Flashback/flashback.png)
 
-And we are back in the game!
 
+And we are back in the game! 
 
+Of Course, you can always run a check on the items table with a, 
 
+````
+select count(*) from items;
 
-
-
-
+````
 
 
 

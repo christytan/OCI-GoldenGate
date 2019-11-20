@@ -206,13 +206,13 @@ echo $TNS_ADMIN
 - Set java class path
 
 ```
-javac -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection.java
+javac -cp .:/home/opc/atpjava/ojdbc/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection.java
 ```
 
 - Run application 
 
 ```
-java -cp .:/home/opc/atpjava/ojdbc/ojdbc8/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection
+java -cp .:/home/opc/atpjava/ojdbc/ojdbc8-full/ojdbc8.jar com/oracle/autonomous/GetAutonomousConnection
 ```
 
 ![](./images/800/atpd9.png)
