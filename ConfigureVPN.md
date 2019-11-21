@@ -122,7 +122,7 @@ The following illustration shows a network topology that can be used to provide 
 
 **Save your setting before advancing to the VPN settings page**
 
--   Click **VPN settings** and scroll down to the section labeled **Routing**
+Click **VPN settings** and scroll down to the section labeled **Routing**
 
 Here we configure how traffic from your VPN hosts (i.e. your personal laptop for example) shoud be routed and how DNS resolution should occur.
 
@@ -131,7 +131,7 @@ Configure this section as shown in the screenshot below.
 - Provide CIDR ranges for your application and exadata subnets
 - Pick 'No' for the question - **Should client internet traffic be routed through the VPN?**
 
-![](./images/1200/openvpn_vpnsetting.png)
+![](./images/1200/vpn_routing1.png)
 
 
 Scroll down and configure the DNS settings as shown below.
@@ -167,66 +167,7 @@ Note: Once you have applied your changes, click **Save Settings** once again. Th
 You may also setup your VPN server with multiple users. Follow the OpenVPN configuration guide to setup additional users.
 
 
-### **STEP 4: Configure and connect SQL Developer to your dedicated ATP database**
-
-Before you launch and connect SQL Developer, you have to ensure that the SCAN host name in tnsnames.ora can resolve to an IP address for your exadata infrastructure. Since your exadata infrastructure is in a private network, it has a private ip from the 10.0.0.0/24 CIDR pool and is therefore not resolvable by public DNS servers. 
-
-You need to, 
-
-a. Find the private IP address if your dedicated autonomous database host which in this case is something like 10.0.0.X
-
-b. Edit your local host file and add an entry for the SCAN host
-
-Once you do you this, you can them simply launch SQL Developer and use the database wallet to make a connection to your ATP-D instance as long as you are on VPN
-
-
-
-
-#### Lets first find the SCAN host name from the credentials wallet file.
-
-- Download the wallet .zip file to your local machine
-- Unzip file and open tnsnames.ora in an editor
-- The SCAN host name appears similar to the one shown below. Copy the SCAN host name some place. 
-
-    ![](./images/1200/atpd_hostname.png)
-    
-
-    
-Since your autonomous exadata infrastructure is setup as a RAC configuration, the SCAN host resolves to 3 IP addresses to load balance between the RAC nodes. You may use any one of those IP addresses for connectivity
-
-#### Lets find the private IP address of your exadata RAC nodes
-    
-- ssh into your VPN server. You may use public or private IP. If you are on VPN, the private IP should work.
-
-    ```
-    $ ssh opc@<IP_address_of_VPN_Server>
-    ```
- Query OCI DNS for private IP of Exadata SCAN Host
-
-    
-        $ nslookup SCAN_Hostname_from_tnsnames.ora
-
-    
-![](./images/1200/atpd_privateIP.png)
-    
-    
-Now that you have an IP address for your autonomous exadata infrastructure, update the hosts file on your local machine (/etc/hosts on a mac or the C:\Windows\System32\Drivers\etc\hosts on Windows) 
--   Add ATPD Private IP and Hostname in Local Platform
-
-    e.g. on a Mac: add IP and hostname to /etc/hosts
-
-    
-
- ```
-10.x.x.6 hosxxxxxxxan.exadatasubnet.ocivcn.oraclevcn.com
- ```
-
-Make sure there is an entry for your localhost in /etc/hosts as follows,
-```
-localhost 127.0.0.1
-```
-
--   You are now ready to connect to your dedicated ATP instance using a local SQL Client such as SQL Developer
+### **STEP 4: Connect SQL Developer to your dedicated ATP database**
 
 
 Launch SQL Developer and connect using the downloaded credentials wallet as shown below
