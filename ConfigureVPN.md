@@ -122,17 +122,21 @@ The following illustration shows a network topology that can be used to provide 
 
 **Save your setting before advancing to the VPN settings page**
 
--   Click **VPN settings** and add CIDR ranges for both the app Subnet and the exadata Subnet. The exadata subnet CIDR can be avoided if you DO NOT plan to connect directly to your databases using a desktop SQL Client like SQL Developer.
-Note that in the **Routing** section, ensure that the option **Should client Internet traffic be routed through the VPN?** is set to **YES**
+-   Click **VPN settings** and scroll down to the section labeled **Routing**
+
+Here we configure how traffic from your VPN hosts (i.e. your personal laptop for example) shoud be routed and how DNS resolution should occur.
+
+Configure this section as shown in the screenshot below. 
+- Choose **Yes using Routing**
+- Provide CIDR ranges for your application and exadata subnets
+- Pick 'No' for the question - **Should client internet traffic be routed through the VPN?**
 
 ![](./images/1200/openvpn_vpnsetting.png)
 
 
--   Under **Have Clients user these DNS servers**, pick a pair of public DNS resolvers. Here we choose Google's DNS resolvers 8.8.8.8 and 8.8.8.4
+Scroll down and configure the DNS settings as shown below.
 
-![](./images/1200/openvpn_DNS.png)
-
-**Save your setting before advancing to the Advanced VPN settings page**
+![](./images/1200/vpn_routing2.png)
 
 -   In the **Advanced VPN** section, ensure that the option **Should clients be able to communicate with each other on the VPN IP Network?** is set to **Yes**
 
