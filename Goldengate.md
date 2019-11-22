@@ -76,6 +76,8 @@ Make sure you check the 'public IP' checkbox. We will use this later to ssh into
 
 In this lab we choose a single deployment called Databases. Therefore, under **Deployment 1 -Name**, type **Databases** and leave Deployment 2- Name blank. We keep this simple by using a single deployment folder for both source and target configurations.
 
+![](./images/goldengate/source-target.png)
+
 Next, paste your public key and hit **Create**
 
 Your Goldengate instance should be ready in a few mins and we will come back to configure it. 
@@ -356,7 +358,8 @@ Hit **Next**
 ![](./images/goldengate/rep2.png)
 ![](./images/goldengate/rep3.png)
 
-On the last and final screen (phew!) edit the parameter file to add a line mapping the source and target schemas as show below. 
+On the last and final screen (phew!) edit the parameter file to REPLACE the line mapping the source and target schemas as show below. 
+**Note: Pls remove the original line MAP *.*, TARGET *.*;**
 
 ![](./images/goldengate/rep4.png)
 
