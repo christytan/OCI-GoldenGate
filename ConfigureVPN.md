@@ -124,14 +124,14 @@ The following illustration shows a network topology that can be used to provide 
 
 Click **VPN settings** and scroll down to the section labeled **Routing**
 
-Here we configure how traffic from your VPN hosts (i.e. your personal laptop for example) shoud be routed and how DNS resolution should occur.
+Here we configure how traffic from your VPN client (i.e. your personal laptop for example) shoud be NATed and how DNS resolution should occur.
 
 Configure this section as shown in the screenshot below. 
-- Choose **Yes using Routing**
+- Choose **Yes using NAT**
 - Provide CIDR ranges for your application and exadata subnets
 - Pick 'No' for the question - **Should client internet traffic be routed through the VPN?**
 
-![](./images/1200/vpn_routing1.png)
+![](./images/1200/vpn_NAT.png)
 
 
 Scroll down and configure the DNS settings as shown below.
