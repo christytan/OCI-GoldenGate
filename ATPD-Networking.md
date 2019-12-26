@@ -205,7 +205,7 @@ Instances in the application subnet may need access to the internet. For that pu
 
 
 
-**4. Create a route table for the appSubnet** to route traffic to the internet gateway
+**4. Create a route table for the Application Subnet** to route traffic to the internet gateway
 
 Note the destination CIDR block 0.0.0.0/0 indicate ALL IP addresses globally i.e. to any host anywhere on the internet. You can limit it to specific hosts or network as desired. For eg, you can limit it to hosts in your corporate network or to a specific host such as your personal laptop as long as it has a unique public IP address.
 
@@ -213,6 +213,11 @@ Note the destination CIDR block 0.0.0.0/0 indicate ALL IP addresses globally i.e
 
 ![create_routeTable](./images/100/create_routeTable.png)
 
+**Similarly, Create a route table for the Exadata Subnet** 
+
+Since a route table is required when creating a subnet, we simply create a blank route table called exaSubnet-routeTable without any route rules.
+
+![create_routeTable](./images/100/exaSubnet-routeTable.png)
 
 **5. Provision exadataSubnet and appSubnet**
 
