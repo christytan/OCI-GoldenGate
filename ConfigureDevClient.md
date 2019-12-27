@@ -223,7 +223,7 @@ Connect to your VNC desktop and provide the password you changed on the host ear
 If all goes well, you should now see a linux desktop in your VNC window.
 
 
-### STEP 4: Connect to your autonomous DB using SQL*Developer, SQLCL and SQL*Plus
+### STEP 4: Connect to your autonomous DB using SQL\*Developer, SQLCL and SQL\*Plus
 
 In your VNC session, invoke SQL*Developer from the top left Applications menu as shown below
 
