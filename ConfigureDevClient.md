@@ -37,7 +37,7 @@ Configure a secure connection from your development system to your dedicated aut
 
 ## Steps
 
-### STEP 1: Provision a OCI Marketplace Developer Client image instance**
+### STEP 1: Provision a OCI Marketplace Developer Client image instance
 
 We start with deploying a pre-configured client machine instance from the OCI marketplace
 
@@ -200,8 +200,8 @@ On your local laptop,
     ```
     $ ssh -N -L 5901:127.0.0.1:5901 -i \<priv-key-file\> opc@<publicIP-of-your-devClient>
     ```
-**Windows users**
 
+**Windows Users**
 - Windows 10 users can use powershell to connect using command above.
 
 - Alternatively, you may create and ssh tunnel using putty. Detailed instructions on using putty for ssh tunnels are provided in the appendix
@@ -223,9 +223,9 @@ Connect to your VNC desktop and provide the password you changed on the host ear
 If all goes well, you should now see a linux desktop in your VNC window.
 
 
-### STEP 4: Connect to your autonomous DB using SQL\*Developer, SQLCL and SQL\*Plus
+### STEP 4: Connect to your autonomous DB using SQL Developer, SQLCL and SQL Plus
 
-In your VNC session, invoke SQL*Developer from the top left Applications menu as shown below
+In your VNC session, invoke SQL Developer from the top left Applications menu as shown below
 
 ![](./images/500/sql-developer-vnc.png)
 
@@ -277,7 +277,7 @@ Provide your admin password and you are in!
 <br>
 <br>
 
-**Connect to ATP instance using Oracle SQL*Plus**
+**Connect to ATP instance using Oracle SQL Plus**
 
 For SQL*Plus, you will need to unzip the wallet in your local folder and edit sqlnet.ora as follows-
 
