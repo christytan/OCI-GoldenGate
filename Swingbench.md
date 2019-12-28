@@ -5,7 +5,7 @@
 Sept 1, 2019
 </td>
 <td class="td-banner">
-# Install Swingbench workload generator in a developer client virtual machine
+# Install and configure a  workload generator
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
@@ -19,7 +19,7 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 ## Objectives
 
 As an adminstrator,
-- Learn how to install and use Swingbench to simulate a production workload
+- Learn how to install and use Swingbench to simulate a transaction processing workload
 
 
 ## Required Artifacts
@@ -38,8 +38,7 @@ To connect to your Oracle Cloud Developer image please refer to [Lab2](20DeployI
 
 **The remainder of this lab assumes you are connected to the image through VNC Viewer and are operating from the image itself and not your local machine (except if noted)**
 
-### **STEP 2: Install Swingbench**
-
+### STEP 2: Install and configure  Swingbench
 
 
 ssh into your developer client machine following instructions in [Lab2](20DeployImage.md). Once you ssh  to the your developer client machine:
@@ -57,9 +56,25 @@ curl http://www.dominicgiles.com/swingbench/swingbench261082.zip -o swingbench.z
 unzip /home/opc/swingbench.zip
 ```
 
+Let's also update the jdbc drivers in swingbench/lib to 18c drivers available at
+https://www.oracle.com/database/technologies/appdev/jdbc-ucp-183-downloads.html
+
+**Note: 19c drivers have not been tested with swingbench and may produce unpredictable results**
+
+Download ojdbc8-full.tar.gz to the downloads folder in your dev. client instance
+
+untar the archive
+
+```
+tar -xvf ojdbc10-full.tar.gz
+```
+
+Copy the contents of ojdbc10-full to /home/opc/swingbench/lib, replacing the existing files. 
+
+Note: Do not modify the launcher directory or the existing swingbench.jar. 
 
 
-### **STEP 3: Download the ATP-D Secure Wallet to your developer client machine**
+### STEP 3: Transfer DB Wallet to swingbench client machine**
 
 If you have not previously downloaded the wallet for your ATP database follow the steps below. If you previously downloaded the wallet, skip to **STEP 4**
 
@@ -161,6 +176,18 @@ To see how many rows were inserted on each table run the following command:
 ```
 ./sbutil -soe -cf ~/Downloads/your_wallet.zip -cs yourdb_medium -u soe -p yourpassword -tables
 ```
+
+### STEP 4: Setup TAC parameters and run workload
+
+There are atleast 2 options to run your swingbench workload. 
+
+1. Using the Swingbench GUI. 
+
+Simply fire up swingbench from a terminal window in your VNC session and select 'SOE_Client_Side' from the opening menu. This will use the Simple Order Entry workload using client side jdbc calls.
+
+![](./images/swingbench/swingbench1.png)
+
+
 
 You are ready to run Swingbench workloads on ATP. Workloads are simulated by users submitting transactions to the database. To do this, the user process must be configured. Run the following command unchanged from the same **bin** directory you have been running the other commands:
 
