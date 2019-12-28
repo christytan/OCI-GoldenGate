@@ -26,15 +26,16 @@ This Appendix covers how to perform some of the steps in the labs from Windows e
 
 
 
+## Steps
 
-###  Generating ssh key pairs using Puttygen**
+###  **Generating ssh key pairs using Puttygen**
 
 SSH keys are required to access a running OCI instance securely. You can use an existing SSH-2 RSA key pair or create a new one. Below are instructions for generating your individual key pair for Linux, Mac, Windows, and Windows 10.  Windows 10 is the first Windows version to natively support ssh and terminal access.   Insructions for creating SSH keys can also be found on the OCI documentation page.
 <https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/creatingkeys.htm>
 
 
 
-## Windows versions older than Windows 10
+**Windows versions older than Windows 10**
 
 A third party SSH client needs to be installed for Windows versions prior to Windows 10 in order to generate SSH keys. You can use Git Bash, Putty, or a tool of your choice. This tutorial will use Putty as an example. Git Bash or any third party shell program instructions will likely be the same as the Linux instructions above.
 
