@@ -106,7 +106,7 @@ On the next screen don't change any settings, and click **Install**
 
 - Close the Puttygen application
 
-## Generating ssh keys using powershell on Windows 10  
+**Generating ssh keys using powershell on Windows 10**
 
 - Windows 10 users, **open Powershell terminal window** Either select the application from the Windows Start menu or type 'cmd' or 'powershell' from the Windows search menu.  
 
@@ -141,7 +141,7 @@ Typing *ssh-keygen* by itself creates a key named id_rsa under the default .ssh 
 ![](./images/appendix/image403.png)
 
 
-###  Creating an ssh tunnel from your Windows system to your OCI dev client
+###  **Creating an ssh tunnel from your Windows system to your OCI dev client**
 
 **Windows 10 Users**
 
@@ -172,7 +172,7 @@ Start with creating an ssh session in Putty as usual,
 
 Note that you may establish an ssh connection to your remote host without port forwarding, in which case your VNC session may fail. Please check your port forwarding parameters and retry.
 
-###  Connecting to your OCI Developer client machine from a Windows system
+###  **Connecting to your OCI Developer client machine from a Windows system**
 
 To connect to your instance, you can SSH directly from your machine and use command line to interact, or you can use a VNC viewer  access the image through a full graphical interface. This later method is highly recomended as you will have full graphical access to your cloud developer image vs. command line access through SSH.
 However some initial setup may need to be done with SSH commands before full GUI access to the image is possible. 
