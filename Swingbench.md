@@ -63,24 +63,24 @@ https://www.oracle.com/database/technologies/appdev/jdbc-ucp-183-downloads.html
 
 **Note: 19c drivers have not been tested with swingbench and may produce unpredictable results**
 
-Use instructions below to update drivers if needed, else skip to step 2
+Use instructions below to update drivers if needed, else move on to transfer DB wallet
 
-Download ojdbc8-full.tar.gz to the downloads folder in your dev. client instance
+        1. Download ojdbc8-full.tar.gz to the downloads folder in your dev. client instance
 
-untar the archive
+        2. untar the archive
 
-```
-tar -xvf ojdbc10-full.tar.gz
-```
+            ```
+            tar -xvf ojdbc10-full.tar.gz
+            ```
 
-Copy the contents of ojdbc10-full to /home/opc/swingbench/lib, replacing the existing files. 
+        3. Copy the contents of ojdbc10-full to /home/opc/swingbench/lib, replacing the existing files. 
 
-Note: Do not modify the launcher directory or the existing swingbench.jar. 
+        Note: Do not modify the launcher directory or the existing swingbench.jar. 
 
 
-### **STEP 2: Transfer DB Wallet to swingbench client machine**
+**Transfer DB Wallet to swingbench client machine**
 
-If you have not previously downloaded the wallet for your ATP database follow the steps below. If you previously downloaded the wallet, skip to **STEP 4**
+Unless you have already moved the wallet to your Dev Client machine in an earlier lab, 
 
 - Create a VNC connection to your machine following steps in [Lab2](20DeployImage.md)
 - Open up firefox in your VNC terminal sfrom the Applications menu on the top left.
@@ -111,7 +111,7 @@ If you have not previously downloaded the wallet for your ATP database follow th
 
 
 
-### **STEP 3: Build and setup sample swingbench schema**
+### **STEP 2: Build and setup sample swingbench schema**
 
 Now that you have downloaded the database wallet and installed Swingbench, the first step is to populate data in the database to use when creating the workload. From where we left of on  **STEP 2** above, change to the **bin** directory:
 
@@ -191,7 +191,7 @@ sed -i -e 's/<LogonGroupCount>1<\/LogonGroupCount>/<LogonGroupCount>5<\/LogonGro
 ```
 
 
-### **STEP 4: Setup TAC parameters and run workload**
+### **STEP 3: Setup TAC parameters and run workload**
 
 There are atleast 2 options to run your swingbench workload. 
 
@@ -237,7 +237,7 @@ You may adjust the workload mix using the Transactions tab on the right.
 That is it. You are now ready to fire up your transactional workload.
 
 
-### **STEP 5: Trigger a RAC failover event**
+### **STEP 4: Simulate a failover event and observe workload**
 
 Fire up your workload and confirm all users are connected. Wait a few seconds while the charts load up.
 
