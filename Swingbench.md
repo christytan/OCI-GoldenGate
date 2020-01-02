@@ -5,22 +5,26 @@
 Sept 1, 2019
 </td>
 <td class="td-banner">
-# Install and configure a  workload generator
+# Build 'Always-On' applications on the Autonomous Database
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.
 
 ## Introduction
 
+The Oracle Autonomous Database allows you to build 'Always-On' applications. i.e. applications need not go down during planned maintenance operations on the database, database scaling or even unplanned database outages such as node failures. This is possible due to a feature of the Oracle Autonomous Database called 'Transparent Application Continuity'. 
 
-**In this lab we will install and configure a workload generation tool called Swingbench to demonstrate online scaling, HA, Application Continuity and other cool automation features of the Oracle Autonomous database.**
+TAC uses a combination of Oracle RAC, Oracle Notification Service (ONS), Transparent Application Failover and Application Replay to cleanly failover your application to a surviving node and replaying in-transit transaction to provide a seamless user experience.
+
+In this lab we will install and configure a workload generation tool called Swingbench, configure it for TAC and demonstrate the high availability features of the service while simulating a planned maintenance operation.
 
 
 ## Objectives
 
 As an adminstrator,
-- Learn how to install and use Swingbench to simulate a transaction processing workload
-
+- Install and configure Swingbench to simulate a transaction processing workload
+- Configure application side parameters for Transparent Application Continuity
+- Trigger a RAC failover operation and observe impact to workload
 
 ## Required Artifacts
 
@@ -32,22 +36,19 @@ As an adminstrator,
 
 ## Steps
 
-### **STEP 1: Log in to the Oracle Cloud Developer image and install Swingbench**
+### **STEP 1: Download and install Swingbench**
 
-To connect to your Oracle Cloud Developer image please refer to [Lab2](20DeployImage.md). If  you are already connected from the previous lab skip to **STEP 2**.  
+We will start with downloading and installing Swingbench in a developer client virtual machine provisioned in  [Lab5](20DeployImage.md)
+
+Connect to your developer client machine via VNC. Detailed instructions are provided in [Lab2](20DeployImage.md). If  you are already connected from the previous lab skip to **STEP 2**.  
 
 **The remainder of this lab assumes you are connected to the image through VNC Viewer and are operating from the image itself and not your local machine (except if noted)**
 
-### STEP 2: Install and configure  Swingbench
 
-
-ssh into your developer client machine following instructions in [Lab2](20DeployImage.md). Once you ssh  to the your developer client machine:
-
-- Download swingbench into /home/opc using curl command below
-
+Once connected, open a terminal window and download the latest version of swingbench using the curl command below,
 
 ````
-curl http://www.dominicgiles.com/swingbench/swingbench261082.zip -o swingbench.zip
+curl http://www.dominicgiles.com/swingbench/swingbenchlatest.zip -o swingbench.zip
 ````
 
 - unzip swingbench.zip. It unzips contents in the swingbench folder
@@ -56,10 +57,13 @@ curl http://www.dominicgiles.com/swingbench/swingbench261082.zip -o swingbench.z
 unzip /home/opc/swingbench.zip
 ```
 
-Let's also update the jdbc drivers in swingbench/lib to 18c drivers available at
+If you are already running an older version of swingbench, you would need to update the jdbc drivers in swingbench/lib to 18c jdbc drivers for TAC to work. Oracle 18c jdbc drivers may be downloaded from,
+
 https://www.oracle.com/database/technologies/appdev/jdbc-ucp-183-downloads.html
 
 **Note: 19c drivers have not been tested with swingbench and may produce unpredictable results**
+
+Use instructions below to update drivers if needed, else skip to step 2
 
 Download ojdbc8-full.tar.gz to the downloads folder in your dev. client instance
 
@@ -74,7 +78,7 @@ Copy the contents of ojdbc10-full to /home/opc/swingbench/lib, replacing the exi
 Note: Do not modify the launcher directory or the existing swingbench.jar. 
 
 
-### STEP 3: Transfer DB Wallet to swingbench client machine**
+### **STEP 2: Transfer DB Wallet to swingbench client machine**
 
 If you have not previously downloaded the wallet for your ATP database follow the steps below. If you previously downloaded the wallet, skip to **STEP 4**
 
@@ -107,7 +111,7 @@ If you have not previously downloaded the wallet for your ATP database follow th
 
 
 
-### **STEP 4: Build and setup sample swingbench schema**
+### **STEP 3: Build and setup sample swingbench schema**
 
 Now that you have downloaded the database wallet and installed Swingbench, the first step is to populate data in the database to use when creating the workload. From where we left of on  **STEP 2** above, change to the **bin** directory:
 
@@ -177,47 +181,105 @@ To see how many rows were inserted on each table run the following command:
 ./sbutil -soe -cf ~/Downloads/your_wallet.zip -cs yourdb_medium -u soe -p yourpassword -tables
 ```
 
-### STEP 4: Setup TAC parameters and run workload
-
-There are atleast 2 options to run your swingbench workload. 
-
-1. Using the Swingbench GUI. 
-
-Simply fire up swingbench from a terminal window in your VNC session and select 'SOE_Client_Side' from the opening menu. This will use the Simple Order Entry workload using client side jdbc calls.
-
-![](./images/swingbench/swingbench1.png)
-
-
-
 You are ready to run Swingbench workloads on ATP. Workloads are simulated by users submitting transactions to the database. To do this, the user process must be configured. Run the following command unchanged from the same **bin** directory you have been running the other commands:
 
 ```
 sed -i -e 's/<LogonGroupCount>1<\/LogonGroupCount>/<LogonGroupCount>5<\/LogonGroupCount>/' \
        -e 's/<LogonDelay>0<\/LogonDelay>/<LogonDelay>300<\/LogonDelay>/' \
        -e 's/<WaitTillAllLogon>true<\/WaitTillAllLogon>/<WaitTillAllLogon>false<\/WaitTillAllLogon>/' \
-       ../configs/SOE_Server_Side_V2.xml
+       ../configs/SOE_Client_Side.xml
 ```
 
-### **STEP 5: Generate workloads and scale ATP**
 
-You can now generate loads on your database by running the charbench utility.  Use the command below. There are 2 parameters you can change to modify the amount of load and users being generated. ``The –uc flag specifies the number of users that will be ramped up, in the case below 64. The –rt flag specifies the total running time which is set to 30 seconds by default.``  You can stop running charbench at any time with **Ctrl C.**
+### **STEP 4: Setup TAC parameters and run workload**
+
+There are atleast 2 options to run your swingbench workload. 
+
+**Using the Swingbench GUI**
+
+Simply fire up swingbench from a terminal window in your VNC session and select 'SOE_Client_Side' from the opening menu. This will use the Simple Order Entry workload using client side jdbc calls.
+
+![](./images/swingbench/swingbench1.png)
+
+
+1. On the Configuration --> User Details tab, provide user/pass information as shown below. **Username needs to be soe and password as set in previous step**
+
+    - Copy connect string from OCI console or from tnsnames.ora in the downloaded .zip wallet. Copy the entire TNS alias string that looks similar to,
+
+    ```
+    (DESCRIPTION=(CONNECT_TIMEOUT=120)(RETRY_COUNT=20)(RETRY_DELAY=3)(TRANSPORT_CONNECT_TIMEOUT=3)(ADDRESS_LIST=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=host-xyz.oraclevcn.com)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=myDB_tp.atp.oraclecloud.com)))
+    ```
+    - Specify the location of credentials wallet
+
+    ![](./images/swingbench/TAC1.png)
+
+2. On the Configuration --> Connection Pooling tab, setup connection pooling as shown below. 
+
+      ![](./images/swingbench/TAC2.png)
+
+3. On the Configuration --> Properties tab, set the following parameter 
+
+StatementCaching 120
+FetchSize  20
+AppContinuityDriver  True
+FastFailover  True
+OnsConfiguration nodes=10.0.0.7:6200,10.0.0.8:6200
+
+![](./images/swingbench/TAC3.png)
+
+**Note: For the OnsConfiguration parameter, you will need to provide the private IP address of the RAC nodes in your Autonomous Exadata Infrastructure. For instructions on obtained node private IP, refer to Appendix**
+
+
+You may adjust the workload mix using the Transactions tab on the right.
+
+![](./images/swingbench/mix.png)
+
+That is it. You are now ready to fire up your transactional workload.
+
+
+### **STEP 5: Trigger a RAC failover event**
+
+Fire up your workload and confirm all users are connected. Wait a few seconds while the charts load up.
+
+![](./images/swingbench/TAC4.png)
+
+To monitor client connections on each RAC node, open a terminal window, connect to your database instance using sql plus, sqlcl or sql developer and run the following sql command,
 
 ```
-./charbench -c /home/opc/swingbench/configs/SOE_Server_Side_V2.xml \
-            -cf ~/Downloads/your_wallet.zip \
-            -cs yourdb_tp \
-            -u soe \
-            -p yourpassword \
-            -v users,tpm,tps,vresp \
-            -intermin 0 \
-            -intermax 0 \
-            -min 0 \
-            -max 0 \
-            -uc 64 
-```
-Once swingbench starts running your will see results similar to the screen below. The first column is a time stamp, the second column indicates how many users of the total users requested with the **-uc** parameter are active, and of interest is the 3rd column which indicates transactions per second. If you see any intermittent connect or other error messages, ignore those.
+select i.inst_id, count(*) from gv$session s , gv$instance i where (i.inst_id=s.inst_id) and username is not null group by i.inst_id;
 
-![](./images/swingbench/swingbenchoutput.jpeg)
+```
+
+The output of the command should appear something like this
+
+![](./images/swingbench/sql.png)
+
+In this case you can see we have a 2 instance RAC cluster with 27 connections on instance 1 and 1 connection on instance 2. This may vary a bit in your configuration.
+
+Keep this terminal window open as we will re-run this command a few times to keep track of the connections.
+
+
+Next, we trigger a RAC rollover using Autonomous Container Database (ACD) restart.
+
+
+Navigate to your ADB details page on the OCI console to locate the container database as shown,
+
+![](./images/swingbench/TAC5.png)
+
+
+When ready, restart the container database
+
+![](./images/swingbench/TAC6.png)
+
+
+Notice how the swingbench workload continues to run unaffected. 
+
+Go back to the terminal window and rerun the connection monitoring SQL. You will notice the connections draining from instance 1 to instance 2. When all the connections are drained, your sql session may get temporarily disconnected as node 1 is restarted. Give it a few mins and reconnect your SQL Client. 
+
+Re-run the SQL. This time your client has connected to instance 2. Once node 1 restart completes, the service will repeat the sequence on node 2 but draining all connections back to instance 1 and restarting node 2.
+
+All this time, your swingbench workload should continue to run. In case you notice application connection issues, failures etc, re-check your configuration parameter and make sure your application is using 18c jdbc drivers.
+
 
 
 
@@ -226,7 +288,7 @@ Once swingbench starts running your will see results similar to the screen below
 
 [![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-### Congratulations! You successfully completed setting up the swingbench workload generator for use in subsequent labs.
+### Congratulations! You successfully configured the swingbench java application with Transparent Application Continuity and tested it with a simulated planned maintenance scenario.
 
 
 

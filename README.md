@@ -34,7 +34,7 @@ Lab 13 onwards demonstrate the operational aspects of the service
 - Build apex applications on dedicated autonomous database
 - Migrate an on-prem application schema using Data Pump
 - Setup live migration of business critical databases using Oracle Goldengate replication
-- Install and configure a workload generator for subsequent labs
+- Install and configure a TP workload generator for subsequent labs
 - Manage database performance with Performance Hub
 - Test online scaling capabilities of the autonomous database service
 - Test High Availabilitiy capabilities of the autonomous database service
@@ -224,14 +224,15 @@ As a database admin,
 
 **[Click here to run Lab 14](Goldengate.md)**
 
-## Lab 15: Install Swingbench workload generator 
+## Lab 15: Build 'Always-On' applications on the autonomous database 
 
 
 **Key Objectives**:
 
 As a database admin,
 
-- install and configure a workload generation tool called Swingbench to test online scaling, HA, Application Continuity and other automation features of the Oracle Autonomous database
+- Install and configure a Java OLTP application for High Availability
+- Simulate a planned maintenance event and observe workload
 
 **[Click here to run Lab 15](Swingbench.md)**
 
@@ -242,7 +243,7 @@ As a database admin,
 
 As a database admin or database user,
 
-- Simulate a production workload using Swingbench load generator
+- Simulate a production OLTP workload using Swingbench load generator
 - Monitor and Manage your autonomous database performance using Performance Hub.
 
 **[Click here to run Lab 16](Performancehub.md)**
