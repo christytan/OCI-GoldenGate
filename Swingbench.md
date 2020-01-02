@@ -40,7 +40,7 @@ As an adminstrator,
 
 We will start with downloading and installing Swingbench in a developer client virtual machine provisioned in  [Lab5](20DeployImage.md)
 
-Connect to your developer client machine via VNC. Detailed instructions are provided in [Lab2](20DeployImage.md). If  you are already connected from the previous lab skip to **STEP 2**.  
+Connect to your developer client machine via VNC. Detailed instructions are provided in [Lab2](20DeployImage.md).
 
 **The remainder of this lab assumes you are connected to the image through VNC Viewer and are operating from the image itself and not your local machine (except if noted)**
 
@@ -113,12 +113,15 @@ Unless you have already moved the wallet to your Dev Client machine in an earlie
 
 ### **STEP 2: Build and setup sample swingbench schema**
 
-Now that you have downloaded the database wallet and installed Swingbench, the first step is to populate data in the database to use when creating the workload. From where we left of on  **STEP 2** above, change to the **bin** directory:
+Now that you have installed swingbench, the next step is to build the sample Order Entry schema in the database. 
+
+ssh into your dev client machine and change directory to /home/opc/swingbench/bin
 
 ```
-cd bin
+cd /home/opc/swingbench/bin
 ```
-So you should be in the **/home/opc/swingbench/bin** directory
+
+Run the Order Entry wizard, replacing parameters as applicable to your environment
 
 ```
 ./oewizard -cf ~/Downloads/your_wallet \
@@ -139,7 +142,6 @@ So you should be in the **/home/opc/swingbench/bin** directory
 
 ![](./images/swingbench/loadsb.jpeg)
 
-Understanding the parameters above 
 
 - cf speficies the location of the wallet file
 - cs specifies the ATP service to connect to 
