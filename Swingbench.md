@@ -5,7 +5,7 @@
 Sept 1, 2019
 </td>
 <td class="td-banner">
-# Build 'Always-On' applications on the Autonomous Database
+# Building 'Always-On' applications on the Autonomous Database
 </td></tr><table>
 
 To **log issues**, click [here](https://github.com/oracle/learning-library/issues/new) to go to the github oracle repository issue submission form.

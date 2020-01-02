@@ -224,7 +224,7 @@ As a database admin,
 
 **[Click here to run Lab 14](Goldengate.md)**
 
-## Lab 15: Build 'Always-On' applications on the autonomous database 
+## Lab 15: Building 'Always-On' applications on the autonomous database 
 
 
 **Key Objectives**:
