@@ -130,7 +130,7 @@ That is it! Try creating another ADB instance and receive notifications to this 
 
 [![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-### Congratulations! You successfully learnt to recover from user errors using Oracle flashback.
+### Congratulations! You successfully learnt to create DB event subscriptions and setup multi-channel notifications!
 
 
 

@@ -36,7 +36,7 @@ Lab 13 onwards demonstrate the operational aspects of the service
 - Setup live migration of business critical databases using Oracle Goldengate replication
 - Build 'Always-On' application on the autonomous database
 - Manage database performance with Performance Hub
-- Test High Availabilitiy capabilities of the autonomous database service
+- Scale your database service with zero downtime
 - Protect your data with Database Vault
 - Recover from user errors using flashback recovery
 - Setup monitoring events and notifications
@@ -228,7 +228,7 @@ As a database admin,
 
 **[Click here to run Lab 15](Swingbench.md)**
 
-## Lab 16: Manage database performance with Performance Hub 
+## Lab 16: Managing database performance with Performance Hub 
 
 
 **Key Objectives**:
@@ -241,7 +241,7 @@ As a database admin or database user,
 **[Click here to run Lab 16](Performancehub.md)**
 
 
-## Lab 17: Test online scaling capabilities of the autonomous database service 
+## Lab 17: Zero downtime scaling
 
 
 **Key Objectives**:
@@ -255,7 +255,7 @@ As a database admin or database user,
 
 
 
-## Lab 18: - Protect your data with Database Vault
+## Lab 18: - Protecting your data with Database Vault
 
 
 **Key Objectives**:
@@ -268,7 +268,7 @@ As a database security admin,
 **[Click here to run Lab 18](DBVault.md)**
 
 
-## Lab 19: - Recover from user errors using flashback recovery
+## Lab 19: - Recovering from user errors using flashback recovery
 
 
 **Key Objectives**:
@@ -280,7 +280,7 @@ As a developer or database admin,
 
 **[Click here to run Lab 19](Flashback.md)**
 
-## Lab 20: - Setup ADB event notifications through OCI Notification Service
+## Lab 20: - Setting up DB event notifications using OCI Notification service
 
 
 **Key Objectives**:
