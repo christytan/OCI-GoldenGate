@@ -29,18 +29,26 @@ Lab 13 onwards demonstrate the operational aspects of the service
 - Build and deploy Python application stacks on dedicated autonomous infrastructure
 - Build and deploy node.js application stacks on dedicated autonomous infrastructure
 - Build and deploy Java application stacks on dedicated autonomous infrastructure
-- Use OCI CLI commands to work with your autonomous databases
+- Use OCI CLI commands to work with your Autonomous databases
 - Invoke and use the sqldevweb console
-- Build apex applications on the autonomous database
+- Build apex applications on dedicated autonomous database
 - Migrate an on-prem application schema using Data Pump
 - Setup live migration of business critical databases using Oracle Goldengate replication
-- Build 'Always-On' application on the autonomous database
+- Install and configure a TP workload generator for subsequent labs
 - Manage database performance with Performance Hub
+- Test online scaling capabilities of the autonomous database service
 - Test High Availabilitiy capabilities of the autonomous database service
+- Setup Zero downtime configurations with Transparent Application Continuity
 - Protect your data with Database Vault
 - Recover from user errors using flashback recovery
 - Setup monitoring events and notifications
 
+<!-- # How to Get Your Free Cloud Trial Account
+Please click on the following link to create your <a class=“trial-link” href="https://myservices.us.oraclecloud.com/mycloud/signup?language=en&sourceType=:ex:tb:::RC_NAMK181011P00041:ATPHOL&SC=:ex:tb:::RC_NAMK181011P00041:ATPHOL&pcode=NAMK181011P00041" target="_trial">Free Account</a>, and complete all the required steps to get your free Oracle Cloud Trial Account. When you complete the registration process you'll receive a $300 credit that will enable you to complete the lab for free.  Additionally, you'll have 1000s of hours left over to continue to explore the Oracle Cloud.
+
+  - Soon after requesting your trial you will receive the following email. You may begin working on Lab 100. -->
+
+  <!-- ![](images/readme/code_9.png) -->
 
 
 
@@ -253,9 +261,32 @@ As a database admin or database user,
 
 **[Click here to run Lab 17](Scaling.md)**
 
+## Lab 18: Test High Availabilitiy capabilities of the autonomous database service (demo only)
 
 
-## Lab 18: - Protect your data with Database Vault
+**Key Objectives**:
+
+As a database admin or database user,
+
+- Simulate a production workload using Swingbench load generator
+- Restart container DB and observe workload
+
+**[Click here to run Lab 18](HA.md)**
+
+## Lab 19: Setup Zero downtime configurations with Transparent Application Continuity (under construction)
+
+
+**Key Objectives**:
+
+As a developer or database user,
+
+- Configure  Transparent Application Continuity in the app tier
+- Simulate a production workload using Swingbench load generator
+- Restart container DB and observe workload
+
+**[Click here to run Lab 19](TAC.md)**
+
+## Lab 20: - Protect your data with Database Vault (under construction)
 
 
 **Key Objectives**:
@@ -265,10 +296,10 @@ As a database security admin,
 - Enable database vault in your autonomous database service
 - Implement separation of duties to protect sensitive data in your autonomous database
 
-**[Click here to run Lab 18](DBVault.md)**
+**[Click here to run Lab 20](DBVault.md)**
 
 
-## Lab 19: - Recover from user errors using flashback recovery
+## Lab 21: - Recover from user errors using flashback recovery
 
 
 **Key Objectives**:
@@ -278,9 +309,9 @@ As a developer or database admin,
 - Setup recovery points in your database code
 - Flashback your database to recover from erroneous updates
 
-**[Click here to run Lab 19](Flashback.md)**
+**[Click here to run Lab 21](Flashback.md)**
 
-## Lab 20: - Setup ADB event notifications through OCI Notification Service
+## Lab 22: - Setup ADB event notifications through OCI Notification Service
 
 
 **Key Objectives**:
@@ -291,7 +322,7 @@ As a developer or database admin,
 - Add subscribers to recieve service event notifications via email, SMS & Slack
 
 
-**[Click here to run Lab 20](CNS.md)**
+**[Click here to run Lab 22](CNS.md)**
 
 
 

@@ -165,7 +165,7 @@ node server.js
 ```
 ![](./images/700/runNode.png)
 
-- Open a browser and go to localhost:3050 to see the successful connection!
+- From within your VNC session, open a browser and go to localhost:3050 to see the successful connection!
 
 ![](./images/700/connectionSuccessful.png)
 
