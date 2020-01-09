@@ -107,12 +107,12 @@ connect dv_owner/password@tns_connect_string_for_your_db
 exec dbms_macadm.enable_dv; 
 ````
 
-You must “restart” the database to complete the Database Vault registration process. Go to the console to Stop and Start the ATP database.
+You must “restart” the database to complete the Database Vault registration process. You may restart the database from the console as shown.
 
 ![](./images/DBVault/stopdb.png)
 ![](./images/DBVault/startdb.png)
 
-Once the database is restarted, log in as Database Vault owner and verify DV is enabled
+Once restart completes, log in as Database Vault owner and verify DV is enabled
 
 ````
 select value from v$option where parameter = 'Oracle Database Vault';
@@ -121,9 +121,9 @@ select value from v$option where parameter = 'Oracle Database Vault';
 
 ### **STEP 3: Create security Realms and add schema objects**
 
-Realms can protect schemas and individual schema objects. Once you create a realm, you can define security restrictions that apply to the schemas and their schema objects. 
+Next we create a 'Realm', add objects to it and define access rules for the realm.
 
-We will now create a realm to secure HR.EMPLOYEES table from ADMIN and HR (table owner) and grant access to APPUSER only.
+Let's create a realm to secure HR.EMPLOYEES table from ADMIN and HR (table owner) and grant access to APPUSER only.
 As Database Vault Owner, execute the following PL/SQL statements:
 
 ````
@@ -156,7 +156,7 @@ END;
 
 ### **STEP 4: Create Audit Policy to Capture Realm Violations**
 
-Autonomous Database uses Unified Auditing, we will create a policy to audit database vault activities. For more information on Unified Auditing, refer to Database Security Guide. https://docs.oracle.com/en/database/oracle/oracle-database/19/dbseg/introduction-to-auditing.html
+You may also want to capture an audit trail of unauthorized access attempts to your realm objects. Since the Autonomous Database includes Unified Auditing, we will create a policy to audit database vault activities. For more information on Unified Auditing, refer to the [Database Security Guide](https://docs.oracle.com/en/database/oracle/oracle-database/19/dbseg/introduction-to-auditing.html)
 
 Create an audit policy to capture realm violations
 
@@ -177,11 +177,11 @@ To test the realm, try to access the EMPLOYEES table as HR, ADMIN and then APPUS
 ![](./images/DBVault/audit2.png)
 
 
-**Note: ADMIN normally has access to all objects in the database, now that we have safeguarded the EMPLOYEES table with Database Vault, this is no longer the case. In fact, even the table owner HR does not have access to this table. Only APPUSER has access.**
+**Note: The default 'admin' account in ADB has access to all objects in the database, but realm objects are now protected from admin access. In fact, even the table owner HR does not have access to this table. Only APPUSER has access.**
 
 ### **STEP 5: Review realm violation audit trail**
 
-Because auditing on failure for the HR App realm has been enabled, you can generate a report to find any security violations. 
+We can query the audit trail to generate a basic report of realm access violations. 
 
 Connect as Audit Administrator, in this lab this is the Database Vault owner, and execute the following:
 
