@@ -179,7 +179,7 @@ To test the realm, try to access the EMPLOYEES table as HR, ADMIN and then APPUS
 
 **Note: ADMIN normally has access to all objects in the database, now that we have safeguarded the EMPLOYEES table with Database Vault, this is no longer the case. In fact, even the table owner HR does not have access to this table. Only APPUSER has access.**
 
-### **STEP 5: Review realm violation audit trails**
+### **STEP 5: Review realm violation audit trail**
 
 Because auditing on failure for the HR App realm has been enabled, you can generate a report to find any security violations. 
 
