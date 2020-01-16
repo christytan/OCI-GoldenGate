@@ -41,9 +41,16 @@ In this section you will be provisioning a dedicated autonomous database using t
 
 ![](./images/400/Picture100-21.jpeg)
 
-- Select **dbUserCompartment Compartment** 
+- Select **userXX-Compartment under the Workshop Compartment** 
 
-![](./images/400/dbUserCompartment.png)
+![](./images/400/provisionATP-Dname1.png)
+
+
+**Note:** Oracle Cloud Infrastructure allows logical isolation of users within a tenancy through Compartments. This allows multiple users and business units to share an OCI tenancy while being isolated from each other.
+
+**If you have chosen the compartment you do not have privileges on, such as a root compartment or fleet Compartment, you will not be able to provision an ADB instance in it.**
+
+More information about Compartments and Policies is provided in the OCI Identity and Access Management documentation [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm?tocpath=Services%7CIAM%7C_____13).
 
 -  Click on **Create Autonomous Transaction Processing Database** button to start the instance creation process
 
@@ -53,16 +60,6 @@ In this section you will be provisioning a dedicated autonomous database using t
 
 ![](./images/400/provisionATP-D.png)
 
-
-#### Note: Oracle Cloud Infrastructure allows logical isolation of users within a tenant through Compartments. This allows multiple users and business units to share a tenant account while being isolated from each other.
-
-If you have chosen the compartment you do not have privileges on, you will not be able to see or provision instance in it.
-
-More information about Compartments and Policies is provided in the OCI Identity and Access Management documentation [here](https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm?tocpath=Services%7CIAM%7C_____13).
-
--  Verify dbUserCompartment compartment is selected and Specify a name for the instance
-
-![](./images/400/provisionATP-Dname.png)
 
 -  Choose workload type to Transaction Processing and deployment type to Dedicated Infrastructure
 
@@ -83,8 +80,9 @@ WElcome#1234
 
 ![](./images/400/Picture100-29.jpeg)
 
-- Ensure your fleet admin as created and assigned privileges to READ a container database
-- Choose Autonomous Container Database from drop down
+- Select a compartment where the container database resides. **Note this would be the fleetCompartment**
+
+- Choose an Autonomous Container Database from the drop down
 
 ![](./images/400/provisionATP-Dcontainer.png)
 

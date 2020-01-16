@@ -231,6 +231,11 @@ In your VNC session, invoke SQL Developer from the top left Applications menu as
 
 
 
+**Note: In the event you have issues launching SQL Developer and it prompts with a java classpath error, simply add the following line to ~/.sqldeveloper/19.1.0/product.conf and retry**
+````
+SetJavaHome /usr/java/jdk1.8.0_231-amd64
+````
+
 Create an new connection in sql*developer and provide the following information,
 
 **Connection Name**: Name for your connection
