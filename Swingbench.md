@@ -83,9 +83,8 @@ Use instructions below to update drivers if needed, else move on to transfer DB 
 Unless you have already moved the wallet to your Dev Client machine in an earlier lab, 
 
 - Create a VNC connection to your machine following steps in [Lab2](20DeployImage.md)
-- Open up firefox in your VNC terminal sfrom the Applications menu on the top left.
+- Open up firefox in your VNC terminal from the Applications menu on the top left.
 
- ![](./images/800/terminal.jpeg)
 
  -  Once Firefox is open go to **cloud.oracle.com**
 
@@ -107,7 +106,6 @@ Unless you have already moved the wallet to your Dev Client machine in an earlie
 
 - The credentials zip file contains the encryption wallet, Java keystore and other relevant files to make a secure TLS 1.2 connection to your database from client applications. The wallet will be downloaded to your downloads directory.
 
-![](./images/800/walletdownload.jpeg)
 
 
 
