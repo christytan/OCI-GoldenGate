@@ -39,11 +39,9 @@ Login to your Oracle Cloud Infrastructure account and navigate to the console pa
 
 ![access_db_console](./images/1000/access_db_console.png)
 
-Navigate to the database details page and click the 'DB Connection' button
+Navigate to the database details page and on the 'Tools' tab you will find the 'Open SQL Developer Web' button that would lead you to the SQL Developer Web access URL as shown below
 
-![db_connection](./images/1000/db_connection.png)
-
-On the 'Database Connection' details page, select the 'Application Connection' radio button and copy the Access URL for SQL Developer Web as shown below
+![db_connection](./images/1000/tools.png)
 
 
 ![sqldevweb_url](./images/1000/sqldevweb_url.png)

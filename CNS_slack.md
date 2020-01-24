@@ -20,7 +20,7 @@ To **log issues**, click [here](https://github.com/oracle/learning-library/issue
 As an database developer or adminstrator,
 - Learn how to set up autonomous database event topics
 - Subscribe to database events via email and SMS
-
+- Setup a Slack channel to receive ONS notifications
 
 
 ## Required Artifacts
@@ -80,14 +80,58 @@ Scroll down to select the Action type for this event and pick Notifications and 
 
 Thats it! To test your notification setup, create an autonomous database service instance as explained in Lab 4.
 
+### **Setup a Slack channel to receive event notificationss**
 
+Lets see how we can setup group notifications to a slack channel. First you would need to get a webhooks URL to your slack channel.
+
+Sign into your slack workspace. If you don't have done, you can get one for free for the purposes of this lab at https://slack.com
+
+![](./images/ONS/slack1.png)
+
+
+
+
+Once signed in, create a slack channel to receive ADB event notifications
+
+![](./images/ONS/slack_channel.png)
+
+Next, lets buid a slack app that can receive notifications from OCI using a webhooks URL and pass it on to the channel we created. Open https://api.slack.com/apps in your browser
+
+![](./images/ONS/slack_app.png)
+
+Provide a name and select a slack workspace. If you do not have one, click 'Sign into a different workspace' and scroll down to the bottom to access link to 'Create a new workspace'
+
+Once you click 'Create App', on the application information page, click on the 'Incoming Webhooks' tile and activate webhooks as shown below
+![](./images/ONS/webhooks1.png)
+![](./images/ONS/webhooks2.png)
+
+Once activated, scroll down and hit the 'Add New Webhook to Workspace' button
+![](./images/ONS/webhooks3.png)
+
+Next, pick a channel for the app to post to - 
+![](./images/ONS/webhooks4.png)
+
+Confirm, and scroll down to copy the Webhooks URL for your workspace. You will need to provide this in the OCI notification setup page. 
+
+![](./images/ONS/webhook_url.png)
+
+Copy the URL and navigate to the OCI Subscriptions page once again. On the 'Create Subscription' page, select 'Slack' as protocol, and paste the webhook URL for your slack workspace. Scroll down and hit 'Create'
+
+![](./images/ONS/webhook5.png)
+
+OCI Notification Service will then send a confirmation URL to your slack channel. Go back to slack and click the link to confirm your subscription.
+
+![](./images/ONS/webhook6.png)
+
+That is it! Try creating another ADB instance and receive notifications to this slack channel.
 
 <table>
 <tr><td class="td-logo">
 
 [![](images/obe_tag.png)](#)</td>
 <td class="td-banner">
-### Congratulations! You successfully learnt to create DB event subscriptions and setup notifications!
+### Congratulations! You successfully learnt to create DB event subscriptions and setup multi-channel notifications!
+
 
 
 
