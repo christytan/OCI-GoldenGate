@@ -264,7 +264,7 @@ On the Database Connection popup, pick any TNS Connection String entry and expan
 
 - Next, deploy any linux VM in the same VCN hosting your Autonomous Exadata Infrastructure (AEI)
 
-- You may follow steps ![in this lab guide](./ConfigureDevClient.md) to provision the Oracle Developer Client VM from the OCI marketplace. 
+- You may follow steps [in this lab guide](./ConfigureDevClient.md) to provision the Oracle Developer Client VM from the OCI marketplace. 
 
 - Note that the VM can be in a public or private subnet as long as you can ssh into it and **its in the same VCN as your AEI.**
 
@@ -277,21 +277,21 @@ $ ssh -i <private-key-file> opc@<Public-IP-of-machine>
 
 ````
 
-**Step 3: DQuery your VCN's DNS service to locate IP address of AEI Cluster**
+**Step 3: Query your VCN's DNS service to locate IP address of AEI Cluster**
 
 Once you are ssh'd into a client VM, simply run nslookup on the scan-host name your picked out from step 1 above.
 
 ````
-$ nslookup host-exrii-scan.previewpvtsubne.devopsvcn.oraclevcn.com
+$ nslookup host-xxxx-scan.mysubnet.myvcn.oraclevcn.com
 Server:		169.XXX.169.254
 Address:	169.XXX.169.254#53
 
 Non-authoritative answer:
-Name:	host-xxxx-scan.previewpvtsubne.myvcn.oraclevcn.com
+Name:	host-xxxx-scan.msyubnet.myvcn.oraclevcn.com
 Address: 10.0.11.36
-Name:	host-xxxx-scan.previewpvtsubne.myvcn.oraclevcn.com
+Name:	host-xxxx-scan.mysubnet.myvcn.oraclevcn.com
 Address: 10.0.11.34
-Name:	host-xxxx-scan.previewpvtsubne.myvcn.oraclevcn.com
+Name:	host-xxxx-scan.mysubnet.myvcn.oraclevcn.com
 Address: 10.0.11.35
 
 ````
