@@ -299,6 +299,7 @@ As a developer or database admin,
 
 
 **Common tools for windows Users**
+**Finding the IP address of your AEI Cluster**
 
 
 
