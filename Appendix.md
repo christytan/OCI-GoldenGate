@@ -282,16 +282,16 @@ $ ssh -i <private-key-file> opc@<Public-IP-of-machine>
 Once you are ssh'd into a client VM, simply run nslookup on the scan-host name your picked out from step 1 above.
 
 ````
-$ nslookup host-xxxx-scan.mysubnet.myvcn.oraclevcn.com
+$ nslookup host-xxxx-scan.exasubnet.ocivcn.oraclevcn.com
 Server:		169.XXX.169.254
 Address:	169.XXX.169.254#53
 
 Non-authoritative answer:
-Name:	host-xxxx-scan.msyubnet.myvcn.oraclevcn.com
+Name:	host-xxxx-scan.exasubnet.ocivcn.oraclevcn.com
 Address: 10.0.11.36
-Name:	host-xxxx-scan.mysubnet.myvcn.oraclevcn.com
+Name:	host-xxxx-scan.exasubnet.ocivcn.oraclevcn.com
 Address: 10.0.11.34
-Name:	host-xxxx-scan.mysubnet.myvcn.oraclevcn.com
+Name:	host-xxxx-scan.exasubnet.ocivcn.oraclevcn.com
 Address: 10.0.11.35
 
 ````
