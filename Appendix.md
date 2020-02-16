@@ -5,28 +5,20 @@
 September 1, 2019
 </td>
 <td class="td-banner">
-# How to do stuff in Windows
+# How to do stuff ...
 </td></tr><table>
 
-# General Help for Windows users
 
 
-
-This Appendix covers how to perform some of the steps in the labs from Windows environments.
+This Appendix covers some general help for Windows users and other occasional issues you may encounter while working with your ADB Dedicated service.
 
 ## Objectives
 
-- Cover steps to perform different labs from Windows environments
-
-
-## Required Artifacts
-- Windows system
-- An Oracle Cloud Infrastructure account with IAM privileges to provision compute instances.
-- VNC Viewer or other suitable VNC client on your local computer.
+- Instructions for windows users and other items
 
 
 
-## Steps
+## Topics
 
 ###  **Generating ssh key pairs using Puttygen**
 
@@ -252,6 +244,60 @@ If you get a warning message about the communication not being encrypted click c
 - Enter the VNC password you set earlier, when you ran the **vncpasswd** command in the cloud developer image, in the password dialog and you will be connected!
 
 ![](./images/appendix/devimage.jpeg)
+
+
+###  **Finding private IP address of your Autonomous Exadata infrastructure (AEI)**
+
+
+**Step 1: Locate the SCAN hostname of your AEI**
+
+Go to your Autonomous Database Console and open the details page of any ADB instance you have already provisioned on this AEI. Click the DB Connection button
+
+![](./images/appendix/dbconnection2.png)
+
+On the Database Connection popup, pick any TNS Connection String entry and expand it as shown below. Your exadata hostname is embedded in this TNS entry. Click 'copy' and paste the entire TNS string onto a notepad. You may then pick out the hostname when you need it in the steps below
+
+![](./images/appendix/hostname1.png)
+
+
+**Step 2: Deploy and ssh into your developer client VM**
+
+- Next, deploy any linux VM in the same VCN hosting your Autonomous Exadata Infrastructure (AEI)
+
+- You may follow steps ![in this lab guide](./ConfigureDevClient.md) to provision the Oracle Developer Client VM from the OCI marketplace. 
+
+- Note that the VM can be in a public or private subnet as long as you can ssh into it and **its in the same VCN as your AEI.**
+
+- If your company has deployed FastConnect and setup VPN into the OCI network, you may ssh into your client machine using its private IP or a hostname registered in your corporate DNS. Check with your network administrator responsible for the OCI network.
+
+Here, we assume that you have deployed a VM in a public subnet and can ssh into it using its public IP.
+
+````
+$ ssh -i <private-key-file> opc@<Public-IP-of-machine>
+
+````
+
+**Step 3: DQuery your VCN's DNS service to locate IP address of AEI Cluster**
+
+Once you are ssh'd into a client VM, simply run nslookup on the scan-host name your picked out from step 1 above.
+
+````
+$ nslookup host-exrii-scan.previewpvtsubne.devopsvcn.oraclevcn.com
+Server:		169.XXX.169.254
+Address:	169.XXX.169.254#53
+
+Non-authoritative answer:
+Name:	host-xxxx-scan.previewpvtsubne.myvcn.oraclevcn.com
+Address: 10.0.11.36
+Name:	host-xxxx-scan.previewpvtsubne.myvcn.oraclevcn.com
+Address: 10.0.11.34
+Name:	host-xxxx-scan.previewpvtsubne.myvcn.oraclevcn.com
+Address: 10.0.11.35
+
+````
+
+You now have the 3 SCAN IP's of your AEI cluster. Once your network admin adds the SCAN hostname and the 3 IPs to your corporate DNS Server, you may then be able to access your database instances via hostname using the downloaded wallet.
+
 
 
 <table>
