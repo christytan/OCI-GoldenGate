@@ -48,18 +48,18 @@ Connect to your developer client machine via VNC. Detailed instructions are prov
 Once connected, open a terminal window and download the latest version of HammerDB using the wget command below,
 
 ````
-wget https://github.com/TPC-Council/hammerDB/releases/download/v3.3/HammerDB-3.3-Linux.tar.gz
+wget https://github.com/TPC-Council/HammerDB/releases/download/v3.3/HammerDB-3.3-Linux.tar.gz
 ````
 
-![](./images/hammerDB/DownloadHammedDB.png)
+![](./images/HammerDB/DownloadHammedDB.png)
 
 - use the tar tool to extract HammerDB folder. It places the contents in the HammerDB folder
 
 ```
 tar -zxvf HammerDB-3.3-Linux.tar.gz
 ```
-![](./images/hammerDB/untarHammerDB.png)
-![](./images/hammerDB/untarHammerDB2.png)
+![](./images/HammerDB/untarHammerDB.png)
+![](./images/HammerDB/untarHammerDB2.png)
 
 
 If you are already running an older version of HammerDB, you would need to update the jdbc drivers in Oracle instant client to 18c jdbc drivers for TAC to work. Oracle 18c jdbc drivers may be downloaded from,
@@ -116,17 +116,17 @@ Unless you have already moved the wallet to your Dev Client machine in an earlie
 
 Alternatively, you can scp the wallet into the developer client as well as shown below.
 
-![](./images/hammerDB/walletcopy_unzip.png)
+![](./images/HammerDB/walletcopy_unzip.png)
 
 - unzip the wallet file into a folder and set the wallet path in the TNS_ADMIN environment variable.
 
 - set the $ORACLE_HOME and LD_LIBRARY_PATH environment variables as shown below.
 
-![](./images/hammerDB/bash_profile.png)
+![](./images/HammerDB/bash_profile.png)
 
 - set the directory parameter in the sqlnet.ora file present in the wallet to TNS_ADMIN path.
 
-![](./images/hammerDB/sqlnet.png)
+![](./images/HammerDB/sqlnet.png)
 
 ### **STEP 2: Build and setup sample HammerDB schema**
 
@@ -145,17 +145,17 @@ Run the HammerDB wizard.
 ```
 
 
-![](./images/hammerDB/changeDir.png)
-![](./images/hammerDB/LaunchHammerDb.png)
+![](./images/HammerDB/changeDir.png)
+![](./images/HammerDB/LaunchHammerDb.png)
 
 The launch screen will look similar to this:
 
-![](./images/hammerDB/SchemaSetup_1.png)
+![](./images/HammerDB/SchemaSetup_1.png)
 
 
 **Note : You might see an error here stating that the "libXft.x.x.x" is missing. In that case download the appropriate library from the respective repositories based on the OS you have. For linux systems, the library can be downloaded as shown below.**
 
-![](./images/hammerDB/LibraryMissing.png)
+![](./images/HammerDB/LibraryMissing.png)
 
 
 **Once we have HammerDB up and running, let us setup the schema and load data for our benchmark test**
@@ -166,7 +166,7 @@ The launch screen will look similar to this:
 
 - Double click on options and you will see the pop-up window. Fill in the details as listed below.
 
-![](./images/hammerDB/SchemaSetup_2.png)
+![](./images/HammerDB/SchemaSetup_2.png)
 
     - Oracle Service Name : \<Database Name\>_low (or medium or high)
     - System User : admin
@@ -179,16 +179,16 @@ The launch screen will look similar to this:
     - Number of Warehouses : 4
     - Virtual Users to build schema : 4
 
-![](./images/hammerDB/SchemaSetup_3.png)
+![](./images/HammerDB/SchemaSetup_3.png)
 
 - Click OK. Then Double click on Build option to start the process.
 
-![](./images/hammerDB/SchemaSetup_4.png)
+![](./images/HammerDB/SchemaSetup_4.png)
 
 - Your output should be similar to this:
 
-![](./images/hammerDB/SchemaSetup_6.png)
-![](./images/hammerDB/SchemaSetup_5.png)
+![](./images/HammerDB/SchemaSetup_6.png)
+![](./images/HammerDB/SchemaSetup_5.png)
 
 **Since our Schemas are built and data is loaded. Now we can load the driver script which will execute workload on the database**
 
@@ -208,7 +208,7 @@ The launch screen will look similar to this:
         - Total number of Transactions  : You can set any value but for this exercise we will the default value of 1 Mil Transactions
     - Click OK.
 
-![](./images/hammerDB/DriverScriptLoad_1.png)
+![](./images/HammerDB/DriverScriptLoad_1.png)
 
 Now, You are ready to run HammerDB workloads on ATP. Workloads are simulated by users submitting transactions to the database. To do this, the virtual users must be configured as shown below. 
 
@@ -217,7 +217,7 @@ Now, You are ready to run HammerDB workloads on ATP. Workloads are simulated by 
 
 - Double click on the Virtual Users option on the benchmark panel on the left.
 
-![](./images/hammerDB/LoadTest1.png)
+![](./images/HammerDB/LoadTest1.png)
 
 - Double click on options and set the parameters as listed below:
 
@@ -231,7 +231,7 @@ Now, You are ready to run HammerDB workloads on ATP. Workloads are simulated by 
     - Click OK.
     - Double click on create option to create the virtual users
 
-![](./images/hammerDB/LoadTest2.png)
+![](./images/HammerDB/LoadTest2.png)
 
 
 ### **STEP 3: Run workload using hammerDb on ADB-D**
@@ -246,12 +246,12 @@ There are atleast 2 options to run your HammerDB workload.
 - Click on the Virtual Users option on the benchmark panel on the left.
 - Double click on run option to kick-off the workload.
 
-![](./images/hammerDB/LoadTestRun1.png)
+![](./images/HammerDB/LoadTestRun1.png)
 
 
 You should see the workload running as shown below.
 
-![](./images/hammerDB/LoadTestRun2.png)
+![](./images/HammerDB/LoadTestRun2.png)
 
 
 Now let's setup transaction counters and metrics counters to track the database statistics.
@@ -260,7 +260,7 @@ Now let's setup transaction counters and metrics counters to track the database 
 
 - Under the benchmark panel, click on Transactions and then Options.
 
-![](./images/hammerDB/TransactionSetup.png)
+![](./images/HammerDB/TransactionSetup.png)
 
 - Fill in the details as listed below.
     - Details:
@@ -270,13 +270,13 @@ Now let's setup transaction counters and metrics counters to track the database 
         - Refresh Rate : 10
 - Double click on Counter option to start the transaction counter.
 
-![](./images/hammerDB/TransactionConsole.png)
+![](./images/HammerDB/TransactionConsole.png)
 
 **Setting up Metrics Counter**
 
 - Under the benchmark panel, click on Metrics and then Options.
 
-![](./images/hammerDB/MetricSetup.png)
+![](./images/HammerDB/MetricSetup.png)
 
 - Fill in the details as listed below.
     - Details:
@@ -285,7 +285,7 @@ Now let's setup transaction counters and metrics counters to track the database 
         - System User Password : \<Admin User Password\>
 - Double click on Display option to start the transaction counter.
         
-![](./images/hammerDB/metricConsole.png)
+![](./images/HammerDB/metricConsole.png)
 
 
 That is it. You have successfully executed the workload against ADB-D and can monitor the statistics using the Transaction Counter and Metrics Counter.
